@@ -20,6 +20,16 @@ const SpotStyled = styled.div`
   height: 130px;
   background: #eee;
   border-radius: 4px;
-  margin: 20px auto;
-  display: flex;
+  margin: 9px auto;
+  display: grid;
+  grid-auto-flow: column;
+  h2 {
+    font-size: 0.8rem;
+  }
+  h3 {
+    font-size: 0.6rem;
+  }
+  img {
+    width: 154px;
+  }
 `
