@@ -16,8 +16,8 @@ export default function Spot({ name, mainImage, boulderCount, sportCount }) {
 }
 
 const SpotStyled = styled.div`
-  width: 350px;
-  height: 150px;
+  width: 320px;
+  height: 130px;
   background: #eee;
   border-radius: 4px;
   margin: 20px auto;
