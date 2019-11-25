@@ -2,7 +2,8 @@ import React from 'react'
 import Home from './Home'
 import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import DetailedRoute from './DetailedRoute'
+import DetailedSpot from './DetailedSpot'
+import spotData from './spots.json'
 
 function App() {
   return (
@@ -10,13 +11,13 @@ function App() {
       <GlobalStyle />
       <Switch>
         <Route exact path="/detail">
-          <DetailedRoute />
+          <DetailedSpot />
           <Link to="/">Home</Link>
         </Route>
       </Switch>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home spotData={spotData} />
         </Route>
       </Switch>
     </Router>

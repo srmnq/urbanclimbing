@@ -1,8 +1,7 @@
 import React from 'react'
 import Spot from './Spot'
-import spotData from './spots.json'
 
-export default function Home() {
+export default function Home({ spotData }) {
   return (
     <div>
       {spotData.map(spot => (
