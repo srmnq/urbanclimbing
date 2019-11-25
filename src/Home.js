@@ -20,6 +20,7 @@ export default function Home() {
       ))}
     </div>
   )
+
   function countEasyRoute(spot) {
     return (
       spot.routes.boulder.filter(

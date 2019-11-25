@@ -97,6 +97,5 @@ const SpotStyled = styled.div`
     justify-content: center;
     position: absolute;
     bottom: 28px;
-    width: 100px;
   }
 `

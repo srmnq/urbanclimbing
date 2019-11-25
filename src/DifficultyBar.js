@@ -19,7 +19,6 @@ const DifficultyBarStyled = styled.div`
   height: ${props => props.barHeight + 'px'};
   background: #000;
   align-self: flex-end;
-  margin-top: 30px;
   margin-right: 18px;
   background: ${props => '#' + props.color};
   position: relative;
