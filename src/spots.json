@@ -30,7 +30,22 @@
       "boulder": [
         {
           "routeName": "Tapetwister",
-          "difficulty": "6b",
+          "difficulty": "5b",
+          "isClimbed": false
+        },
+        {
+          "routeName": "Tapetwister",
+          "difficulty": "5a",
+          "isClimbed": false
+        },
+        {
+          "routeName": "Tapetwister",
+          "difficulty": "5b",
+          "isClimbed": false
+        },
+        {
+          "routeName": "Tapetwister",
+          "difficulty": "8c",
           "isClimbed": false
         },
         { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }

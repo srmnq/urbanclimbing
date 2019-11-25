@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function DifficultyBar({ difficulty, color }) {
+export default function DifficultyBar({ difficulty, color, routeCount }) {
   return (
     <DifficultyBarStyled color={color}>
-      <span>3</span>
-      <span>3</span>
+      <span>{routeCount}</span>
+      <span>{difficulty}</span>
     </DifficultyBarStyled>
   )
 }

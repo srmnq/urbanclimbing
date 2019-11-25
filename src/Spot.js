@@ -31,10 +31,19 @@ export default function Spot({
           <DifficultyBar
             classname="test"
             color={'a0b4b7'}
-            easyroutes={easyroutes}
+            routeCount={easyroutes}
+            difficulty={'3 - 5'}
           />
-          <DifficultyBar color={'79898c'} mediumroutes={mediumroutes} />
-          <DifficultyBar color={'58797d'} hardroutes={hardroutes} />
+          <DifficultyBar
+            color={'79898c'}
+            routeCount={mediumroutes}
+            difficulty={'6 - 7'}
+          />
+          <DifficultyBar
+            color={'58797d'}
+            routeCount={hardroutes}
+            difficulty={'8 - 9'}
+          />
         </div>
       </div>
     </SpotStyled>

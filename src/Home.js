@@ -13,26 +13,33 @@ export default function Home() {
           key={spot.id}
           boulderCount={spot.routes.boulder.length}
           sportCount={spot.routes.sport.length}
-          easyroutes={
-            spot.routes.boulder.filter(
-              boulder => boulder.difficulty === '5a' || '5b' || '5c'
-            ).length
-          }
-          mediumroutes={
-            spot.routes.boulder.filter(
-              boulder => boulder.difficulty === '6a' || '6b' || '6c'
-            ).length
-          }
-          hardroutes={
-            spot.routes.boulder.filter(
-              boulder => boulder.difficulty === '7a' || '7b' || '7c'
-            ).length
-          }
+          easyroutes={countEasyRoute(spot)}
+          mediumroutes={countMediumRoute(spot)}
+          hardroutes={countHardRoute(spot)}
         />
       ))}
     </div>
   )
-  // function count() {
-  //   return spots.routes.boulder.map(boulder => console.log(boulder.difficulty))
-  // }
+  function countEasyRoute(spot) {
+    return spot.routes.boulder.filter(
+      boulder =>
+        boulder.difficulty.includes('3') ||
+        boulder.difficulty.includes('4') ||
+        boulder.difficulty.includes('5')
+    ).length
+  }
+
+  function countMediumRoute(spot) {
+    return spot.routes.boulder.filter(
+      boulder =>
+        boulder.difficulty.includes('6') || boulder.difficulty.includes('7')
+    ).length
+  }
+
+  function countHardRoute(spot) {
+    return spot.routes.boulder.filter(
+      boulder =>
+        boulder.difficulty.includes('8') || boulder.difficulty.includes('9')
+    ).length
+  }
 }
