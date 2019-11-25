@@ -33,19 +33,19 @@ export default function Spot({
             color={'a0b4b7'}
             routeCount={easyroutes}
             difficulty={'3 - 5'}
-            barHeight={(easyroutes / boulderCount) * 40}
+            barHeight={(easyroutes / (boulderCount + sportCount)) * 40}
           />
           <DifficultyBar
             color={'79898c'}
             routeCount={mediumroutes}
             difficulty={'6 - 7'}
-            barHeight={(mediumroutes / boulderCount) * 40}
+            barHeight={(mediumroutes / (boulderCount + sportCount)) * 40}
           />
           <DifficultyBar
             color={'58797d'}
             routeCount={hardroutes}
             difficulty={'8 - 9'}
-            barHeight={(hardroutes / boulderCount) * 40}
+            barHeight={(hardroutes / (boulderCount + sportCount)) * 40}
           />
         </div>
       </div>
@@ -55,7 +55,6 @@ export default function Spot({
 
 const SpotStyled = styled.div`
   position: relative;
-
   width: 320px;
   height: 140px;
   background: #eee;
@@ -95,17 +94,8 @@ const SpotStyled = styled.div`
   .difficulty-bar__container {
     display: flex;
     justify-content: center;
+    position: absolute;
+    bottom: 28px;
+    width: 100px;
   }
-
-  /* .difficulty-bars {
-    :first-child {
-      background: #a0b4b7;
-    }
-    :nth-child(2) {
-      background: #79898c;
-    }
-    :last-child {
-      background: #58797d;
-    }
-  } */
 `

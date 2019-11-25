@@ -9,26 +9,32 @@ export default function DifficultyBar({
 }) {
   return (
     <DifficultyBarStyled barHeight={barHeight} color={color}>
-      <span>{routeCount}</span>
-      <span>{difficulty}</span>
+      <span className="routecount">{routeCount}</span>
+      <span className="difficulty">{difficulty}</span>
     </DifficultyBarStyled>
   )
 }
 const DifficultyBarStyled = styled.div`
-  position: relative;
   width: 14px;
   height: ${props => props.barHeight + 'px'};
   background: #000;
+  align-self: flex-end;
   margin-top: 30px;
-  margin-right: 12px;
+  margin-right: 18px;
   background: ${props => '#' + props.color};
+  position: relative;
 
   span {
     position: absolute;
-    text-align: center;
+    width: 25px;
+  }
+
+  .difficulty {
     bottom: -15px;
   }
-  span:first-child {
+
+  .routecount {
     top: -15px;
+    margin-left: 4px;
   }
 `
