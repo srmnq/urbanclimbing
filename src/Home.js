@@ -3,19 +3,17 @@ import Spot from './Spot'
 import spotData from './spots.json'
 
 export default function Home() {
-  const spots = spotData
-
   return (
     <div>
-      {spots.map(spot => (
+      {spotData.map(spot => (
         <Spot
           {...spot}
           key={spot.id}
           boulderCount={spot.routes.boulder.length}
           sportCount={spot.routes.sport.length}
-          easyroutes={countEasyRoute(spot)}
-          mediumroutes={countMediumRoute(spot)}
-          hardroutes={countHardRoute(spot)}
+          easyRoutes={countEasyRoute(spot)}
+          mediumRoutes={countMediumRoute(spot)}
+          hardRoutes={countHardRoute(spot)}
         />
       ))}
     </div>
@@ -30,10 +28,10 @@ export default function Home() {
           boulder.difficulty.includes('5')
       ).length +
       spot.routes.sport.filter(
-        boulder =>
-          boulder.difficulty.includes('3') ||
-          boulder.difficulty.includes('4') ||
-          boulder.difficulty.includes('5')
+        sportRoute =>
+          sportRoute.difficulty.includes('3') ||
+          sportRoute.difficulty.includes('4') ||
+          sportRoute.difficulty.includes('5')
       ).length
     )
   }
@@ -45,8 +43,9 @@ export default function Home() {
           boulder.difficulty.includes('6') || boulder.difficulty.includes('7')
       ).length +
       spot.routes.sport.filter(
-        boulder =>
-          boulder.difficulty.includes('6') || boulder.difficulty.includes('7')
+        sportRoute =>
+          sportRoute.difficulty.includes('6') ||
+          sportRoute.difficulty.includes('7')
       ).length
     )
   }
@@ -58,8 +57,9 @@ export default function Home() {
           boulder.difficulty.includes('8') || boulder.difficulty.includes('9')
       ).length +
       spot.routes.sport.filter(
-        boulder =>
-          boulder.difficulty.includes('8') || boulder.difficulty.includes('9')
+        sportRoute =>
+          sportRoute.difficulty.includes('8') ||
+          sportRoute.difficulty.includes('9')
       ).length
     )
   }

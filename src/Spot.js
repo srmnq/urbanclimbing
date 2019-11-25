@@ -7,13 +7,13 @@ export default function Spot({
   mainImage,
   boulderCount,
   sportCount,
-  easyroutes,
-  mediumroutes,
-  hardroutes
+  easyRoutes,
+  mediumRoutes,
+  hardRoutes
 }) {
   return (
     <SpotStyled>
-      <img className="mainImage" width="200px" src={mainImage}></img>
+      <img className="mainImage" src={mainImage}></img>
 
       <img className="map-icon" src={require('../src/icons/map-24px.svg')} />
       <img
@@ -29,23 +29,19 @@ export default function Spot({
 
         <div className="difficulty-bar__container">
           <DifficultyBar
-            classname="test"
-            color={'a0b4b7'}
-            routeCount={easyroutes}
+            routeCount={easyRoutes}
             difficulty={'3 - 5'}
-            barHeight={(easyroutes / (boulderCount + sportCount)) * 40}
+            barHeight={(easyRoutes / (boulderCount + sportCount)) * 40}
           />
           <DifficultyBar
-            color={'79898c'}
-            routeCount={mediumroutes}
+            routeCount={mediumRoutes}
             difficulty={'6 - 7'}
-            barHeight={(mediumroutes / (boulderCount + sportCount)) * 40}
+            barHeight={(mediumRoutes / (boulderCount + sportCount)) * 40}
           />
           <DifficultyBar
-            color={'58797d'}
-            routeCount={hardroutes}
+            routeCount={hardRoutes}
             difficulty={'8 - 9'}
-            barHeight={(hardroutes / (boulderCount + sportCount)) * 40}
+            barHeight={(hardRoutes / (boulderCount + sportCount)) * 40}
           />
         </div>
       </div>
