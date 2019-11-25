@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function DifficultyBar({ difficulty, color, routeCount }) {
+export default function DifficultyBar({
+  barHeight,
+  difficulty,
+  color,
+  routeCount
+}) {
   return (
-    <DifficultyBarStyled color={color}>
+    <DifficultyBarStyled barHeight={barHeight} color={color}>
       <span>{routeCount}</span>
       <span>{difficulty}</span>
     </DifficultyBarStyled>
@@ -12,7 +17,7 @@ export default function DifficultyBar({ difficulty, color, routeCount }) {
 const DifficultyBarStyled = styled.div`
   position: relative;
   width: 14px;
-  height: 30px;
+  height: ${props => props.barHeight + 'px'};
   background: #000;
   margin-top: 30px;
   margin-right: 12px;

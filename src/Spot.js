@@ -33,16 +33,19 @@ export default function Spot({
             color={'a0b4b7'}
             routeCount={easyroutes}
             difficulty={'3 - 5'}
+            barHeight={(easyroutes / boulderCount) * 40}
           />
           <DifficultyBar
             color={'79898c'}
             routeCount={mediumroutes}
             difficulty={'6 - 7'}
+            barHeight={(mediumroutes / boulderCount) * 40}
           />
           <DifficultyBar
             color={'58797d'}
             routeCount={hardroutes}
             difficulty={'8 - 9'}
+            barHeight={(hardroutes / boulderCount) * 40}
           />
         </div>
       </div>
