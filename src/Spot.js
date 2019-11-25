@@ -24,7 +24,7 @@ export default function Spot({
       <div>
         <h2>{name}</h2>
         <h3>
-          Boulder:{boulderCount} Routen: {sportCount}
+          Boulder: {boulderCount} - Routen: {sportCount}
         </h3>
 
         <div className="difficulty-bar__container">
@@ -66,10 +66,11 @@ const SpotStyled = styled.div`
   gap: 10px;
   padding: 13px 7px;
   h2 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
   h3 {
     font-size: 1rem;
+    margin-top: 4px;
   }
 
   .map-icon {

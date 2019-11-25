@@ -21,25 +21,45 @@ export default function Home() {
     </div>
   )
   function countEasyRoute(spot) {
-    return spot.routes.boulder.filter(
-      boulder =>
-        boulder.difficulty.includes('3') ||
-        boulder.difficulty.includes('4') ||
-        boulder.difficulty.includes('5')
-    ).length
+    return (
+      spot.routes.boulder.filter(
+        boulder =>
+          boulder.difficulty.includes('3') ||
+          boulder.difficulty.includes('4') ||
+          boulder.difficulty.includes('5')
+      ).length +
+      spot.routes.sport.filter(
+        boulder =>
+          boulder.difficulty.includes('3') ||
+          boulder.difficulty.includes('4') ||
+          boulder.difficulty.includes('5')
+      ).length
+    )
   }
 
   function countMediumRoute(spot) {
-    return spot.routes.boulder.filter(
-      boulder =>
-        boulder.difficulty.includes('6') || boulder.difficulty.includes('7')
-    ).length
+    return (
+      spot.routes.boulder.filter(
+        boulder =>
+          boulder.difficulty.includes('6') || boulder.difficulty.includes('7')
+      ).length +
+      spot.routes.sport.filter(
+        boulder =>
+          boulder.difficulty.includes('6') || boulder.difficulty.includes('7')
+      ).length
+    )
   }
 
   function countHardRoute(spot) {
-    return spot.routes.boulder.filter(
-      boulder =>
-        boulder.difficulty.includes('8') || boulder.difficulty.includes('9')
-    ).length
+    return (
+      spot.routes.boulder.filter(
+        boulder =>
+          boulder.difficulty.includes('8') || boulder.difficulty.includes('9')
+      ).length +
+      spot.routes.sport.filter(
+        boulder =>
+          boulder.difficulty.includes('8') || boulder.difficulty.includes('9')
+      ).length
+    )
   }
 }

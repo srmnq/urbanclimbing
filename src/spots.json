@@ -47,10 +47,11 @@
           "routeName": "Tapetwister",
           "difficulty": "8c",
           "isClimbed": false
-        },
-        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+        }
       ],
-      "sport": []
+      "sport": [
+        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+      ]
     },
     "location": [53.560165, 9.982154],
     "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/c_scale,w_355/v1574520528/AlterSchwede.png",
@@ -68,7 +69,11 @@
         },
         { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
       ],
-      "sport": []
+      "sport": [
+        { "routeName": "Kantholz", "difficulty": "8a", "isClimbed": false },
+        { "routeName": "Kantholz", "difficulty": "8b", "isClimbed": false },
+        { "routeName": "Kantholz", "difficulty": "3a", "isClimbed": false }
+      ]
     },
     "location": [53.560165, 9.982154],
     "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520527/Kilimanschanzo.png",
