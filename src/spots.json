@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Planten und Bloomen",
+    "routes": {
+      "boulder": [
+        {
+          "routeName": "Tapetwister",
+          "difficulty": "6b",
+          "isClimbed": false,
+          "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png"
+        },
+        {
+          "routeName": "Kantholz",
+          "difficulty": "6a",
+          "isClimbed": false,
+          "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png"
+        }
+      ],
+      "sport": []
+    },
+
+    "location": [53.560165, 9.982154],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png",
+    "isBookmarked": false,
+    "id": 1
+  },
+  {
+    "name": "Alter Schwede",
+    "routes": {
+      "boulder": [
+        {
+          "routeName": "Tapetwister",
+          "difficulty": "5b",
+          "isClimbed": false
+        },
+        {
+          "routeName": "Tapetwister",
+          "difficulty": "5a",
+          "isClimbed": false
+        },
+        {
+          "routeName": "Tapetwister",
+          "difficulty": "5b",
+          "isClimbed": false
+        },
+        {
+          "routeName": "Tapetwister",
+          "difficulty": "8c",
+          "isClimbed": false
+        }
+      ],
+      "sport": [
+        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+      ]
+    },
+    "location": [53.560165, 9.982154],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/c_scale,w_355/v1574520528/AlterSchwede.png",
+    "isBookmarked": false,
+    "id": 2
+  },
+  {
+    "name": "Kilimanschanzo",
+    "routes": {
+      "boulder": [
+        {
+          "routeName": "andereRoute",
+          "difficulty": "6b",
+          "isClimbed": false
+        },
+        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+      ],
+      "sport": [
+        { "routeName": "Kantholz", "difficulty": "8a", "isClimbed": false },
+        { "routeName": "Kantholz", "difficulty": "8b", "isClimbed": false },
+        { "routeName": "Kantholz", "difficulty": "3a", "isClimbed": false }
+      ]
+    },
+    "location": [53.560165, 9.982154],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520527/Kilimanschanzo.png",
+    "isBookmarked": false,
+    "id": 3
+  },
+  {
+    "name": "Speicherstadt",
+    "routes": {
+      "boulder": [
+        {
+          "routeName": "vierteroute",
+          "difficulty": "6b",
+          "isClimbed": false
+        },
+        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+      ],
+      "sport": []
+    },
+    "location": [53.560165, 9.982154],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520528/Speicherstadt.png",
+    "isBookmarked": false,
+    "id": 4
+  },
+  {
+    "name": "Speicherstadt",
+    "routes": {
+      "boulder": [
+        {
+          "routeName": "vierteroute",
+          "difficulty": "6b",
+          "isClimbed": false
+        },
+        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+      ],
+      "sport": []
+    },
+    "location": [53.560165, 9.982154],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520528/Speicherstadt.png",
+    "isBookmarked": false,
+    "id": 5
+  }
+]
