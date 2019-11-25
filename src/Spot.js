@@ -14,7 +14,6 @@ export default function Spot({
   return (
     <SpotStyled>
       <img className="mainImage" src={mainImage}></img>
-
       <img className="map-icon" src={require('../src/icons/map-24px.svg')} />
       <img
         className="heart-icon"

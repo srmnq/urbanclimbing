@@ -1,19 +1,26 @@
 import React from 'react'
 import Spot from './Spot'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
-export default function Home({ spotData }) {
+export default function Home({ spotData, clickedSpot }) {
   return (
     <div>
-      {spotData.map(spot => (
-        <Spot
-          {...spot}
-          key={spot.id}
-          boulderCount={spot.routes.boulder.length}
-          sportCount={spot.routes.sport.length}
-          easyRoutes={countEasyRoute(spot)}
-          mediumRoutes={countMediumRoute(spot)}
-          hardRoutes={countHardRoute(spot)}
-        />
+      {spotData.map((spot, index) => (
+        <Link
+          to={`/${spot.name}`}
+          onClick={() => clickedSpot(index)}
+          handle={spot.name}
+        >
+          <Spot
+            {...spot}
+            key={spot.id}
+            boulderCount={spot.routes.boulder.length}
+            sportCount={spot.routes.sport.length}
+            easyRoutes={countEasyRoute(spot)}
+            mediumRoutes={countMediumRoute(spot)}
+            hardRoutes={countHardRoute(spot)}
+          ></Spot>
+        </Link>
       ))}
     </div>
   )

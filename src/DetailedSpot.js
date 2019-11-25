@@ -4,7 +4,7 @@ import spotsData from './spots.json'
 import { func } from 'prop-types'
 import DetailedRoute from './DetailedRoute'
 
-export default function DetailedSpot() {
+export default function DetailedSpot({ spot }) {
   return (
     <DetailedSpotStyled>
       <img className="map-icon" src={require('../src/icons/map-24px.svg')} />
@@ -12,9 +12,9 @@ export default function DetailedSpot() {
         className="heart-icon"
         src={require('../src/icons/favorite_border-24px.svg')}
       />
-      <img src={spotsData[0].mainImage} className="mainImage"></img>
+      <img src={spot.mainImage} className="mainImage"></img>
 
-      <h2>{spotsData[0].name}</h2>
+      <h2>{spot.name}</h2>
       <DetailedRoute />
       <DetailedRoute />
     </DetailedSpotStyled>
