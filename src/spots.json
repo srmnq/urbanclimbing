@@ -21,7 +21,8 @@
 
     "location": [53.560165, 9.982154],
     "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png",
-    "isBookmarked": false
+    "isBookmarked": false,
+    "id": 1
   },
   {
     "name": "Alter Schwede",
@@ -38,7 +39,8 @@
     },
     "location": [53.560165, 9.982154],
     "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/c_scale,w_355/v1574520528/AlterSchwede.png",
-    "isBookmarked": false
+    "isBookmarked": false,
+    "id": 2
   },
   {
     "name": "Kilimanschanzo",
@@ -55,7 +57,8 @@
     },
     "location": [53.560165, 9.982154],
     "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520527/Kilimanschanzo.png",
-    "isBookmarked": false
+    "isBookmarked": false,
+    "id": 3
   },
   {
     "name": "Speicherstadt",
@@ -72,7 +75,8 @@
     },
     "location": [53.560165, 9.982154],
     "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520528/Speicherstadt.png",
-    "isBookmarked": false
+    "isBookmarked": false,
+    "id": 4
   },
   {
     "name": "Speicherstadt",
@@ -89,6 +93,7 @@
     },
     "location": [53.560165, 9.982154],
     "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520528/Speicherstadt.png",
-    "isBookmarked": false
+    "isBookmarked": false,
+    "id": 5
   }
 ]

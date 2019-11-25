@@ -9,8 +9,9 @@ const GlobalStyle = createGlobalStyle`
 
 :root{
     background: #DBDBDB;
-    text-align: center;
+    text-align: left;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 62.5%;
 
 }
 `
