@@ -1,13 +1,25 @@
 import React from 'react'
 import Home from './Home'
 import GlobalStyle from './GlobalStyles'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import DetailedRoute from './DetailedRoute'
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <GlobalStyle />
-      <Home />
-    </div>
+      <Switch>
+        <Route exact path="/detail">
+          <DetailedRoute />
+          <Link to="/">Home</Link>
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 
