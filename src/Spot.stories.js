@@ -1,7 +1,7 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import Spot from '../Spot'
-import DifficultyBar from '../DifficultyBar'
+import Spot from './Spot'
+import DifficultyBar from './DifficultyBar'
 
 export default {
   title: 'Spot'

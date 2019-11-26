@@ -51,21 +51,16 @@ const DetailedSpotStyled = styled.div`
     right: 10px;
     top: 14px;
     width: 14px;
+    z-index: 2;
   }
 
-  .heart-icon {
-    position: absolute;
-    right: 10px;
-    top: 34px;
-    width: 14px;
-    fill: #fff;
-  }
   .heart-icon-white {
     position: absolute;
     right: 10px;
     top: 54px;
     width: 14px;
     fill: #fff;
+    z-index: 2;
   }
   .routeContainer {
     overflow: scroll;
@@ -74,5 +69,6 @@ const DetailedSpotStyled = styled.div`
     position: absolute;
     top: 30vh;
     left: 10px;
+    z-index: 2;
   }
 `
