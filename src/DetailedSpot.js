@@ -6,9 +6,6 @@ import DetailedRoute from './DetailedRoute'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 export default function DetailedSpot({ spot }) {
-  {
-    console.log(spot)
-  }
   return (
     <DetailedSpotStyled>
       <img className="map-icon" src={require('../src/icons/map-white.svg')} />
