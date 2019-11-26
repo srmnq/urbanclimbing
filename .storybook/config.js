@@ -1,8 +1,9 @@
 import { configure } from '@storybook/react'
-import { load, addDecorator } from '@storybook/react'
-import styled from 'styled-components/macro'
+import { addDecorator } from '@storybook/react'
+
 import React from 'react'
 import { withInfo } from '@storybook/addon-info'
+import { BrowserRouter as Router } from 'react-router-dom'
 import GlobalStyles from '../src/GlobalStyles'
 
 // automatically import all files ending in *.stories.js
@@ -11,6 +12,6 @@ addDecorator(withInfo)
 addDecorator(app => (
   <>
     <GlobalStyles />
-    {app()}
+    <Router>{app()}</Router>
   </>
 ))

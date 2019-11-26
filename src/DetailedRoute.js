@@ -1,7 +1,8 @@
 import React from 'react'
+
 import styled from 'styled-components'
 import spotsData from './spots.json'
-import { func } from 'prop-types'
+import PropTypes from 'prop-types'
 
 export default function DetailedRoute({ description, routeName }) {
   return (
@@ -42,3 +43,7 @@ const DetailedRouteStyled = styled.div`
     }
   }
 `
+DetailedRoute.propTypes = {
+  description: PropTypes.string,
+  routeName: PropTypes.string
+}

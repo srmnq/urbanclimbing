@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { func } from 'prop-types'
+import PropTypes from 'prop-types'
 
 export default function DifficultyBar({ barHeight, difficulty, routeCount }) {
   return (
@@ -40,4 +40,9 @@ function findColor(value) {
     '8 - 9': 'var(--darkgreen)'
   }
   return mapping[value]
+}
+DifficultyBar.propTypes = {
+  difficulty: PropTypes.number,
+  routeCount: PropTypes.number,
+  barHeight: PropTypes.number
 }

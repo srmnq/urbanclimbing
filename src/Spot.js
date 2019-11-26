@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import DifficultyBar from './DifficultyBar'
+import PropTypes from 'prop-types'
 
 export default function Spot({
   name,
@@ -96,3 +97,12 @@ const SpotStyled = styled.div`
     bottom: 28px;
   }
 `
+
+Spot.propTypes = {
+  boulderCount: PropTypes.number,
+  sportCount: PropTypes.number,
+  easyRoutes: PropTypes.number,
+  mediumRoutes: PropTypes.number,
+  hardRoutes: PropTypes.number,
+  name: PropTypes.string
+}

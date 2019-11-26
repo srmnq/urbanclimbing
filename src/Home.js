@@ -1,7 +1,9 @@
 import React from 'react'
 import Spot from './Spot'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+import { Link } from 'react-router-dom'
 
 export default function Home({ spotData, clickedSpot }) {
   return (

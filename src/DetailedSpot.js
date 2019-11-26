@@ -35,8 +35,10 @@ const DetailedSpotStyled = styled.div`
   display: grid;
   height: 100vh;
   grid-template-rows: 400px auto;
+
   .mainImage {
     width: 100vw;
+
     height: 400px;
     object-fit: cover;
     border-bottom-left-radius: 24px;
