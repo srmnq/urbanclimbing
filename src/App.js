@@ -6,14 +6,13 @@ import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
 
 function App() {
-  const [selectedCard, setSelectedCard] = useState({})
+  const [selectedCard, setSelectedCard] = useState(spotData[0])
   return (
     <Router>
       <GlobalStyle />
       <Switch>
         <Route path="/:handle">
           <DetailedSpot spot={selectedCard} />
-          <Link to="/">Home</Link>
         </Route>
       </Switch>
       <Switch>

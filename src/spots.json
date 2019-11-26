@@ -7,13 +7,22 @@
           "routeName": "Tapetwister",
           "difficulty": "6b",
           "isClimbed": false,
-          "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png"
+          "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png",
+          "description": "nice route"
         },
         {
           "routeName": "Kantholz",
           "difficulty": "6a",
           "isClimbed": false,
-          "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png"
+          "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png",
+          "description": "pretty cool route"
+        },
+        {
+          "routeName": "Kantholz",
+          "difficulty": "6a",
+          "isClimbed": false,
+          "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png",
+          "description": "pretty cool route"
         }
       ],
       "sport": []
@@ -31,29 +40,38 @@
         {
           "routeName": "Tapetwister",
           "difficulty": "5b",
-          "isClimbed": false
+          "isClimbed": false,
+          "description": "nice route"
         },
         {
           "routeName": "Tapetwister",
           "difficulty": "5a",
-          "isClimbed": false
+          "isClimbed": false,
+          "description": "nice route"
         },
         {
           "routeName": "Tapetwister",
           "difficulty": "5b",
-          "isClimbed": false
+          "isClimbed": false,
+          "description": "nice route"
         },
         {
           "routeName": "Tapetwister",
           "difficulty": "8c",
-          "isClimbed": false
+          "isClimbed": false,
+          "description": "nice route"
         }
       ],
       "sport": [
-        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+        {
+          "routeName": "Kantholz",
+          "difficulty": "6a",
+          "isClimbed": false,
+          "description": "nice route"
+        }
       ]
     },
-    "location": [53.560165, 9.982154],
+    "location": [43.560165, 9.982154],
     "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/c_scale,w_355/v1574520528/AlterSchwede.png",
     "isBookmarked": false,
     "id": 2
@@ -65,14 +83,35 @@
         {
           "routeName": "andereRoute",
           "difficulty": "6b",
-          "isClimbed": false
+          "isClimbed": false,
+          "description": "nice route"
         },
-        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+        {
+          "routeName": "Kantholz",
+          "difficulty": "6a",
+          "isClimbed": false,
+          "description": "nice route"
+        }
       ],
       "sport": [
-        { "routeName": "Kantholz", "difficulty": "8a", "isClimbed": false },
-        { "routeName": "Kantholz", "difficulty": "8b", "isClimbed": false },
-        { "routeName": "Kantholz", "difficulty": "3a", "isClimbed": false }
+        {
+          "routeName": "Kantholz",
+          "difficulty": "8a",
+          "isClimbed": false,
+          "description": "nice route"
+        },
+        {
+          "routeName": "Kantholz",
+          "difficulty": "8b",
+          "isClimbed": false,
+          "description": "nice route"
+        },
+        {
+          "routeName": "Kantholz",
+          "difficulty": "3a",
+          "isClimbed": false,
+          "description": "nice route"
+        }
       ]
     },
     "location": [53.560165, 9.982154],
@@ -87,9 +126,15 @@
         {
           "routeName": "vierteroute",
           "difficulty": "6b",
-          "isClimbed": false
+          "isClimbed": false,
+          "description": "nice route"
         },
-        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+        {
+          "routeName": "Kantholz",
+          "difficulty": "6a",
+          "isClimbed": false,
+          "description": "nice route"
+        }
       ],
       "sport": []
     },
@@ -105,9 +150,15 @@
         {
           "routeName": "vierteroute",
           "difficulty": "6b",
-          "isClimbed": false
+          "isClimbed": false,
+          "description": "nice route"
         },
-        { "routeName": "Kantholz", "difficulty": "6a", "isClimbed": false }
+        {
+          "routeName": "Kantholz",
+          "difficulty": "6a",
+          "isClimbed": false,
+          "description": "nice route"
+        }
       ],
       "sport": []
     },

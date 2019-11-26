@@ -14,10 +14,10 @@ export default function Spot({
   return (
     <SpotStyled>
       <img className="mainImage" src={mainImage}></img>
-      <img className="map-icon" src={require('../src/icons/map-24px.svg')} />
+      <img className="map-icon" src={require('../src/icons/map-black.svg')} />
       <img
         className="heart-icon"
-        src={require('../src/icons/favorite_border-24px.svg')}
+        src={require('../src/icons/heart-black.svg')}
       />
 
       <div>
@@ -52,7 +52,7 @@ const SpotStyled = styled.div`
   position: relative;
   width: 320px;
   height: 140px;
-  background: #eee;
+  background: var(--white);
   border-radius: 4px;
   margin: 9px auto;
   display: grid;
@@ -60,6 +60,8 @@ const SpotStyled = styled.div`
   grid-template-columns: 140px 154px;
   gap: 10px;
   padding: 13px 7px;
+  color: #000;
+  box-shadow: var(--boxshadow);
   h2 {
     font-size: 1.3rem;
   }

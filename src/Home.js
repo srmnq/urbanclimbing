@@ -1,10 +1,11 @@
 import React from 'react'
 import Spot from './Spot'
+import styled from 'styled-components'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 export default function Home({ spotData, clickedSpot }) {
   return (
-    <div>
+    <HomeStyled>
       {spotData.map((spot, index) => (
         <Link
           to={`/${spot.name}`}
@@ -22,7 +23,7 @@ export default function Home({ spotData, clickedSpot }) {
           ></Spot>
         </Link>
       ))}
-    </div>
+    </HomeStyled>
   )
 
   function countEasyRoute(spot) {
@@ -70,3 +71,9 @@ export default function Home({ spotData, clickedSpot }) {
     )
   }
 }
+
+const HomeStyled = styled.div`
+  a {
+    text-decoration: none;
+  }
+`
