@@ -1,14 +1,12 @@
 import React from 'react'
-
 import styled from 'styled-components'
-import spotsData from './spots.json'
 import PropTypes from 'prop-types'
 
-export default function DetailedRoute({ description, routeName }) {
+export default function DetailedRoute({ description, routeName, difficulty }) {
   return (
     <DetailedRouteStyled>
       <div className="difficulty-circle">
-        <h3>{spotsData[0].routes.boulder[0].difficulty}</h3>
+        <h3>{difficulty}</h3>
       </div>
       <div>
         <h2>{routeName}</h2>
@@ -29,7 +27,7 @@ const DetailedRouteStyled = styled.div`
   width: 340px;
   height: 90px;
   margin: 9px auto;
-  padding: 12px;
+  padding: 10px;
   background: var(--white);
   box-shadow: var(--boxshadow);
   border-radius: 12px;
@@ -58,6 +56,6 @@ const DetailedRouteStyled = styled.div`
   }
 `
 DetailedRoute.propTypes = {
-  description: PropTypes.string,
-  routeName: PropTypes.string
+  description: PropTypes.string.isRequired,
+  routeName: PropTypes.string.isRequired
 }

@@ -42,7 +42,7 @@ function findColor(value) {
   return mapping[value]
 }
 DifficultyBar.propTypes = {
-  difficulty: PropTypes.string,
-  routeCount: PropTypes.number,
-  barHeight: PropTypes.number
+  difficulty: PropTypes.string.isRequired,
+  routeCount: PropTypes.number.isRequired,
+  barHeight: PropTypes.number.isRequired
 }

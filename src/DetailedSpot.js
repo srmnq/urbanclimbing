@@ -24,6 +24,7 @@ export default function DetailedSpot({ spot }) {
             key={index}
             routeName={route.routeName}
             description={route.description}
+            difficulty={route.difficulty}
           />
         ))}
       </div>
@@ -38,23 +39,6 @@ const DetailedSpotStyled = styled.div`
   grid-template-rows: 400px auto;
   gap: 10px;
 
-  .mainImage {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
-  }
-
-  .map-icon {
-    right: 10px;
-    top: 14px;
-  }
-  .heart-icon {
-    right: 10px;
-    top: 54px;
-  }
-
   .heart-icon,
   .map-icon,
   .arrow-icon {
@@ -67,12 +51,25 @@ const DetailedSpotStyled = styled.div`
     align-items: center;
     border-radius: 50%;
   }
-  .routeContainer {
-    overflow: scroll;
+  .map-icon {
+    right: 10px;
+    top: 14px;
   }
+  .heart-icon {
+    right: 10px;
+    top: 54px;
+  }
+
   .arrow-icon {
     top: 10px;
     left: 10px;
+  }
+  .mainImage {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
   }
 
   .spotName {
@@ -83,5 +80,8 @@ const DetailedSpotStyled = styled.div`
     left: 20px;
     border-radius: 4px;
     color: var(--white);
+  }
+  .routeContainer {
+    overflow: scroll;
   }
 `
