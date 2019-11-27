@@ -10,7 +10,9 @@ export default function Spot({
   sportCount,
   easyRoutes,
   mediumRoutes,
-  hardRoutes
+  hardRoutes,
+  toggleBookmark,
+  isBookmarked
 }) {
   return (
     <SpotStyled>
@@ -23,7 +25,12 @@ export default function Spot({
       <img
         alt="heart-icon"
         className="heart-icon"
-        src={require('../src/icons/heart-black.svg')}
+        src={
+          isBookmarked
+            ? require('../src/icons/heart-red.svg')
+            : require('../src/icons/heart-black.svg')
+        }
+        onClick={toggleBookmark}
       />
 
       <div>
@@ -88,6 +95,7 @@ const SpotStyled = styled.div`
     right: 10px;
     top: 14px;
     width: 14px;
+    cursor: pointer;
   }
 
   .mainImage {
