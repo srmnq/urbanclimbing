@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Home from './Home'
+import SpotList from './SpotList'
 import GlobalStyle from './GlobalStyles'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
 
@@ -17,7 +17,10 @@ function App() {
       </Switch>
       <Switch>
         <Route exact path="/">
-          <Home clickedSpot={index => clickedSpot(index)} spotData={spotData} />
+          <SpotList
+            clickedSpot={index => clickedSpot(index)}
+            spotData={spotData}
+          />
         </Route>
       </Switch>
     </Router>

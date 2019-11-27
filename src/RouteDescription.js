@@ -15,6 +15,7 @@ export default function DetailedRoute({ description, routeName }) {
         <p>{description}</p>
       </div>
       <img
+        alt="mountain-icon"
         className="mountain-icon"
         src={require('../src/icons/mountain-black.svg')}
       />

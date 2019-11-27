@@ -1,18 +1,18 @@
 import React from 'react'
 import Spot from './Spot'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 import { Link } from 'react-router-dom'
 
-export default function Home({ spotData, clickedSpot }) {
+export default function SpotList({ spotData, clickedSpot }) {
   return (
-    <HomeStyled>
+    <SpotListStyled>
       {spotData.map((spot, index) => (
         <Link
           to={`/${spot.name}`}
           onClick={() => clickedSpot(index)}
           handle={spot.name}
+          key={index}
         >
           <Spot
             {...spot}
@@ -25,7 +25,7 @@ export default function Home({ spotData, clickedSpot }) {
           ></Spot>
         </Link>
       ))}
-    </HomeStyled>
+    </SpotListStyled>
   )
 
   function countEasyRoute(spot) {
@@ -74,7 +74,7 @@ export default function Home({ spotData, clickedSpot }) {
   }
 }
 
-const HomeStyled = styled.div`
+const SpotListStyled = styled.div`
   a {
     text-decoration: none;
   }

@@ -14,9 +14,14 @@ export default function Spot({
 }) {
   return (
     <SpotStyled>
-      <img className="mainImage" src={mainImage}></img>
-      <img className="map-icon" src={require('../src/icons/map-black.svg')} />
+      <img alt="climbing spot" className="mainImage" src={mainImage}></img>
       <img
+        alt="map-icon"
+        className="map-icon"
+        src={require('../src/icons/map-black.svg')}
+      />
+      <img
+        alt="heart-icon"
         className="heart-icon"
         src={require('../src/icons/heart-black.svg')}
       />

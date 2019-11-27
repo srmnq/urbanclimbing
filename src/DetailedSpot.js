@@ -1,26 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
-import DetailedRoute from './DetailedRoute'
+import RouteDescription from './RouteDescription'
 import { Link } from 'react-router-dom'
 
 export default function DetailedSpot({ spot }) {
   return (
     <DetailedSpotStyled>
       <div className="map-icon">
-        <img src={require('../src/icons/map-white.svg')} />
+        <img alt="map-icon" src={require('../src/icons/map-white.svg')} />
       </div>
       <Link className="arrow-icon" to="/">
-        <img src={require('../src/icons/arrow-white.svg')} />
+        <img alt="arrow-icon" src={require('../src/icons/arrow-white.svg')} />
       </Link>
 
       <div className="heart-icon">
-        <img src={require('../src/icons/heart-white.svg')} />
+        <img alt="heart-icon" src={require('../src/icons/heart-white.svg')} />
       </div>
-      <img src={spot.mainImage} className="mainImage"></img>
+      <img alt="climbing spot" src={spot.mainImage} className="mainImage"></img>
       <h2 className="spotName">{spot.name}</h2>
       <div className="routeContainer">
         {spot.routes.boulder.map((route, index) => (
-          <DetailedRoute
+          <RouteDescription
             key={index}
             routeName={route.routeName}
             description={route.description}
