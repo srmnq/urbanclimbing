@@ -19,8 +19,9 @@ export default function DetailedSpot({ spot }) {
       <img src={spot.mainImage} className="mainImage"></img>
       <h2 className="spotName">{spot.name}</h2>
       <div className="routeContainer">
-        {spot.routes.boulder.map(route => (
+        {spot.routes.boulder.map((route, index) => (
           <DetailedRoute
+            key={index}
             routeName={route.routeName}
             description={route.description}
           />
@@ -38,7 +39,7 @@ const DetailedSpotStyled = styled.div`
   gap: 10px;
 
   .mainImage {
-    width: 100vw;
+    width: 100%;
     height: 400px;
     object-fit: cover;
     border-bottom-left-radius: 24px;

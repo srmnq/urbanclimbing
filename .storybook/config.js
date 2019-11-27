@@ -1,5 +1,6 @@
 import { configure } from '@storybook/react'
 import { addDecorator } from '@storybook/react'
+import styled from 'styled-components'
 
 import React from 'react'
 import { withInfo } from '@storybook/addon-info'
@@ -12,6 +13,11 @@ addDecorator(withInfo)
 addDecorator(app => (
   <>
     <GlobalStyles />
-    <Router>{app()}</Router>
+    <Router>
+      <Wrapper>{app()}</Wrapper>
+    </Router>
   </>
 ))
+const Wrapper = styled.div`
+  width: 380px;
+`

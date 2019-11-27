@@ -14,11 +14,16 @@ export default function DetailedRoute({ description, routeName }) {
         <h2>{routeName}</h2>
         <p>{description}</p>
       </div>
+      <img
+        className="mountain-icon"
+        src={require('../src/icons/mountain-black.svg')}
+      />
     </DetailedRouteStyled>
   )
 }
 
 const DetailedRouteStyled = styled.div`
+  position: relative;
   display: flex;
   width: 340px;
   height: 90px;
@@ -41,6 +46,14 @@ const DetailedRouteStyled = styled.div`
       margin-bottom: 5px;
       font-size: 2rem;
     }
+  }
+  h2 {
+    margin-bottom: 5px;
+  }
+  .mountain-icon {
+    position: absolute;
+    right: 15px;
+    top: 35px;
   }
 `
 DetailedRoute.propTypes = {
