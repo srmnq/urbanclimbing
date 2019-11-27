@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import DifficultyBar from './DifficultyBar'
+import PropTypes from 'prop-types'
 
 export default function Spot({
   name,
@@ -13,12 +14,16 @@ export default function Spot({
 }) {
   return (
     <SpotStyled>
-      <img className="mainImage" src={mainImage}></img>
-
-      <img className="map-icon" src={require('../src/icons/map-24px.svg')} />
+      <img alt="climbing spot" className="mainImage" src={mainImage}></img>
       <img
+        alt="map-icon"
+        className="map-icon"
+        src={require('../src/icons/map-black.svg')}
+      />
+      <img
+        alt="heart-icon"
         className="heart-icon"
-        src={require('../src/icons/favorite_border-24px.svg')}
+        src={require('../src/icons/heart-black.svg')}
       />
 
       <div>
@@ -53,7 +58,7 @@ const SpotStyled = styled.div`
   position: relative;
   width: 320px;
   height: 140px;
-  background: #eee;
+  background: var(--white);
   border-radius: 4px;
   margin: 9px auto;
   display: grid;
@@ -61,6 +66,8 @@ const SpotStyled = styled.div`
   grid-template-columns: 140px 154px;
   gap: 10px;
   padding: 13px 7px;
+  color: #000;
+  box-shadow: var(--boxshadow);
   h2 {
     font-size: 1.3rem;
   }
@@ -95,3 +102,12 @@ const SpotStyled = styled.div`
     bottom: 28px;
   }
 `
+
+Spot.propTypes = {
+  boulderCount: PropTypes.number.isRequired,
+  sportCount: PropTypes.number.isRequired,
+  easyRoutes: PropTypes.number.isRequired,
+  mediumRoutes: PropTypes.number.isRequired,
+  hardRoutes: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired
+}

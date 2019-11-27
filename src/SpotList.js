@@ -1,22 +1,31 @@
 import React from 'react'
 import Spot from './Spot'
-import spotData from './spots.json'
+import styled from 'styled-components'
 
-export default function Home() {
+import { Link } from 'react-router-dom'
+
+export default function SpotList({ spotData, clickedSpot }) {
   return (
-    <div>
-      {spotData.map(spot => (
-        <Spot
-          {...spot}
-          key={spot.id}
-          boulderCount={spot.routes.boulder.length}
-          sportCount={spot.routes.sport.length}
-          easyRoutes={countEasyRoute(spot)}
-          mediumRoutes={countMediumRoute(spot)}
-          hardRoutes={countHardRoute(spot)}
-        />
+    <SpotListStyled>
+      {spotData.map((spot, index) => (
+        <Link
+          to={`/${spot.name}`}
+          onClick={() => clickedSpot(index)}
+          handle={spot.name}
+          key={index}
+        >
+          <Spot
+            {...spot}
+            key={spot.id}
+            boulderCount={spot.routes.boulder.length}
+            sportCount={spot.routes.sport.length}
+            easyRoutes={countEasyRoute(spot)}
+            mediumRoutes={countMediumRoute(spot)}
+            hardRoutes={countHardRoute(spot)}
+          ></Spot>
+        </Link>
       ))}
-    </div>
+    </SpotListStyled>
   )
 
   function countEasyRoute(spot) {
@@ -64,3 +73,9 @@ export default function Home() {
     )
   }
 }
+
+const SpotListStyled = styled.div`
+  a {
+    text-decoration: none;
+  }
+`
