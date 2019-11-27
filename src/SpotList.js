@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { Link } from 'react-router-dom'
 
-export default function SpotList({ spotData, clickedSpot }) {
+export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
   return (
     <SpotListStyled>
       {spotData.map((spot, index) => (
@@ -22,6 +22,7 @@ export default function SpotList({ spotData, clickedSpot }) {
             easyRoutes={countEasyRoute(spot)}
             mediumRoutes={countMediumRoute(spot)}
             hardRoutes={countHardRoute(spot)}
+            toggleBookmark={event => toggleBookmark(event, index)}
           ></Spot>
         </Link>
       ))}
@@ -77,5 +78,6 @@ export default function SpotList({ spotData, clickedSpot }) {
 const SpotListStyled = styled.div`
   a {
     text-decoration: none;
+    cursor: default;
   }
 `
