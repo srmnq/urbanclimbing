@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/">
           <SpotList
             clickedSpot={index => clickedSpot(index)}
-            spotData={spotData}
+            spotData={spots}
             toggleBookmark={(event, index) => toggleBookmark(event, index)}
           />
         </Route>
@@ -31,15 +31,13 @@ function App() {
 
   function toggleBookmark(event, index) {
     event.preventDefault()
+    event.stopPropagation()
     let spot = spots[index]
-    console.log(spot)
-    console.log('toggle')
     setSpots([
       ...spots.slice(0, index),
       { ...spot, isBookmarked: !spot.isBookmarked },
       ...spots.slice(index + 1)
     ])
-    console.log(spots)
   }
   function clickedSpot(index) {
     setSelectedSpot(spotData[index])

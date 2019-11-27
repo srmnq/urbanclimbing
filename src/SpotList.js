@@ -23,6 +23,7 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
             mediumRoutes={countMediumRoute(spot)}
             hardRoutes={countHardRoute(spot)}
             toggleBookmark={event => toggleBookmark(event, index)}
+            isBookmarked={spot.isBookmarked}
           ></Spot>
         </Link>
       ))}

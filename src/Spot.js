@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import DifficultyBar from './DifficultyBar'
 import PropTypes from 'prop-types'
+import { is } from '@babel/types'
 
 export default function Spot({
   name,
@@ -11,7 +12,8 @@ export default function Spot({
   easyRoutes,
   mediumRoutes,
   hardRoutes,
-  toggleBookmark
+  toggleBookmark,
+  isBookmarked
 }) {
   return (
     <SpotStyled>
@@ -24,7 +26,11 @@ export default function Spot({
       <img
         alt="heart-icon"
         className="heart-icon"
-        src={require('../src/icons/heart-black.svg')}
+        src={
+          isBookmarked
+            ? require('../src/icons/heart-red.svg')
+            : require('../src/icons/heart-black.svg')
+        }
         onClick={toggleBookmark}
       />
 
