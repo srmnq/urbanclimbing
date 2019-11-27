@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import DifficultyBar from './DifficultyBar'
 import PropTypes from 'prop-types'
-import { is } from '@babel/types'
 
 export default function Spot({
   name,
