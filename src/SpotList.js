@@ -17,7 +17,7 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
         .map((spot, index) => (
           <Link
             to={`/${spot.name}`}
-            onClick={() => clickedSpot(index)}
+            onClick={() => clickedSpot(spot.id)}
             handle={spot.name}
             key={index}
           >

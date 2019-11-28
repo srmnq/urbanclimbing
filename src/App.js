@@ -33,7 +33,7 @@ function App() {
       <Switch>
         <Route exact path="/">
           <SpotList
-            clickedSpot={index => clickedSpot(index)}
+            clickedSpot={id => clickedSpot(id)}
             spotData={spots}
             toggleBookmark={(event, index) => toggleBookmark(event, index)}
           />
@@ -72,7 +72,8 @@ function App() {
     })
   }
 
-  function clickedSpot(index) {
+  function clickedSpot(id) {
+    const index = spots.findIndex(spot => spot.id == id)
     setSelectedSpot(spots[index])
   }
 }
