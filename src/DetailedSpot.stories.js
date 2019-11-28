@@ -10,7 +10,7 @@ export default {
 export const standard = () => (
   <DetailedSpot
     routeName={text('Name', 'Planten und Bloomen')}
-    description={text('Name', 'Planten und Bloomen')}
+    description={text('descripton', 'nice Route')}
     spot={{
       name: 'Planten und Bloomen',
       mainImage:
