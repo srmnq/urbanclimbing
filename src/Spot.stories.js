@@ -2,7 +2,6 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs'
 import Spot from './Spot'
-import DifficultyBar from './DifficultyBar'
 
 export default {
   title: 'Spot',
