@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Spot from './Spot'
 import Searchbar from './Searchbar'
 import styled from 'styled-components'
