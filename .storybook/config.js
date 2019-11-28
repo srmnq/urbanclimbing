@@ -20,4 +20,6 @@ addDecorator(app => (
 ))
 const Wrapper = styled.div`
   width: 380px;
+  height: 670px;
+  border: 1px solid black;
 `

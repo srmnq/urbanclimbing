@@ -1,32 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Spot from './Spot'
+import Searchbar from './Searchbar'
 import styled from 'styled-components'
 
 import { Link } from 'react-router-dom'
 
 export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
+  const [input, setInput] = useState('')
+
   return (
     <SpotListStyled>
-      {spotData.map((spot, index) => (
-        <Link
-          to={`/${spot.name}`}
-          onClick={() => clickedSpot(index)}
-          handle={spot.name}
-          key={index}
-        >
-          <Spot
-            {...spot}
-            key={spot.id}
-            boulderCount={spot.routes.boulder.length}
-            sportCount={spot.routes.sport.length}
-            easyRoutes={countEasyRoute(spot)}
-            mediumRoutes={countMediumRoute(spot)}
-            hardRoutes={countHardRoute(spot)}
-            toggleBookmark={event => toggleBookmark(event, index)}
-            isBookmarked={spot.isBookmarked}
-          ></Spot>
-        </Link>
-      ))}
+      <Searchbar onInput={event => setInput(event.target.value)} />
+
+      {spotData
+        .filter(spot => spot.name.toLowerCase().includes(input.toLowerCase()))
+        .map((spot, index) => (
+          <Link
+            to={`/${spot.name}`}
+            onClick={() => clickedSpot(index)}
+            handle={spot.name}
+            key={index}
+          >
+            <Spot
+              {...spot}
+              key={spot.id}
+              boulderCount={spot.routes.boulder.length}
+              sportCount={spot.routes.sport.length}
+              easyRoutes={countEasyRoute(spot)}
+              mediumRoutes={countMediumRoute(spot)}
+              hardRoutes={countHardRoute(spot)}
+              toggleBookmark={event => toggleBookmark(event, index)}
+              isBookmarked={spot.isBookmarked}
+            ></Spot>
+          </Link>
+        ))}
     </SpotListStyled>
   )
 
