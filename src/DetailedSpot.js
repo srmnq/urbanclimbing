@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import RouteDescription from './RouteDescription'
 import { Link } from 'react-router-dom'
 
-export default function DetailedSpot({ spot }) {
+export default function DetailedSpot({ spot, toggleClimbed }) {
   return (
     <DetailedSpotStyled>
       <div className="map-icon">
@@ -25,6 +25,8 @@ export default function DetailedSpot({ spot }) {
             routeName={route.routeName}
             description={route.description}
             difficulty={route.difficulty}
+            toggleClimbed={() => toggleClimbed(index)}
+            isClimbed={route.isClimbed}
           />
         ))}
       </div>

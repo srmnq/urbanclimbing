@@ -2,7 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-export default function DetailedRoute({ description, routeName, difficulty }) {
+export default function DetailedRoute({
+  description,
+  routeName,
+  difficulty,
+  toggleClimbed,
+  isClimbed
+}) {
   return (
     <DetailedRouteStyled>
       <div className="difficulty-circle">
@@ -13,9 +19,14 @@ export default function DetailedRoute({ description, routeName, difficulty }) {
         <p>{description}</p>
       </div>
       <img
+        onClick={toggleClimbed}
         alt="mountain-icon"
         className="mountain-icon"
-        src={require('../src/icons/mountain-black.svg')}
+        src={
+          isClimbed
+            ? require('../src/icons/mountain-green.svg')
+            : require('../src/icons/mountain-black.svg')
+        }
       />
     </DetailedRouteStyled>
   )

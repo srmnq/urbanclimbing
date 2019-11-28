@@ -6,7 +6,7 @@
         {
           "routeName": "Tapetwister",
           "difficulty": "6b",
-          "isClimbed": false,
+          "isClimbed": true,
           "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png",
           "description": "nice route"
         },

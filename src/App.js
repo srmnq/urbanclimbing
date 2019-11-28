@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SpotList from './SpotList'
 import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -7,14 +7,27 @@ import spotData from './spots.json'
 import { func } from 'prop-types'
 
 function App() {
-  const [selectedSpot, setSelectedSpot] = useState(spotData[0])
   const [spots, setSpots] = useState(spotData)
+  const [selectedSpot, setSelectedSpot] = useState(spots[0])
+
+  useEffect(() => {
+    const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
+
+    setSpots([
+      ...spots.slice(0, indexSpot),
+      { ...selectedSpot },
+      ...spots.slice(indexSpot + 1)
+    ])
+  }, [selectedSpot])
   return (
     <Router>
       <GlobalStyle />
       <Switch>
         <Route path="/:handle">
-          <DetailedSpot spot={selectedSpot} />
+          <DetailedSpot
+            toggleClimbed={index => toggleClimbed(index)}
+            spot={selectedSpot}
+          />
         </Route>
       </Switch>
       <Switch>
@@ -39,8 +52,28 @@ function App() {
       ...spots.slice(index + 1)
     ])
   }
+
+  function toggleClimbed(index) {
+    let route = selectedSpot.routes.boulder[index]
+
+    setSelectedSpot({
+      ...selectedSpot,
+      routes: {
+        ...selectedSpot.routes,
+        boulder: [
+          ...selectedSpot.routes.boulder.slice(0, index),
+          {
+            ...route,
+            isClimbed: !route.isClimbed
+          },
+          ...selectedSpot.routes.boulder.slice(index + 1)
+        ]
+      }
+    })
+  }
+
   function clickedSpot(index) {
-    setSelectedSpot(spotData[index])
+    setSelectedSpot(spots[index])
   }
 }
 
