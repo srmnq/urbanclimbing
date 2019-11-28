@@ -6,7 +6,7 @@ export default function DetailedRoute({
   description,
   routeName,
   difficulty,
-  toggleClimbed,
+  toggleIsClimbed,
   isClimbed
 }) {
   return (
@@ -19,7 +19,7 @@ export default function DetailedRoute({
         <p>{description}</p>
       </div>
       <img
-        onClick={toggleClimbed}
+        onClick={toggleIsClimbed}
         alt="mountain-icon"
         className="mountain-icon"
         src={

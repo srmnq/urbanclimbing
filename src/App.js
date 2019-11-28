@@ -25,7 +25,7 @@ function App() {
       <Switch>
         <Route path="/:handle">
           <DetailedSpot
-            toggleClimbed={index => toggleClimbed(index)}
+            toggleIsClimbed={index => toggleIsClimbed(index)}
             spot={selectedSpot}
           />
         </Route>
@@ -53,7 +53,7 @@ function App() {
     ])
   }
 
-  function toggleClimbed(index) {
+  function toggleIsClimbed(index) {
     let route = selectedSpot.routes.boulder[index]
 
     setSelectedSpot({
