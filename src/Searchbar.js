@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function Searchbar() {
+export default function Searchbar({ onInput }) {
   return (
     <SearchbarStyled>
       <img className="search-icon" src={require('../src/icons/search.svg')} />
-      <input />
+      <input onInput={onInput} />
     </SearchbarStyled>
   )
 }
