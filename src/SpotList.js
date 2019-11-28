@@ -1,5 +1,6 @@
 import React from 'react'
 import Spot from './Spot'
+import Searchbar from './Searchbar'
 import styled from 'styled-components'
 
 import { Link } from 'react-router-dom'
@@ -7,6 +8,7 @@ import { Link } from 'react-router-dom'
 export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
   return (
     <SpotListStyled>
+      <Searchbar />
       {spotData.map((spot, index) => (
         <Link
           to={`/${spot.name}`}
