@@ -16,7 +16,6 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
   return (
     <SpotListStyled>
       <Searchbar onInput={event => setInput(event.target.value)} />
-      {console.log(fuzzySearchResult)}
       {fuzzySearchResult.map((spot, index) => (
         <Link
           to={`/${spot.name}`}
