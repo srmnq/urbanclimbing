@@ -7,18 +7,16 @@ import { Link } from 'react-router-dom'
 
 export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
   const [input, setInput] = useState('')
-  const [fuzzySearchResult, setFuzzySearchResult] = useState([])
+  const [fuzzySearchResult, setFuzzySearchResult] = useState(spotData)
 
   useEffect(() => {
-    setFuzzySearchResult(
-      spotData.filter(item => fuzzy_match(item.name, input)).map(item => item)
-    )
-  }, [input])
+    setFuzzySearchResult(spotData.filter(item => fuzzy_match(item.name, input)))
+  }, [input, spotData])
 
   return (
     <SpotListStyled>
       <Searchbar onInput={event => setInput(event.target.value)} />
-
+      {console.log(fuzzySearchResult)}
       {fuzzySearchResult.map((spot, index) => (
         <Link
           to={`/${spot.name}`}
@@ -34,7 +32,7 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
             easyRoutes={countEasyRoute(spot)}
             mediumRoutes={countMediumRoute(spot)}
             hardRoutes={countHardRoute(spot)}
-            toggleBookmark={event => toggleBookmark(event, index)}
+            toggleBookmark={event => toggleBookmark(event, spot.id)}
             isBookmarked={spot.isBookmarked}
           ></Spot>
         </Link>

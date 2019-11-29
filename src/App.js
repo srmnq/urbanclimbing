@@ -35,16 +35,18 @@ function App() {
           <SpotList
             clickedSpot={id => clickedSpot(id)}
             spotData={spots}
-            toggleBookmark={(event, index) => toggleBookmark(event, index)}
+            toggleBookmark={(event, id) => toggleBookmark(event, id)}
           />
         </Route>
       </Switch>
     </Router>
   )
 
-  function toggleBookmark(event, index) {
+  function toggleBookmark(event, id) {
     event.preventDefault()
     event.stopPropagation()
+    let index = spots.findIndex(el => el.id == id)
+
     let spot = spots[index]
     setSpots([
       ...spots.slice(0, index),
