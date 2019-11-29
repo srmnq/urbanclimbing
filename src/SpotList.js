@@ -40,8 +40,9 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
     </SpotListStyled>
   )
 
-  function fuzzy_match(name, input) {
+  function fuzzy_match(spotname, input) {
     let search = input.replace(/\ /g, '').toLowerCase()
+    let name = spotname.replace(/\ /g, '').toLowerCase()
     const tokens = name.split('')
     let search_position = 0
 
