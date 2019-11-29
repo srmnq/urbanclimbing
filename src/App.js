@@ -33,18 +33,20 @@ function App() {
       <Switch>
         <Route exact path="/">
           <SpotList
-            clickedSpot={index => clickedSpot(index)}
+            clickedSpot={id => clickedSpot(id)}
             spotData={spots}
-            toggleBookmark={(event, index) => toggleBookmark(event, index)}
+            toggleBookmark={(event, id) => toggleBookmark(event, id)}
           />
         </Route>
       </Switch>
     </Router>
   )
 
-  function toggleBookmark(event, index) {
+  function toggleBookmark(event, id) {
     event.preventDefault()
     event.stopPropagation()
+    let index = spots.findIndex(el => el.id == id)
+
     let spot = spots[index]
     setSpots([
       ...spots.slice(0, index),
@@ -72,7 +74,8 @@ function App() {
     })
   }
 
-  function clickedSpot(index) {
+  function clickedSpot(id) {
+    const index = spots.findIndex(spot => spot.id == id)
     setSelectedSpot(spots[index])
   }
 }
