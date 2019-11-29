@@ -4,9 +4,10 @@ import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
-import Map from './Map'
+import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps'
 
 function App() {
+  const WrappedMap = withScriptjs(withGoogleMap(Map))
   const [spots, setSpots] = useState(spotData)
   const [selectedSpot, setSelectedSpot] = useState(spots[0])
 
@@ -25,7 +26,7 @@ function App() {
       <Switch>
         <Route path="/maps">
           <Link to="/">Home</Link>
-          <Map />
+          <WrappedMap googleMapURL="https://www.google.com/maps/embed/v1/place?key=" />
         </Route>
       </Switch>
       <Switch>
