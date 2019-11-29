@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import spotData from './spots.json'
+import Spot from './Spot.js'
 
 export default function Maps() {
   const [clickedSpot, setClickedSpot] = useState(spotData[0])
@@ -18,6 +19,7 @@ export default function Maps() {
           onClick={() => {
             setClickedSpot(spot)
           }}
+          icon={{ url: require('../src/icons/heart-red.svg') }}
         />
       ))}
       {console.log(clickedSpot)}
@@ -28,6 +30,7 @@ export default function Maps() {
             lat: clickedSpot.location[0],
             lng: clickedSpot.location[1]
           }}
+          onCloseClick={() => setClickedSpot(null)}
         >
           <div>{clickedSpot.name}</div>
         </InfoWindow>
