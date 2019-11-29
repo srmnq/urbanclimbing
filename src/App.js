@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import SpotList from './SpotList'
 import GlobalStyle from './GlobalStyles'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
-import { func } from 'prop-types'
+import Map from './Map'
 
 function App() {
   const [spots, setSpots] = useState(spotData)
@@ -23,15 +23,24 @@ function App() {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route path="/:handle">
+        <Route path="/maps">
+          <Link to="/">Home</Link>
+          <Map />
+        </Route>
+      </Switch>
+      <Switch>
+        {/* <Route path="/:handle"> */}
+        <Route path={`/${selectedSpot.name}`}>
           <DetailedSpot
             toggleIsClimbed={index => toggleIsClimbed(index)}
             spot={selectedSpot}
           />
         </Route>
       </Switch>
+
       <Switch>
         <Route exact path="/">
+          <Link to="/maps">Map </Link>
           <SpotList
             clickedSpot={id => clickedSpot(id)}
             spotData={spots}
