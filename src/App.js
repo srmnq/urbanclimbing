@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
 import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps'
+import Map from './Map'
 
 function App() {
   const WrappedMap = withScriptjs(withGoogleMap(Map))
@@ -26,7 +27,15 @@ function App() {
       <Switch>
         <Route path="/maps">
           <Link to="/">Home</Link>
-          <WrappedMap googleMapURL="https://www.google.com/maps/embed/v1/place?key=" />
+          <div style={{ height: '100vh', width: '100vw' }}>
+            <WrappedMap
+              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCIuPvieSfpTsEcZonhS4x3OdIsee4IIqA
+              &q=Hamburg"
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={<div style={{ height: `400px` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+            />
+          </div>
         </Route>
       </Switch>
       <Switch>
