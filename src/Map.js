@@ -1,27 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { GoogleMap } from 'react-google-maps'
+import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
+import spotData from './spots.json'
 
 export default function Maps() {
+  const [clickedSpot, setClickedSpot] = useState(spotData[0])
+
   return (
     <GoogleMap
-      defaultZoom={10}
+      defaultZoom={13}
       defaultCenter={{ lat: 53.551086, lng: 9.993682 }}
-    ></GoogleMap>
+    >
+      {spotData.map(spot => (
+        <Marker
+          key={spot.id}
+          position={{ lat: spot.location[0], lng: spot.location[1] }}
+          onClick={() => {
+            setClickedSpot(spot)
+          }}
+        />
+      ))}
+      {console.log(clickedSpot)}
+
+      {clickedSpot && (
+        <InfoWindow
+          position={{
+            lat: clickedSpot.location[0],
+            lng: clickedSpot.location[1]
+          }}
+        >
+          <div>{clickedSpot.name}</div>
+        </InfoWindow>
+      )}
+    </GoogleMap>
   )
 }
 
 const MapStyled = styled.div`
   height: 100vh;
 `
-{
-  /* <iframe
-        width="100%"
-        height="100%"
-        frameborder="0"
-        // style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCIuPvieSfpTsEcZonhS4x3OdIsee4IIqA
-    &q=Hamburg"
-        allowfullscreen="true"
-      ></iframe> */
-}

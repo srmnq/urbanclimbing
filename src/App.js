@@ -4,11 +4,9 @@ import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
-import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps'
-import Map from './Map'
+import WrappedMap from './WrappedMapContainer'
 
 function App() {
-  const WrappedMap = withScriptjs(withGoogleMap(Map))
   const [spots, setSpots] = useState(spotData)
   const [selectedSpot, setSelectedSpot] = useState(spots[0])
 
@@ -27,19 +25,10 @@ function App() {
       <Switch>
         <Route path="/maps">
           <Link to="/">Home</Link>
-          <div style={{ height: '100vh', width: '100vw' }}>
-            <WrappedMap
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCIuPvieSfpTsEcZonhS4x3OdIsee4IIqA
-              &q=Hamburg"
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: `400px` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-            />
-          </div>
+          <WrappedMap />
         </Route>
       </Switch>
       <Switch>
-        {/* <Route path="/:handle"> */}
         <Route path={`/${selectedSpot.name}`}>
           <DetailedSpot
             toggleIsClimbed={index => toggleIsClimbed(index)}
