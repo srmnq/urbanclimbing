@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Spot from './Spot'
 import Searchbar from './Searchbar'
 import styled from 'styled-components'
@@ -7,35 +7,60 @@ import { Link } from 'react-router-dom'
 
 export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
   const [input, setInput] = useState('')
+  const [fuzzySearchResult, setFuzzySearchResult] = useState([])
+
+  useEffect(() => {
+    setFuzzySearchResult(
+      spotData.filter(item => fuzzy_match(item.name, input)).map(item => item)
+    )
+  }, [input])
 
   return (
     <SpotListStyled>
       <Searchbar onInput={event => setInput(event.target.value)} />
 
-      {spotData
-        .filter(spot => spot.name.toLowerCase().includes(input.toLowerCase()))
-        .map((spot, index) => (
-          <Link
-            to={`/${spot.name}`}
-            onClick={() => clickedSpot(spot.id)}
-            handle={spot.name}
-            key={index}
-          >
-            <Spot
-              {...spot}
-              key={spot.id}
-              boulderCount={spot.routes.boulder.length}
-              sportCount={spot.routes.sport.length}
-              easyRoutes={countEasyRoute(spot)}
-              mediumRoutes={countMediumRoute(spot)}
-              hardRoutes={countHardRoute(spot)}
-              toggleBookmark={event => toggleBookmark(event, index)}
-              isBookmarked={spot.isBookmarked}
-            ></Spot>
-          </Link>
-        ))}
+      {fuzzySearchResult.map((spot, index) => (
+        <Link
+          to={`/${spot.name}`}
+          onClick={() => clickedSpot(spot.id)}
+          handle={spot.name}
+          key={index}
+        >
+          <Spot
+            {...spot}
+            key={spot.id}
+            boulderCount={spot.routes.boulder.length}
+            sportCount={spot.routes.sport.length}
+            easyRoutes={countEasyRoute(spot)}
+            mediumRoutes={countMediumRoute(spot)}
+            hardRoutes={countHardRoute(spot)}
+            toggleBookmark={event => toggleBookmark(event, index)}
+            isBookmarked={spot.isBookmarked}
+          ></Spot>
+        </Link>
+      ))}
     </SpotListStyled>
   )
+
+  function fuzzy_match(name, input) {
+    let search = input.replace(/\ /g, '').toLowerCase()
+    const tokens = name.split('')
+    let search_position = 0
+
+    tokens.forEach(i => {
+      if (i == search[search_position]) {
+        search_position += 1
+        if (search_position >= search.length) {
+          return false
+        }
+      }
+    })
+
+    if (search_position != search.length) {
+      return ''
+    }
+    return tokens.join('')
+  }
 
   function countEasyRoute(spot) {
     return (
