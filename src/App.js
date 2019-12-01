@@ -23,9 +23,9 @@ function App() {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route path="/maps">
+        <Route path="/map">
           <Link to="/">Home</Link>
-          <WrappedMap />
+          <WrappedMap spotData={spots} />
         </Route>
       </Switch>
       <Switch>
@@ -39,7 +39,6 @@ function App() {
 
       <Switch>
         <Route exact path="/">
-          <Link to="/maps">Map </Link>
           <SpotList
             clickedSpot={id => clickedSpot(id)}
             spotData={spots}
