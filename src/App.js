@@ -25,10 +25,7 @@ function App() {
       <Switch>
         <Route path="/map">
           <Link to="/">Home</Link>
-          <WrappedMap
-            spotData={spots}
-            // toggleBookmark={(event, id) => toggleBookmark(event, id)}
-          />
+          <WrappedMap spotData={spots} selectedSpot={selectedSpot} />
         </Route>
       </Switch>
       <Switch>
@@ -46,6 +43,7 @@ function App() {
             clickedSpot={id => clickedSpot(id)}
             spotData={spots}
             toggleBookmark={(event, id) => toggleBookmark(event, id)}
+            setLocation={spot => setSelectedSpot(spot)}
           />
         </Route>
       </Switch>

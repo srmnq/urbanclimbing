@@ -5,7 +5,12 @@ import styled from 'styled-components'
 
 import { Link } from 'react-router-dom'
 
-export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
+export default function SpotList({
+  spotData,
+  clickedSpot,
+  toggleBookmark,
+  setLocation
+}) {
   const [input, setInput] = useState('')
   const [fuzzySearchResult, setFuzzySearchResult] = useState(spotData)
 
@@ -33,6 +38,7 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
             hardRoutes={countHardRoute(spot)}
             toggleBookmark={event => toggleBookmark(event, spot.id)}
             isBookmarked={spot.isBookmarked}
+            setLocation={() => setLocation(spot)}
           ></Spot>
         </Link>
       ))}
