@@ -8,7 +8,7 @@ import WrappedMap from './WrappedMapContainer'
 
 function App() {
   const [spots, setSpots] = useState(spotData)
-  const [selectedSpot, setSelectedSpot] = useState(spots[0])
+  const [selectedSpot, setSelectedSpot] = useState(spotData[0])
 
   useEffect(() => {
     const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
@@ -25,7 +25,10 @@ function App() {
       <Switch>
         <Route path="/map">
           <Link to="/">Home</Link>
-          <WrappedMap spotData={spots} />
+          <WrappedMap
+            spotData={spots}
+            // toggleBookmark={(event, id) => toggleBookmark(event, id)}
+          />
         </Route>
       </Switch>
       <Switch>
@@ -60,6 +63,7 @@ function App() {
       { ...spot, isBookmarked: !spot.isBookmarked },
       ...spots.slice(index + 1)
     ])
+    console.log('togglemap')
   }
 
   function toggleIsClimbed(index) {

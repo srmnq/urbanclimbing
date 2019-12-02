@@ -21,9 +21,12 @@ export default function Spot({
       <img alt="climbing spot" className="mainImage" src={mainImage}></img>
       <Link className="map-icon" to={`/map`}>
         <div>
-          <img alt="map-icon" src={require('../src/icons/map-black.svg')} />
+          {window.location.href == 'http://localhost:3000/map' || (
+            <img alt="map-icon" src={require('../src/icons/map-black.svg')} />
+          )}
         </div>
       </Link>
+
       <img
         alt="heart-icon"
         className="heart-icon"

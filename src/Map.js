@@ -48,7 +48,7 @@ export default function Maps({ spotData }) {
             mediumRoutes={countMediumRoute(clickedSpot)}
             hardRoutes={countHardRoute(clickedSpot)}
             isBookmarked={clickedSpot.isBookmarked}
-            toggleBookmark={console.log('foo')}
+            // toggleBookmark={event => toggleBookmark(event, clickedSpot.id)}
           >
             <div>{clickedSpot.name}</div>
           </ChangedSpot>
