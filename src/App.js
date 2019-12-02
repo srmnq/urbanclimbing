@@ -10,10 +10,10 @@ function App() {
   const [spots, setSpots] = useState(spotData)
   const [selectedSpot, setSelectedSpot] = useState(spots[0])
 
-  // useEffect(() => {
-  //   getCards().then(setSpots)
-  //   console.log(spots)
-  // }, [])
+  useEffect(() => {
+    getCards().then(setSpots)
+    // console.log(spots)
+  }, [])
 
   useEffect(() => {
     const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
