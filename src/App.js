@@ -4,11 +4,16 @@ import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
-import { func } from 'prop-types'
+import { getCards, patchCard, patchBookmark } from './services'
 
 function App() {
   const [spots, setSpots] = useState(spotData)
   const [selectedSpot, setSelectedSpot] = useState(spots[0])
+
+  // useEffect(() => {
+  //   getCards().then(setSpots)
+  //   console.log(spots)
+  // }, [])
 
   useEffect(() => {
     const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
