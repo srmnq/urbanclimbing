@@ -2,7 +2,26 @@ const mongoose = require('mongoose')
 
 const spotSchema = {
   name: String,
-  routes: Object,
+  routes: {
+    boulder: [
+      {
+        routeName: String,
+        difficulty: String,
+        isClimbed: Boolean,
+        description: String,
+        routeImage: String
+      }
+    ],
+    sport: [
+      {
+        routeName: String,
+        difficulty: String,
+        isClimbed: Boolean,
+        description: String,
+        routeImage: String
+      }
+    ]
+  },
   boulderCount: Number,
   location: Array,
   mainImage: String,

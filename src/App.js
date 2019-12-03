@@ -8,13 +8,13 @@ import { getCards, patchCard, patchBookmark } from './services'
 import WrappedMap from './WrappedMapContainer'
 
 function App() {
-  const [spots, setSpots] = useState(spotData)
+  const [spots, setSpots] = useState([])
   const [selectedSpot, setSelectedSpot] = useState(spotData[0])
 
-  // useEffect(() => {
-  //   getCards().then(setSpots)
-  //   // console.log(spots)
-  // }, [])
+  useEffect(() => {
+    getCards().then(setSpots)
+    // console.log(spots)
+  }, [])
 
   useEffect(() => {
     const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
@@ -24,7 +24,8 @@ function App() {
       { ...selectedSpot },
       ...spots.slice(indexSpot + 1)
     ])
-  }, [selectedSpot, spots])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSpot])
   return (
     <Router>
       <GlobalStyle />
@@ -61,13 +62,13 @@ function App() {
     event.stopPropagation()
     let index = spots.findIndex(el => el.id === id)
     let spot = spots[index]
-    // patchBookmark(spot).then(changedCard => {
-    setSpots([
-      ...spots.slice(0, index),
-      { ...spot, isBookmarked: !spot.isBookmarked },
-      ...spots.slice(index + 1)
-    ])
-    // })
+    patchBookmark(spot).then(changedSpot => {
+      setSpots([
+        ...spots.slice(0, index),
+        changedSpot,
+        ...spots.slice(index + 1)
+      ])
+    })
   }
 
   // function toggleBookmark(id) {

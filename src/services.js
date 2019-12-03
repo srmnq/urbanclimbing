@@ -10,16 +10,16 @@ export function getCards() {
 //       },
 //     }).then(res => res.json())
 //   }
-//   export function patchBookmark(card) {
-//     card = { id: card._id, isBookmarked: !card.isBookmarked }
-//     return fetch('/cards/' + card.id, {
-//       method: 'PATCH',
-//       body: JSON.stringify(card),
-//       headers: {
-//         'content-type': 'application/json',
-//       },
-//     }).then(res => res.json())
-//   }
+export function patchBookmark(card) {
+  card = { id: card.id, isBookmarked: !card.isBookmarked }
+  return fetch('/cards/' + card.id, {
+    method: 'PATCH',
+    body: JSON.stringify(card),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(res => res.json())
+}
 
 //   export function patchCard(card) {
 //     return fetch('/cards/' + card.id, {
