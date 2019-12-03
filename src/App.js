@@ -11,10 +11,10 @@ function App() {
   const [spots, setSpots] = useState(spotData)
   const [selectedSpot, setSelectedSpot] = useState(spotData[0])
 
-  useEffect(() => {
-    getCards().then(setSpots)
-    // console.log(spots)
-  }, [])
+  // useEffect(() => {
+  //   getCards().then(setSpots)
+  //   // console.log(spots)
+  // }, [])
 
   useEffect(() => {
     const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
@@ -24,7 +24,7 @@ function App() {
       { ...selectedSpot },
       ...spots.slice(indexSpot + 1)
     ])
-  }, [selectedSpot])
+  }, [selectedSpot, spots])
   return (
     <Router>
       <GlobalStyle />
@@ -60,14 +60,27 @@ function App() {
     event.preventDefault()
     event.stopPropagation()
     let index = spots.findIndex(el => el.id === id)
-
     let spot = spots[index]
+    // patchBookmark(spot).then(changedCard => {
     setSpots([
       ...spots.slice(0, index),
       { ...spot, isBookmarked: !spot.isBookmarked },
       ...spots.slice(index + 1)
     ])
+    // })
   }
+
+  // function toggleBookmark(id) {
+  //   const index = cards.findIndex(card => card._id === id)
+  //   const card = cards[index]
+  //   patchBookmark(card).then(changedCard => {
+  //     setCards([
+  //       ...cards.slice(0, index),
+  //       changedCard,
+  //       ...cards.slice(index + 1),
+  //     ])
+  //   })
+  // }
 
   function toggleIsClimbed(index) {
     let route = selectedSpot.routes.boulder[index]
