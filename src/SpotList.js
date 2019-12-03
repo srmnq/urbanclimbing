@@ -26,7 +26,6 @@ export default function SpotList({
         <Link
           to={`/${spot.name}`}
           onClick={() => clickedSpot(spot.id)}
-          // handle={spot.name}
           key={index}
         >
           <Spot

@@ -37,7 +37,7 @@ export default function Maps({ spotData, selectedSpot }) {
           </InfoWindow>
         )}
         {clickedSpot && (
-          <ChangedSpot
+          <MapSpot
             name={clickedSpot.name}
             mainImage={clickedSpot.mainImage}
             boulderCount={clickedSpot.routes.boulder.length}
@@ -48,7 +48,7 @@ export default function Maps({ spotData, selectedSpot }) {
             isBookmarked={clickedSpot.isBookmarked}
           >
             <div>{clickedSpot.name}</div>
-          </ChangedSpot>
+          </MapSpot>
         )}
       </MapStyled>
     </GoogleMap>
@@ -63,7 +63,7 @@ const MapStyled = styled.div`
     z-index: 10;
   }
 `
-const ChangedSpot = styled(Spot)`
+const MapSpot = styled(Spot)`
   position: absolute;
   border: 4px solid var(--gradientcolordark);
   bottom: 50px;

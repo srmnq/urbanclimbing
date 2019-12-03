@@ -53,7 +53,7 @@ function App() {
   function toggleBookmark(event, id) {
     event.preventDefault()
     event.stopPropagation()
-    let index = spots.findIndex(el => el.id == id)
+    let index = spots.findIndex(el => el.id === id)
 
     let spot = spots[index]
     setSpots([
@@ -61,7 +61,6 @@ function App() {
       { ...spot, isBookmarked: !spot.isBookmarked },
       ...spots.slice(index + 1)
     ])
-    console.log('togglemap')
   }
 
   function toggleIsClimbed(index) {
@@ -84,7 +83,7 @@ function App() {
   }
 
   function clickedSpot(id) {
-    const index = spots.findIndex(spot => spot.id == id)
+    const index = spots.findIndex(spot => spot.id === id)
     setSelectedSpot(spots[index])
   }
 }
