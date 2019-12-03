@@ -5,6 +5,8 @@
   "dependencies": {
     "@storybook/addon-info": "^5.2.6",
     "@storybook/addon-knobs": "^5.2.6",
+    "cypress": "^3.7.0",
+    "eslint-plugin-cypress": "^2.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -21,10 +23,17 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "plugin:cypress/recommended"
+    ],
+    "plugins": [
+      "cypress"
+    ]
   },
   "browserslist": {
     "production": [
