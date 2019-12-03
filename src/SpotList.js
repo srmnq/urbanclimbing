@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react'
 import Spot from './Spot'
 import Searchbar from './Searchbar'
 import styled from 'styled-components'
+import { countEasyRoute, countMediumRoute, countHardRoute } from './CountRoutes'
 
 import { Link } from 'react-router-dom'
 
-export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
+export default function SpotList({
+  spotData,
+  clickedSpot,
+  toggleBookmark,
+  setLocation
+}) {
   const [input, setInput] = useState('')
   const [fuzzySearchResult, setFuzzySearchResult] = useState(spotData)
 
@@ -20,7 +26,6 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
         <Link
           to={`/${spot.name}`}
           onClick={() => clickedSpot(spot.id)}
-          handle={spot.name}
           key={index}
         >
           <Spot
@@ -33,6 +38,7 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
             hardRoutes={countHardRoute(spot)}
             toggleBookmark={event => toggleBookmark(event, spot.id)}
             isBookmarked={spot.isBookmarked}
+            setLocation={() => setLocation(spot)}
           ></Spot>
         </Link>
       ))}
@@ -46,7 +52,7 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
     let search_position = 0
 
     tokens.forEach(i => {
-      if (i == search[search_position]) {
+      if (i === search[search_position]) {
         search_position += 1
         if (search_position >= search.length) {
           return false
@@ -58,51 +64,6 @@ export default function SpotList({ spotData, clickedSpot, toggleBookmark }) {
       return ''
     }
     return tokens.join('')
-  }
-
-  function countEasyRoute(spot) {
-    return (
-      spot.routes.boulder.filter(
-        boulder =>
-          boulder.difficulty.includes('3') ||
-          boulder.difficulty.includes('4') ||
-          boulder.difficulty.includes('5')
-      ).length +
-      spot.routes.sport.filter(
-        sportRoute =>
-          sportRoute.difficulty.includes('3') ||
-          sportRoute.difficulty.includes('4') ||
-          sportRoute.difficulty.includes('5')
-      ).length
-    )
-  }
-
-  function countMediumRoute(spot) {
-    return (
-      spot.routes.boulder.filter(
-        boulder =>
-          boulder.difficulty.includes('6') || boulder.difficulty.includes('7')
-      ).length +
-      spot.routes.sport.filter(
-        sportRoute =>
-          sportRoute.difficulty.includes('6') ||
-          sportRoute.difficulty.includes('7')
-      ).length
-    )
-  }
-
-  function countHardRoute(spot) {
-    return (
-      spot.routes.boulder.filter(
-        boulder =>
-          boulder.difficulty.includes('8') || boulder.difficulty.includes('9')
-      ).length +
-      spot.routes.sport.filter(
-        sportRoute =>
-          sportRoute.difficulty.includes('8') ||
-          sportRoute.difficulty.includes('9')
-      ).length
-    )
   }
 }
 

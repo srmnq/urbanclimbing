@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import DifficultyBar from './DifficultyBar'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 export default function Spot({
   name,
@@ -12,16 +13,21 @@ export default function Spot({
   mediumRoutes,
   hardRoutes,
   toggleBookmark,
-  isBookmarked
+  isBookmarked,
+  setLocation,
+  ...props
 }) {
   return (
-    <SpotStyled>
+    <SpotStyled {...props}>
       <img alt="climbing spot" className="mainImage" src={mainImage}></img>
-      <img
-        alt="map-icon"
-        className="map-icon"
-        src={require('../src/icons/map-black.svg')}
-      />
+      <Link className="map-icon" to={`/map`} onClick={setLocation}>
+        <div>
+          {window.location.href == 'http://localhost:3000/map' || (
+            <img alt="map-icon" src={require('../src/icons/map-black.svg')} />
+          )}
+        </div>
+      </Link>
+
       <img
         alt="heart-icon"
         className="heart-icon"
