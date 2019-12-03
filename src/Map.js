@@ -13,7 +13,7 @@ export default function Maps({ spotData, selectedSpot }) {
       defaultZoom={13}
       defaultCenter={{ lat: 53.551086, lng: 9.993682 }}
     >
-      <Popupstyled>
+      <MapStyled>
         {spotData.map(spot => (
           <Marker
             key={spot.id}
@@ -50,12 +50,12 @@ export default function Maps({ spotData, selectedSpot }) {
             <div>{clickedSpot.name}</div>
           </ChangedSpot>
         )}
-      </Popupstyled>
+      </MapStyled>
     </GoogleMap>
   )
 }
 
-const Popupstyled = styled.div`
+const MapStyled = styled.div`
   h1 {
     color: red;
     position: absolute;
