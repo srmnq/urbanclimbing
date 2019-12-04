@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Spot from './Spot'
 import Searchbar from './Searchbar'
+import Navigation from './Navigation'
 import styled from 'styled-components'
 import { countEasyRoute, countMediumRoute, countHardRoute } from './CountRoutes'
 
@@ -42,6 +43,8 @@ export default function SpotList({
           ></Spot>
         </Link>
       ))}
+
+      <Navigation></Navigation>
     </SpotListStyled>
   )
 
