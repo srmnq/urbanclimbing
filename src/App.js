@@ -15,31 +15,6 @@ function App() {
     getSpots().then(setSpots)
   }, [])
 
-  // useEffect(() => {
-  //   const indexSpot = spots.findIndex(el => el._id === selectedSpot._id)
-  //   const spot = selectedSpot
-  //   patchSpot({
-  //     _id: spot._id
-  //   }).then(updatedSpot => {
-  //     setSpots([
-  //       ...spots.slice(0, indexSpot),
-  //       updatedSpot,
-  //       ...spots.slice(indexSpot + 1)
-  //     ])
-  //   })
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [selectedSpot])
-
-  useEffect(() => {
-    const indexSpot = spots.findIndex(el => el._id === selectedSpot._id)
-
-    setSpots([
-      ...spots.slice(0, indexSpot),
-      { ...selectedSpot },
-      ...spots.slice(indexSpot + 1)
-    ])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedSpot])
   return (
     <Router>
       <GlobalStyle />
@@ -87,49 +62,30 @@ function App() {
     })
   }
 
-  // function toggleIsClimbed(index) {
-  //   let route = selectedSpot.routes.boulder[index]
-  //   const spot = selectedSpot
-  //   patchSpot({
-  //     _id: spot._id,
-  //     routes: {
-  //       ...spot.routes,
-  //       boulder: [
-  //         ...spot.routes.boulder.slice(0, index),
-  //         {
-  //           ...route,
-  //           isClimbed: !route.isClimbed
-  //         },
-  //         ...spot.routes.boulder.slice(index + 1)
-  //       ]
-  //     }
-  //   }).then(updatedSpot => {
-  //     const index = spots.findIndex(el => el._id === updatedSpot._id)
-  //     setSpots([
-  //       ...spots.slice(0, index),
-  //       updatedSpot,
-  //       ...spots.slice(index + 1)
-  //     ])
-  //   })
-  //   setSelectedSpot({
-  //     ...selectedSpot,
-  //     routes: {
-  //       ...selectedSpot.routes,
-  //       boulder: [
-  //         ...selectedSpot.routes.boulder.slice(0, index),
-  //         {
-  //           ...route,
-  //           isClimbed: !route.isClimbed
-  //         },
-  //         ...selectedSpot.routes.boulder.slice(index + 1)
-  //       ]
-  //     }
-  //   })
-  // }
-
   function toggleIsClimbed(index) {
     let route = selectedSpot.routes.boulder[index]
-
+    const spot = selectedSpot
+    patchSpot({
+      _id: spot._id,
+      routes: {
+        ...spot.routes,
+        boulder: [
+          ...spot.routes.boulder.slice(0, index),
+          {
+            ...route,
+            isClimbed: !route.isClimbed
+          },
+          ...spot.routes.boulder.slice(index + 1)
+        ]
+      }
+    }).then(updatedSpot => {
+      const index = spots.findIndex(el => el._id === updatedSpot._id)
+      setSpots([
+        ...spots.slice(0, index),
+        updatedSpot,
+        ...spots.slice(index + 1)
+      ])
+    })
     setSelectedSpot({
       ...selectedSpot,
       routes: {
