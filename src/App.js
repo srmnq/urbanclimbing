@@ -4,21 +4,17 @@ import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
+import { getSpots, patchSpot } from './services'
 import WrappedMap from './WrappedMapContainer'
 
 function App() {
-  const [spots, setSpots] = useState(spotData)
+  const [spots, setSpots] = useState([])
   const [selectedSpot, setSelectedSpot] = useState(spotData[0])
 
   useEffect(() => {
-    const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
+    getSpots().then(setSpots)
+  }, [])
 
-    setSpots([
-      ...spots.slice(0, indexSpot),
-      { ...selectedSpot },
-      ...spots.slice(indexSpot + 1)
-    ])
-  }, [selectedSpot])
   return (
     <Router>
       <GlobalStyle />
@@ -42,7 +38,7 @@ function App() {
           <SpotList
             clickedSpot={id => clickedSpot(id)}
             spotData={spots}
-            toggleBookmark={(event, id) => toggleBookmark(event, id)}
+            toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
             setLocation={spot => setSelectedSpot(spot)}
           />
         </Route>
@@ -50,22 +46,46 @@ function App() {
     </Router>
   )
 
-  function toggleBookmark(event, id) {
+  function toggleBookmark(event, spot) {
     event.preventDefault()
     event.stopPropagation()
-    let index = spots.findIndex(el => el.id === id)
-
-    let spot = spots[index]
-    setSpots([
-      ...spots.slice(0, index),
-      { ...spot, isBookmarked: !spot.isBookmarked },
-      ...spots.slice(index + 1)
-    ])
+    patchSpot({
+      _id: spot._id,
+      isBookmarked: !spot.isBookmarked
+    }).then(updatedSpot => {
+      const index = spots.findIndex(el => el._id === updatedSpot._id)
+      setSpots([
+        ...spots.slice(0, index),
+        updatedSpot,
+        ...spots.slice(index + 1)
+      ])
+    })
   }
 
   function toggleIsClimbed(index) {
     let route = selectedSpot.routes.boulder[index]
-
+    const spot = selectedSpot
+    patchSpot({
+      _id: spot._id,
+      routes: {
+        ...spot.routes,
+        boulder: [
+          ...spot.routes.boulder.slice(0, index),
+          {
+            ...route,
+            isClimbed: !route.isClimbed
+          },
+          ...spot.routes.boulder.slice(index + 1)
+        ]
+      }
+    }).then(updatedSpot => {
+      const index = spots.findIndex(el => el._id === updatedSpot._id)
+      setSpots([
+        ...spots.slice(0, index),
+        updatedSpot,
+        ...spots.slice(index + 1)
+      ])
+    })
     setSelectedSpot({
       ...selectedSpot,
       routes: {
@@ -83,7 +103,7 @@ function App() {
   }
 
   function clickedSpot(id) {
-    const index = spots.findIndex(spot => spot.id === id)
+    const index = spots.findIndex(spot => spot._id === id)
     setSelectedSpot(spots[index])
   }
 }

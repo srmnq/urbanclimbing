@@ -25,18 +25,18 @@ export default function SpotList({
       {fuzzySearchResult.map((spot, index) => (
         <Link
           to={`/${spot.name}`}
-          onClick={() => clickedSpot(spot.id)}
+          onClick={() => clickedSpot(spot._id)}
           key={index}
         >
           <Spot
             {...spot}
-            key={spot.id}
+            key={spot._id}
             boulderCount={spot.routes.boulder.length}
             sportCount={spot.routes.sport.length}
             easyRoutes={countEasyRoute(spot)}
             mediumRoutes={countMediumRoute(spot)}
             hardRoutes={countHardRoute(spot)}
-            toggleBookmark={event => toggleBookmark(event, spot.id)}
+            toggleBookmark={event => toggleBookmark(event, spot)}
             isBookmarked={spot.isBookmarked}
             setLocation={() => setLocation(spot)}
           ></Spot>
