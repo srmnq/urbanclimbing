@@ -19,12 +19,6 @@ app.get('/spots', (req, res) => {
     .catch(err => res.json(err))
 })
 
-// app.delete('/cards/:id', (req, res) => {
-//     Card.findByIdAndDelete(req.params.id)
-//       .then(card => res.json(card))
-//       .catch(err => res.json(err))
-//   })
-
 app.get('/spots/:id', (req, res) => {
   Spot.findById(req.params.id)
     .then(spot => res.json(spot))

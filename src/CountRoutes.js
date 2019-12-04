@@ -1,5 +1,3 @@
-import React, { useState } from 'react'
-
 export function countEasyRoute(spot) {
   return (
     spot.routes.boulder.filter(
