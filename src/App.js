@@ -4,7 +4,7 @@ import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot'
 import spotData from './spots.json'
-import { getCards, patchCard, patchBookmark } from './services'
+import { getSpots, patchSpot } from './services'
 import WrappedMap from './WrappedMapContainer'
 
 function App() {
@@ -12,12 +12,11 @@ function App() {
   const [selectedSpot, setSelectedSpot] = useState(spotData[0])
 
   useEffect(() => {
-    getCards().then(setSpots)
-    // console.log(spots)
+    getSpots().then(setSpots)
   }, [])
 
   useEffect(() => {
-    const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
+    const indexSpot = spots.findIndex(el => el._id === selectedSpot._id)
 
     setSpots([
       ...spots.slice(0, indexSpot),
@@ -49,7 +48,7 @@ function App() {
           <SpotList
             clickedSpot={id => clickedSpot(id)}
             spotData={spots}
-            toggleBookmark={(event, id) => toggleBookmark(event, id)}
+            toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
             setLocation={spot => setSelectedSpot(spot)}
           />
         </Route>
@@ -57,31 +56,64 @@ function App() {
     </Router>
   )
 
-  function toggleBookmark(event, id) {
+  // function toggleBookmark(event, id) {
+  //   event.preventDefault()
+  //   event.stopPropagation()
+  //   let index = spots.findIndex(el => el._id === id)
+  //   let spot = spots[index]
+  //   patchBookmark(spot).then(changedSpot => {
+  //     setSpots([
+  //       ...spots.slice(0, index),
+  //       changedSpot,
+  //       ...spots.slice(index + 1)
+  //     ])
+  //   })
+  // }
+  // function toggleBookmark(event, id) {
+  //   event.preventDefault()
+  //   event.stopPropagation()
+  //   let index = spots.findIndex(el => el._id === id)
+  //   let spot = spots[index]
+
+  //   setSpots([
+  //     ...spots.slice(0, index),
+  //     { ...spot, isBookmarked: !spot.isBookmarked },
+  //     ...spots.slice(index + 1)
+  //   ])
+  // }
+
+  // function toggleBookmark(event, id) {
+  //   event.preventDefault()
+  //   event.stopPropagation()
+  //   let index = spots.findIndex(el => el._id === id)
+  //   let spot = spots[index]
+  //   patchCard({
+  //     _id: spot._id,
+  //     isBookmarked: !spot.isBookmarked
+  //   }).then(changedCard => {
+  //     setSpots([
+  //       ...spots.slice(0, index),
+  //       changedCard,
+  //       ...spots.slice(index + 1)
+  //     ])
+  //   })
+  // }
+
+  function toggleBookmark(event, spot) {
     event.preventDefault()
     event.stopPropagation()
-    let index = spots.findIndex(el => el.id === id)
-    let spot = spots[index]
-    patchBookmark(spot).then(changedSpot => {
+    patchSpot({
+      _id: spot._id,
+      isBookmarked: !spot.isBookmarked
+    }).then(updatedSpot => {
+      const index = spots.findIndex(spot => spot._id === updatedSpot._id)
       setSpots([
         ...spots.slice(0, index),
-        changedSpot,
+        updatedSpot,
         ...spots.slice(index + 1)
       ])
     })
   }
-
-  // function toggleBookmark(id) {
-  //   const index = cards.findIndex(card => card._id === id)
-  //   const card = cards[index]
-  //   patchBookmark(card).then(changedCard => {
-  //     setCards([
-  //       ...cards.slice(0, index),
-  //       changedCard,
-  //       ...cards.slice(index + 1),
-  //     ])
-  //   })
-  // }
 
   function toggleIsClimbed(index) {
     let route = selectedSpot.routes.boulder[index]
@@ -103,7 +135,7 @@ function App() {
   }
 
   function clickedSpot(id) {
-    const index = spots.findIndex(spot => spot.id === id)
+    const index = spots.findIndex(spot => spot._id === id)
     setSelectedSpot(spots[index])
   }
 }

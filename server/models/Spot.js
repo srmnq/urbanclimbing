@@ -25,8 +25,7 @@ const spotSchema = {
   boulderCount: Number,
   location: Array,
   mainImage: String,
-  isBookmarked: Boolean,
-  id: Number
+  isBookmarked: Boolean
 }
 
 module.exports = mongoose.model('Spot', spotSchema)

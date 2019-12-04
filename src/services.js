@@ -1,38 +1,39 @@
-export function getCards() {
+export function getSpots() {
   return fetch('/spots').then(res => res.json())
 }
-//   export function postCard(card) {
-//     return fetch('/cards', {
-//       method: 'POST',
-//       body: JSON.stringify(card),
-//       headers: {
-//         'content-type': 'application/json',
-//       },
-//     }).then(res => res.json())
-//   }
-export function patchBookmark(card) {
-  card = { id: card.id, isBookmarked: !card.isBookmarked }
-  return fetch('/cards/' + card.id, {
+
+export function postSpot(spot) {
+  return fetch('/spots', {
+    method: 'POST',
+    body: JSON.stringify(spot),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(res => res.json())
+}
+export function patchBookmark(spot) {
+  spot = { ...spot, id: spot._id, isBookmarked: !spot.isBookmarked }
+  return fetch('/spots/' + spot.id, {
     method: 'PATCH',
-    body: JSON.stringify(card),
+    body: JSON.stringify(spot),
     headers: {
       'content-type': 'application/json'
     }
   }).then(res => res.json())
 }
 
-//   export function patchCard(card) {
-//     return fetch('/cards/' + card.id, {
-//       method: 'PATCH',
-//       body: JSON.stringify(card),
-//       headers: {
-//         'content-type': 'application/json',
-//       },
-//     }).then(res => res.json())
-//   }
+export function patchSpot(spot) {
+  return fetch('/spots/' + spot._id, {
+    method: 'PATCH',
+    body: JSON.stringify(spot),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(res => res.json())
+}
 
-//   export function deleteCard(id) {
-//     return fetch('/cards/' + id, {
-//       method: 'DELETE',
-//     }).then(res => res.json())
-//   }
+export function deleteSpot(id) {
+  return fetch('/spots/' + id, {
+    method: 'DELETE'
+  }).then(res => res.json())
+}

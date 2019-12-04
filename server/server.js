@@ -31,13 +31,13 @@ app.get('/spots/:id', (req, res) => {
     .catch(err => res.json(err))
 })
 
-//   app.post('/cards', (req, res) => {
-//     Card.create(req.body)
-//       .then(card => res.json(card))
-//       .catch(err => res.json(err))
-//   })
+app.post('/spots', (req, res) => {
+  Spot.create(req.body)
+    .then(spot => res.json(spot))
+    .catch(err => res.json(err))
+})
 
-app.patch('/cards/:id', (req, res) => {
+app.patch('/spots/:id', (req, res) => {
   Spot.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(spot => res.json(spot))
     .catch(err => res.json(err))
