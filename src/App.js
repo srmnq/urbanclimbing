@@ -31,6 +31,7 @@ function App() {
           <DetailedSpot
             toggleIsClimbed={(index, spot) => toggleIsClimbed(index, spot)}
             spots={spots}
+            toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
           />
         </Route>
       </Switch>
@@ -40,7 +41,6 @@ function App() {
           <SpotList
             spotData={spots}
             toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
-            setLocation={spot => console.log(spot)}
           />
         </Route>
       </Switch>

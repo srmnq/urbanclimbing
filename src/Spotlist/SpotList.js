@@ -15,7 +15,6 @@ export default function SpotList({
   spotData,
 
   toggleBookmark,
-  setLocation,
 }) {
   const [input, setInput] = useState('')
   const [fuzzySearchResult, setFuzzySearchResult] = useState(spotData)
@@ -39,7 +38,6 @@ export default function SpotList({
             hardRoutes={countHardRoute(spot)}
             toggleBookmark={event => toggleBookmark(event, spot)}
             isBookmarked={spot.isBookmarked}
-            setLocation={() => setLocation(spot)}
             id={spot._id}
           ></Spot>
         </Link>
