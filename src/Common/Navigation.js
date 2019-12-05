@@ -48,9 +48,9 @@ export default function Navigation() {
 const NavigationStyled = styled.nav`
   display: flex;
   justify-content: space-around;
-  position: sticky;
+  position: fixed;
   width: 100%;
-  bottom: 0;
+  bottom: 0px;
   height: 40px;
   background: linear-gradient(
     204deg,

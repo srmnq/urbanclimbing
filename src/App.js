@@ -3,7 +3,6 @@ import SpotList from './Spotlist/SpotList'
 import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot/DetailedSpot'
-import spotData from './spots.json'
 import { getSpots, patchSpot } from './services'
 import WrappedMap from './Map/WrappedMapContainer'
 

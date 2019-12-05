@@ -2,20 +2,20 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import Spot from '../Spotlist/Spot'
+import { Link } from 'react-router-dom'
 import {
   countEasyRoute,
   countMediumRoute,
   countHardRoute,
 } from '../Common/CountRoutes'
 
-export default function Maps({ spotData, selectedSpot }) {
+export default function Maps({ spotData }) {
   const pathname = window.location.pathname
   const id = pathname.substring(5)
 
   const index = spotData.findIndex(el => el._id === id)
   const spot = spotData[index]
   const [clickedSpot, setClickedSpot] = useState(spot)
-  console.log('foo')
 
   return (
     <GoogleMap
@@ -26,12 +26,15 @@ export default function Maps({ spotData, selectedSpot }) {
       <MapStyled>
         {spotData.map(spot => (
           <Marker
-            key={spot.id}
+            key={spot._id}
             position={{ lat: spot.location[0], lng: spot.location[1] }}
             onClick={() => {
               setClickedSpot(spot)
+              // window.location.pathname = `/map/${clickedSpot._id}`
             }}
-            icon={{ url: require('../../src/icons/mountain-with-circle.svg') }}
+            icon={{
+              url: require('../../src/icons/mountain-with-circle.svg'),
+            }}
           />
         ))}
 
