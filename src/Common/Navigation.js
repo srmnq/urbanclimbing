@@ -1,6 +1,6 @@
-import React from "react"
-import styled from "styled-components"
-import { Link } from "react-router-dom"
+import React from 'react'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export default function Navigation() {
   return (
@@ -10,7 +10,7 @@ export default function Navigation() {
           <img
             className="search-icon"
             alt="list"
-            src={require("../../src/icons/list-white.svg")}
+            src={require('../../src/icons/list-white.svg')}
           />
         </li>
       </Link>
@@ -19,7 +19,7 @@ export default function Navigation() {
           <img
             className="search-icon"
             alt="map"
-            src={require("../../src/icons/map-white.svg")}
+            src={require('../../src/icons/map-white.svg')}
           />
         </li>
       </Link>
@@ -28,7 +28,7 @@ export default function Navigation() {
           <img
             className="mountain-icon"
             alt="mountain"
-            src={require("../../src/icons/mountain-white.svg")}
+            src={require('../../src/icons/mountain-white.svg')}
           />
         </li>
       </Link>
@@ -37,18 +37,12 @@ export default function Navigation() {
           <img
             className="search-icon"
             alt="add a spot"
-            src={require("../../src/icons/add-white.svg")}
+            src={require('../../src/icons/add-white.svg')}
           />
         </li>
       </Link>
     </NavigationStyled>
   )
-}
-function findColor(value) {
-  const mapping = {
-    "/": "green",
-  }
-  return mapping[value]
 }
 
 const NavigationStyled = styled.nav`
@@ -75,15 +69,15 @@ const NavigationStyled = styled.nav`
     border-left: 4px solid var(--darkgreen);
   }
   .home {
-    background: ${props => props.active === "/" && "var(--darkgreen)"};
+    background: ${props => props.active === '/' && 'var(--darkgreen)'};
   }
   .map {
-    background: ${props => props.active === "/map" && "var(--darkgreen)"};
+    background: ${props => props.active === '/map' && 'var(--darkgreen)'};
   }
   .profile {
-    background: ${props => props.active === "/profile" && "var(--darkgreen)"};
+    background: ${props => props.active === '/profile' && 'var(--darkgreen)'};
   }
   .addaspot {
-    background: ${props => props.active === "/addaspot" && "var(--darkgreen)"};
+    background: ${props => props.active === '/addaspot' && 'var(--darkgreen)'};
   }
 `
