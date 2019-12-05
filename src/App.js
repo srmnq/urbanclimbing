@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react"
-import SpotList from "./Spotlist/SpotList"
-import GlobalStyle from "./GlobalStyles"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import DetailedSpot from "./DetailedSpot/DetailedSpot"
-import spotData from "./spots.json"
-import { getSpots, patchSpot } from "./services"
-import WrappedMap from "./Map/WrappedMapContainer"
+import React, { useState, useEffect } from 'react'
+import SpotList from './Spotlist/SpotList'
+import GlobalStyle from './GlobalStyles'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import DetailedSpot from './DetailedSpot/DetailedSpot'
+import spotData from './spots.json'
+import { getSpots, patchSpot } from './services'
+import WrappedMap from './Map/WrappedMapContainer'
 
 function App() {
   const [spots, setSpots] = useState([])
@@ -24,10 +24,10 @@ function App() {
         </Route>
       </Switch>
       <Switch>
-        <Route path={`/${selectedSpot.name}`}>
+        <Route path={`/${selectedSpot._id}`}>
           <DetailedSpot
             toggleIsClimbed={index => toggleIsClimbed(index)}
-            spot={selectedSpot}
+            spots={spots}
           />
         </Route>
       </Switch>
