@@ -35,7 +35,9 @@ export default function Maps({ spotData }) {
               // window.location.href = `/map/${spot._id}`
             }}
             icon={{
-              url: require('../../src/icons/mountain-with-circle.svg'),
+              url: spot.isBookmarked
+                ? require('../../src/icons/heart-red.svg')
+                : require('../../src/icons/mountain-with-circle.svg'),
             }}
           />
         ))}

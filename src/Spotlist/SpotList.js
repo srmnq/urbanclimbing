@@ -48,8 +48,8 @@ export default function SpotList({
   )
 
   function fuzzy_match(spotname, input) {
-    let search = input.replace(/\ /g, '').toLowerCase()
-    let name = spotname.replace(/\ /g, '').toLowerCase()
+    let search = input.replace(/ /g, '').toLowerCase()
+    let name = spotname.replace(/ /g, '').toLowerCase()
     const tokens = name.split('')
     let search_position = 0
 
@@ -62,7 +62,7 @@ export default function SpotList({
       }
     })
 
-    if (search_position != search.length) {
+    if (search_position !== search.length) {
       return ''
     }
     return tokens.join('')
