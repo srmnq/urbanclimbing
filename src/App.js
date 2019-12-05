@@ -24,7 +24,7 @@ function App() {
         </Route>
       </Switch>
       <Switch>
-        <Route path={`/${selectedSpot._id}`}>
+        <Route path={`/:id`}>
           <DetailedSpot
             toggleIsClimbed={(index, spot) => toggleIsClimbed(index, spot)}
             spots={spots}
