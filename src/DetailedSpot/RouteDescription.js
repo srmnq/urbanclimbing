@@ -24,8 +24,8 @@ export default function DetailedRoute({
         className="mountain-icon"
         src={
           isClimbed
-            ? require('../src/icons/mountain-with-circle.svg')
-            : require('../src/icons/mountain-black.svg')
+            ? require('../../src/icons/mountain-with-circle.svg')
+            : require('../../src/icons/mountain-black.svg')
         }
       />
     </DetailedRouteStyled>

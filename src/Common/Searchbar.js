@@ -4,7 +4,11 @@ import styled from 'styled-components'
 export default function Searchbar({ onInput }) {
   return (
     <SearchbarStyled>
-      <img className="search-icon" src={require('../src/icons/search.svg')} />
+      <img
+        alt="search"
+        className="search-icon"
+        src={require('../../src/icons/search.svg')}
+      />
       <input onInput={onInput} />
     </SearchbarStyled>
   )

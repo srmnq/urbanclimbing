@@ -6,15 +6,23 @@ import { Link } from 'react-router-dom'
 export default function DetailedSpot({ spot, toggleIsClimbed }) {
   return (
     <DetailedSpotStyled>
-      <div className="map-icon">
-        <img alt="map-icon" src={require('../src/icons/map-white.svg')} />
-      </div>
+      <Link className="map-icon" to="/map">
+        <div>
+          <img alt="map-icon" src={require('../../src/icons/map-white.svg')} />
+        </div>
+      </Link>
       <Link className="arrow-icon" to="/">
-        <img alt="arrow-icon" src={require('../src/icons/arrow-white.svg')} />
+        <img
+          alt="arrow-icon"
+          src={require('../../src/icons/arrow-white.svg')}
+        />
       </Link>
 
       <div className="heart-icon">
-        <img alt="heart-icon" src={require('../src/icons/heart-white.svg')} />
+        <img
+          alt="heart-icon"
+          src={require('../../src/icons/heart-white.svg')}
+        />
       </div>
       <img alt="climbing spot" src={spot.mainImage} className="mainImage"></img>
       <h2 className="spotName">{spot.name}</h2>

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { withScriptjs, withGoogleMap } from 'react-google-maps'
 import Map from './Map'
+import Navigation from '../Common/Navigation'
 
 export default function WrappedMapContainer({ spotData, selectedSpot }) {
   const WrappedMap = withScriptjs(withGoogleMap(Map))
@@ -15,6 +16,7 @@ export default function WrappedMapContainer({ spotData, selectedSpot }) {
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
+      <Navigation></Navigation>
     </WrappedMapStyled>
   )
 }

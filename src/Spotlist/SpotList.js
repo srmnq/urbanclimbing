@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import Spot from './Spot'
-import Searchbar from './Searchbar'
-import styled from 'styled-components'
-import { countEasyRoute, countMediumRoute, countHardRoute } from './CountRoutes'
+import React, { useState, useEffect } from "react"
+import Spot from "./Spot"
+import Searchbar from "../Common/Searchbar"
+import Navigation from "../Common/Navigation"
+import styled from "styled-components"
+import {
+  countEasyRoute,
+  countMediumRoute,
+  countHardRoute,
+} from "../Common/CountRoutes"
 
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 export default function SpotList({
   spotData,
   clickedSpot,
   toggleBookmark,
-  setLocation
+  setLocation,
 }) {
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState("")
   const [fuzzySearchResult, setFuzzySearchResult] = useState(spotData)
 
   useEffect(() => {
@@ -42,13 +47,15 @@ export default function SpotList({
           ></Spot>
         </Link>
       ))}
+
+      <Navigation></Navigation>
     </SpotListStyled>
   )
 
   function fuzzy_match(spotname, input) {
-    let search = input.replace(/\ /g, '').toLowerCase()
-    let name = spotname.replace(/\ /g, '').toLowerCase()
-    const tokens = name.split('')
+    let search = input.replace(/\ /g, "").toLowerCase()
+    let name = spotname.replace(/\ /g, "").toLowerCase()
+    const tokens = name.split("")
     let search_position = 0
 
     tokens.forEach(i => {
@@ -61,9 +68,9 @@ export default function SpotList({
     })
 
     if (search_position != search.length) {
-      return ''
+      return ""
     }
-    return tokens.join('')
+    return tokens.join("")
   }
 }
 

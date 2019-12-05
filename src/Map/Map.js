@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
-import Spot from './Spot.js'
-import { countEasyRoute, countMediumRoute, countHardRoute } from './CountRoutes'
+import Spot from '../Spotlist/Spot'
+import {
+  countEasyRoute,
+  countMediumRoute,
+  countHardRoute
+} from '../Common/CountRoutes'
 
 export default function Maps({ spotData, selectedSpot }) {
   const [clickedSpot, setClickedSpot] = useState(selectedSpot)
@@ -21,7 +25,7 @@ export default function Maps({ spotData, selectedSpot }) {
             onClick={() => {
               setClickedSpot(spot)
             }}
-            icon={{ url: require('../src/icons/mountain-with-circle.svg') }}
+            icon={{ url: require('../../src/icons/mountain-with-circle.svg') }}
           />
         ))}
 

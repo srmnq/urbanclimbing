@@ -9,6 +9,12 @@ import GlobalStyles from '../src/GlobalStyles'
 
 // automatically import all files ending in *.stories.js
 configure(require.context('../src', true, /\.stories\.js$/), module)
+configure(require.context('../src/Spotlist', true, /\.stories\.js$/), module)
+configure(require.context('../src/Common', true, /\.stories\.js$/), module)
+configure(
+  require.context('../src/DetailedSpot', true, /\.stories\.js$/),
+  module
+)
 addDecorator(withInfo)
 addDecorator(app => (
   <>
