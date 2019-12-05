@@ -28,7 +28,7 @@ export default function SpotList({
     <SpotListStyled>
       <Searchbar onInput={event => setInput(event.target.value)} />
       {fuzzySearchResult.map((spot, index) => (
-        <Link to={`/${spot._id}`} key={index}>
+        <Link to={`/spot/${spot._id}`} key={index}>
           <Spot
             {...spot}
             key={spot._id}
