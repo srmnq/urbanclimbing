@@ -5,11 +5,17 @@ import Spot from '../Spotlist/Spot'
 import {
   countEasyRoute,
   countMediumRoute,
-  countHardRoute
+  countHardRoute,
 } from '../Common/CountRoutes'
 
 export default function Maps({ spotData, selectedSpot }) {
-  const [clickedSpot, setClickedSpot] = useState(selectedSpot)
+  const pathname = window.location.pathname
+  const id = pathname.substring(5)
+
+  const index = spotData.findIndex(el => el._id === id)
+  const spot = spotData[index]
+  const [clickedSpot, setClickedSpot] = useState(spot)
+  console.log('foo')
 
   return (
     <GoogleMap
@@ -33,7 +39,7 @@ export default function Maps({ spotData, selectedSpot }) {
           <InfoWindow
             position={{
               lat: clickedSpot.location[0],
-              lng: clickedSpot.location[1]
+              lng: clickedSpot.location[1],
             }}
             onCloseClick={() => setClickedSpot(null)}
           >

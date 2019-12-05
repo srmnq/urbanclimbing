@@ -19,12 +19,12 @@ function App() {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route path="/map">
-          <WrappedMap spotData={spots} selectedSpot={selectedSpot} />
+        <Route exact path={`/map/:id`}>
+          <WrappedMap spotData={spots} />
         </Route>
       </Switch>
       <Switch>
-        <Route path={`/:id`}>
+        <Route exact path={`/:id`}>
           <DetailedSpot
             toggleIsClimbed={(index, spot) => toggleIsClimbed(index, spot)}
             spots={spots}
@@ -35,7 +35,6 @@ function App() {
       <Switch>
         <Route exact path="/">
           <SpotList
-            clickedSpot={id => clickedSpot(id)}
             spotData={spots}
             toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
             setLocation={spot => setSelectedSpot(spot)}
@@ -126,11 +125,6 @@ function App() {
   //     },
   //   })
   // }
-
-  function clickedSpot(id) {
-    const index = spots.findIndex(spot => spot._id === id)
-    setSelectedSpot(spots[index])
-  }
 }
 
 export default App

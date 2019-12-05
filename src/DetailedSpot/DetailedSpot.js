@@ -5,11 +5,13 @@ import RouteDescription from './RouteDescription'
 import { Link } from 'react-router-dom'
 
 export default function DetailedSpot({ toggleIsClimbed, spots }) {
+  console.log('br')
   const pathname = window.location.pathname
   const id = pathname.substring(1)
 
   const index = spots.findIndex(el => el._id === id)
   const spot = spots[index]
+
   return (
     <DetailedSpotStyled>
       <Link className="map-icon" to="/map">

@@ -28,11 +28,7 @@ export default function SpotList({
     <SpotListStyled>
       <Searchbar onInput={event => setInput(event.target.value)} />
       {fuzzySearchResult.map((spot, index) => (
-        <Link
-          to={`/${spot._id}`}
-          onClick={() => clickedSpot(spot._id)}
-          key={index}
-        >
+        <Link to={`/${spot._id}`} key={index}>
           <Spot
             {...spot}
             key={spot._id}
@@ -44,6 +40,7 @@ export default function SpotList({
             toggleBookmark={event => toggleBookmark(event, spot)}
             isBookmarked={spot.isBookmarked}
             setLocation={() => setLocation(spot)}
+            id={spot._id}
           ></Spot>
         </Link>
       ))}

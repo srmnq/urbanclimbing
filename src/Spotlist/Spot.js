@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
-import DifficultyBar from "./DifficultyBar"
-import PropTypes from "prop-types"
-import { Link } from "react-router-dom"
+import React from 'react'
+import styled from 'styled-components'
+import DifficultyBar from './DifficultyBar'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 export default function Spot({
   name,
@@ -15,17 +15,18 @@ export default function Spot({
   toggleBookmark,
   isBookmarked,
   setLocation,
+  id,
   ...props
 }) {
   return (
     <SpotStyled {...props}>
       <img alt="climbing spot" className="mainImage" src={mainImage}></img>
-      <Link className="map-icon" to={`/map`} onClick={setLocation}>
+      <Link className="map-icon" to={`/map/${id}`} onClick={setLocation}>
         <div>
-          {window.location.href === "http://localhost:3000/map" || (
+          {window.location.href === 'http://localhost:3000/map' || (
             <img
               alt="map-icon"
-              src={require("../../src/icons/map-black.svg")}
+              src={require('../../src/icons/map-black.svg')}
             />
           )}
         </div>
@@ -36,8 +37,8 @@ export default function Spot({
         className="heart-icon"
         src={
           isBookmarked
-            ? require("../../src/icons/heart-red.svg")
-            : require("../../src/icons/heart-black.svg")
+            ? require('../../src/icons/heart-red.svg')
+            : require('../../src/icons/heart-black.svg')
         }
         onClick={toggleBookmark}
       />
@@ -51,17 +52,17 @@ export default function Spot({
         <div className="difficulty-bar__container">
           <DifficultyBar
             routeCount={easyRoutes}
-            difficulty={"3 - 5"}
+            difficulty={'3 - 5'}
             barHeight={(easyRoutes / (boulderCount + sportCount)) * 40}
           />
           <DifficultyBar
             routeCount={mediumRoutes}
-            difficulty={"6 - 7"}
+            difficulty={'6 - 7'}
             barHeight={(mediumRoutes / (boulderCount + sportCount)) * 40}
           />
           <DifficultyBar
             routeCount={hardRoutes}
-            difficulty={"8 - 9"}
+            difficulty={'8 - 9'}
             barHeight={(hardRoutes / (boulderCount + sportCount)) * 40}
           />
         </div>
