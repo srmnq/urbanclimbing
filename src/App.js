@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import SpotList from './SpotList'
-import GlobalStyle from './GlobalStyles'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import DetailedSpot from './DetailedSpot'
-import spotData from './spots.json'
-import { getSpots, patchSpot } from './services'
-import WrappedMap from './WrappedMapContainer'
+import React, { useState, useEffect } from "react"
+import SpotList from "./Spotlist/SpotList"
+import GlobalStyle from "./GlobalStyles"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import DetailedSpot from "./DetailedSpot/DetailedSpot"
+import spotData from "./spots.json"
+import { getSpots, patchSpot } from "./services"
+import WrappedMap from "./Map/WrappedMapContainer"
 
 function App() {
   const [spots, setSpots] = useState([])
@@ -20,7 +20,6 @@ function App() {
       <GlobalStyle />
       <Switch>
         <Route path="/map">
-          <Link to="/">Home</Link>
           <WrappedMap spotData={spots} selectedSpot={selectedSpot} />
         </Route>
       </Switch>
@@ -51,13 +50,13 @@ function App() {
     event.stopPropagation()
     patchSpot({
       _id: spot._id,
-      isBookmarked: !spot.isBookmarked
+      isBookmarked: !spot.isBookmarked,
     }).then(updatedSpot => {
       const index = spots.findIndex(el => el._id === updatedSpot._id)
       setSpots([
         ...spots.slice(0, index),
         updatedSpot,
-        ...spots.slice(index + 1)
+        ...spots.slice(index + 1),
       ])
     })
   }
@@ -73,17 +72,17 @@ function App() {
           ...spot.routes.boulder.slice(0, index),
           {
             ...route,
-            isClimbed: !route.isClimbed
+            isClimbed: !route.isClimbed,
           },
-          ...spot.routes.boulder.slice(index + 1)
-        ]
-      }
+          ...spot.routes.boulder.slice(index + 1),
+        ],
+      },
     }).then(updatedSpot => {
       const index = spots.findIndex(el => el._id === updatedSpot._id)
       setSpots([
         ...spots.slice(0, index),
         updatedSpot,
-        ...spots.slice(index + 1)
+        ...spots.slice(index + 1),
       ])
     })
     setSelectedSpot({
@@ -94,11 +93,11 @@ function App() {
           ...selectedSpot.routes.boulder.slice(0, index),
           {
             ...route,
-            isClimbed: !route.isClimbed
+            isClimbed: !route.isClimbed,
           },
-          ...selectedSpot.routes.boulder.slice(index + 1)
-        ]
-      }
+          ...selectedSpot.routes.boulder.slice(index + 1),
+        ],
+      },
     })
   }
 
