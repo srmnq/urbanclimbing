@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import Spot from '../Spotlist/Spot'
-import { Link } from 'react-router-dom'
 import {
   countEasyRoute,
   countMediumRoute,
@@ -21,7 +20,10 @@ export default function Maps({ spotData }) {
     <GoogleMap
       style={{ position: 'relative' }}
       defaultZoom={13}
-      defaultCenter={{ lat: 53.551086, lng: 9.993682 }}
+      defaultCenter={{
+        lat: clickedSpot ? clickedSpot.location[0] : 53.556268,
+        lng: clickedSpot ? clickedSpot.location[1] : 9.979049,
+      }}
     >
       <MapStyled>
         {spotData.map(spot => (
@@ -30,7 +32,7 @@ export default function Maps({ spotData }) {
             position={{ lat: spot.location[0], lng: spot.location[1] }}
             onClick={() => {
               setClickedSpot(spot)
-              // window.location.pathname = `/map/${clickedSpot._id}`
+              // window.location.href = `/map/${spot._id}`
             }}
             icon={{
               url: require('../../src/icons/mountain-with-circle.svg'),
