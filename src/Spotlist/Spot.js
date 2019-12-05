@@ -14,16 +14,15 @@ export default function Spot({
   hardRoutes,
   toggleBookmark,
   isBookmarked,
-  setLocation,
   id,
   ...props
 }) {
   return (
     <SpotStyled {...props}>
       <img alt="climbing spot" className="mainImage" src={mainImage}></img>
-      <Link className="map-icon" to={`/map/${id}`} onClick={setLocation}>
+      <Link className="map-icon" to={`/map/${id}`}>
         <div>
-          {window.location.href === 'http://localhost:3000/map' || (
+          {window.location.href.indexOf('map') > -1 || (
             <img
               alt="map-icon"
               src={require('../../src/icons/map-black.svg')}
