@@ -9,7 +9,6 @@ import WrappedMap from './Map/WrappedMapContainer'
 
 function App() {
   const [spots, setSpots] = useState([])
-  const [selectedSpot, setSelectedSpot] = useState(spotData[0])
 
   useEffect(() => {
     getSpots().then(setSpots)
@@ -24,7 +23,12 @@ function App() {
         </Route>
       </Switch>
       <Switch>
-        <Route exact path={`/:id`}>
+        <Route exact path="/map">
+          <WrappedMap spotData={spots} />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path={`/:id`}>
           <DetailedSpot
             toggleIsClimbed={(index, spot) => toggleIsClimbed(index, spot)}
             spots={spots}
@@ -37,7 +41,7 @@ function App() {
           <SpotList
             spotData={spots}
             toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
-            setLocation={spot => setSelectedSpot(spot)}
+            setLocation={spot => console.log(spot)}
           />
         </Route>
       </Switch>
@@ -85,46 +89,6 @@ function App() {
       ])
     })
   }
-
-  // function toggleIsClimbed(index, spot) {
-  //   let route = selectedSpot.routes.boulder[index]
-  //   const spot = selectedSpot
-  //   patchSpot({
-  //     _id: spot._id,
-  //     routes: {
-  //       ...spot.routes,
-  //       boulder: [
-  //         ...spot.routes.boulder.slice(0, index),
-  //         {
-  //           ...route,
-  //           isClimbed: !route.isClimbed,
-  //         },
-  //         ...spot.routes.boulder.slice(index + 1),
-  //       ],
-  //     },
-  //   }).then(updatedSpot => {
-  //     const index = spots.findIndex(el => el._id === updatedSpot._id)
-  //     setSpots([
-  //       ...spots.slice(0, index),
-  //       updatedSpot,
-  //       ...spots.slice(index + 1),
-  //     ])
-  //   })
-  //   setSelectedSpot({
-  //     ...selectedSpot,
-  //     routes: {
-  //       ...selectedSpot.routes,
-  //       boulder: [
-  //         ...selectedSpot.routes.boulder.slice(0, index),
-  //         {
-  //           ...route,
-  //           isClimbed: !route.isClimbed,
-  //         },
-  //         ...selectedSpot.routes.boulder.slice(index + 1),
-  //       ],
-  //     },
-  //   })
-  // }
 }
 
 export default App
