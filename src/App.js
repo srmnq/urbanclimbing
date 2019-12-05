@@ -26,7 +26,7 @@ function App() {
       <Switch>
         <Route path={`/${selectedSpot._id}`}>
           <DetailedSpot
-            toggleIsClimbed={index => toggleIsClimbed(index)}
+            toggleIsClimbed={(index, spot) => toggleIsClimbed(index, spot)}
             spots={spots}
           />
         </Route>
@@ -61,9 +61,9 @@ function App() {
     })
   }
 
-  function toggleIsClimbed(index) {
-    let route = selectedSpot.routes.boulder[index]
-    const spot = selectedSpot
+  function toggleIsClimbed(index, spot) {
+    let route = spot.routes.boulder[index]
+
     patchSpot({
       _id: spot._id,
       routes: {
@@ -85,21 +85,47 @@ function App() {
         ...spots.slice(index + 1),
       ])
     })
-    setSelectedSpot({
-      ...selectedSpot,
-      routes: {
-        ...selectedSpot.routes,
-        boulder: [
-          ...selectedSpot.routes.boulder.slice(0, index),
-          {
-            ...route,
-            isClimbed: !route.isClimbed,
-          },
-          ...selectedSpot.routes.boulder.slice(index + 1),
-        ],
-      },
-    })
   }
+
+  // function toggleIsClimbed(index, spot) {
+  //   let route = selectedSpot.routes.boulder[index]
+  //   const spot = selectedSpot
+  //   patchSpot({
+  //     _id: spot._id,
+  //     routes: {
+  //       ...spot.routes,
+  //       boulder: [
+  //         ...spot.routes.boulder.slice(0, index),
+  //         {
+  //           ...route,
+  //           isClimbed: !route.isClimbed,
+  //         },
+  //         ...spot.routes.boulder.slice(index + 1),
+  //       ],
+  //     },
+  //   }).then(updatedSpot => {
+  //     const index = spots.findIndex(el => el._id === updatedSpot._id)
+  //     setSpots([
+  //       ...spots.slice(0, index),
+  //       updatedSpot,
+  //       ...spots.slice(index + 1),
+  //     ])
+  //   })
+  //   setSelectedSpot({
+  //     ...selectedSpot,
+  //     routes: {
+  //       ...selectedSpot.routes,
+  //       boulder: [
+  //         ...selectedSpot.routes.boulder.slice(0, index),
+  //         {
+  //           ...route,
+  //           isClimbed: !route.isClimbed,
+  //         },
+  //         ...selectedSpot.routes.boulder.slice(index + 1),
+  //       ],
+  //     },
+  //   })
+  // }
 
   function clickedSpot(id) {
     const index = spots.findIndex(spot => spot._id === id)

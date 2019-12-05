@@ -37,7 +37,7 @@ export default function DetailedSpot({ toggleIsClimbed, spots }) {
             routeName={route.routeName}
             description={route.description}
             difficulty={route.difficulty}
-            toggleIsClimbed={() => toggleIsClimbed(index)}
+            toggleIsClimbed={() => toggleIsClimbed(index, spot)}
             isClimbed={route.isClimbed}
           />
         ))}
