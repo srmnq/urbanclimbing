@@ -4,9 +4,9 @@ import { Link } from "react-router-dom"
 
 export default function Navigation() {
   return (
-    <NavigationStyled>
+    <NavigationStyled active={window.location.pathname}>
       <Link to="/">
-        <li>
+        <li className="home">
           <img
             className="search-icon"
             alt="list"
@@ -15,7 +15,7 @@ export default function Navigation() {
         </li>
       </Link>
       <Link to="/map">
-        <li>
+        <li className="map">
           <img
             className="search-icon"
             alt="map"
@@ -24,7 +24,7 @@ export default function Navigation() {
         </li>
       </Link>
       <Link to="/">
-        <li>
+        <li className="profile">
           <img
             className="mountain-icon"
             alt="mountain"
@@ -33,7 +33,7 @@ export default function Navigation() {
         </li>
       </Link>
       <Link to="/">
-        <li>
+        <li className="addaspot">
           <img
             className="search-icon"
             alt="add a spot"
@@ -43,6 +43,12 @@ export default function Navigation() {
       </Link>
     </NavigationStyled>
   )
+}
+function findColor(value) {
+  const mapping = {
+    "/": "green",
+  }
+  return mapping[value]
 }
 
 const NavigationStyled = styled.nav`
@@ -67,5 +73,17 @@ const NavigationStyled = styled.nav`
     cursor: default;
     width: 100%;
     border-left: 4px solid var(--darkgreen);
+  }
+  .home {
+    background: ${props => props.active === "/" && "var(--darkgreen)"};
+  }
+  .map {
+    background: ${props => props.active === "/map" && "var(--darkgreen)"};
+  }
+  .profile {
+    background: ${props => props.active === "/profile" && "var(--darkgreen)"};
+  }
+  .addaspot {
+    background: ${props => props.active === "/addaspot" && "var(--darkgreen)"};
   }
 `
