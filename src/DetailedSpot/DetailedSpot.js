@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import loading from '../loading.json'
 import styled from 'styled-components'
 import RouteDescription from './RouteDescription'
 import { Link } from 'react-router-dom'
@@ -13,7 +13,7 @@ export default function DetailedSpot({
   const id = pathname.substring(6)
 
   const index = spots.findIndex(el => el._id === id)
-  const spot = spots[index]
+  const spot = spots[index] || loading[0]
 
   return (
     <DetailedSpotStyled>

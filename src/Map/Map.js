@@ -32,7 +32,11 @@ export default function Maps({ spotData }) {
             position={{ lat: spot.location[0], lng: spot.location[1] }}
             onClick={() => {
               setClickedSpot(spot)
-              // window.location.href = `/map/${spot._id}`
+              window.history.pushState(
+                { id: spot._id },
+                'id',
+                `http://localhost:3000/map/${spot._id}`
+              )
             }}
             icon={{
               url: spot.isBookmarked

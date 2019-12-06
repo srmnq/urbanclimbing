@@ -1,0 +1,23 @@
+[
+  {
+    "name": "loading",
+    "routes": {
+      "boulder": [
+        {
+          "routeName": "loading",
+          "difficulty": "xx",
+          "isClimbed": false,
+          "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png",
+          "description": "loading"
+        }
+      ],
+      "sport": []
+    },
+
+    "location": [53.560165, 9.982154],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/q_27/v1575623842/Screenshot_2019-12-06_at_10.16.09_fjtvx3.png",
+    "isBookmarked": false,
+    "id": 1,
+    "_id": "dfkld"
+  }
+]
