@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react"
-import SpotList from "./Spotlist/SpotList"
-import GlobalStyle from "./GlobalStyles"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import DetailedSpot from "./DetailedSpot/DetailedSpot"
-import spotData from "./spots.json"
-import { getSpots, patchSpot } from "./services"
-import WrappedMap from "./Map/WrappedMapContainer"
+import React, { useState, useEffect } from 'react'
+import SpotList from './Spotlist/SpotList'
+import GlobalStyle from './GlobalStyles'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import DetailedSpot from './DetailedSpot/DetailedSpot'
+import { getSpots, patchSpot } from './services'
+import WrappedMap from './Map/WrappedMapContainer'
 
 function App() {
   const [spots, setSpots] = useState([])
-  const [selectedSpot, setSelectedSpot] = useState(spotData[0])
 
   useEffect(() => {
     getSpots().then(setSpots)
@@ -19,15 +17,21 @@ function App() {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route path="/map">
-          <WrappedMap spotData={spots} selectedSpot={selectedSpot} />
+        <Route exact path={`/map/:id`}>
+          <WrappedMap spotData={spots} />
         </Route>
       </Switch>
       <Switch>
-        <Route path={`/${selectedSpot.name}`}>
+        <Route exact path="/map">
+          <WrappedMap spotData={spots} />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path={`/spot/:id`}>
           <DetailedSpot
-            toggleIsClimbed={index => toggleIsClimbed(index)}
-            spot={selectedSpot}
+            toggleIsClimbed={(index, spot) => toggleIsClimbed(index, spot)}
+            spots={spots}
+            toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
           />
         </Route>
       </Switch>
@@ -35,10 +39,8 @@ function App() {
       <Switch>
         <Route exact path="/">
           <SpotList
-            clickedSpot={id => clickedSpot(id)}
             spotData={spots}
             toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
-            setLocation={spot => setSelectedSpot(spot)}
           />
         </Route>
       </Switch>
@@ -61,9 +63,9 @@ function App() {
     })
   }
 
-  function toggleIsClimbed(index) {
-    let route = selectedSpot.routes.boulder[index]
-    const spot = selectedSpot
+  function toggleIsClimbed(index, spot) {
+    let route = spot.routes.boulder[index]
+
     patchSpot({
       _id: spot._id,
       routes: {
@@ -85,25 +87,6 @@ function App() {
         ...spots.slice(index + 1),
       ])
     })
-    setSelectedSpot({
-      ...selectedSpot,
-      routes: {
-        ...selectedSpot.routes,
-        boulder: [
-          ...selectedSpot.routes.boulder.slice(0, index),
-          {
-            ...route,
-            isClimbed: !route.isClimbed,
-          },
-          ...selectedSpot.routes.boulder.slice(index + 1),
-        ],
-      },
-    })
-  }
-
-  function clickedSpot(id) {
-    const index = spots.findIndex(spot => spot._id === id)
-    setSelectedSpot(spots[index])
   }
 }
 

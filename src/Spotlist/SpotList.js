@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from "react"
-import Spot from "./Spot"
-import Searchbar from "../Common/Searchbar"
-import Navigation from "../Common/Navigation"
-import styled from "styled-components"
+import React, { useState, useEffect } from 'react'
+import Spot from './Spot'
+import Searchbar from '../Common/Searchbar'
+import Navigation from '../Common/Navigation'
+import styled from 'styled-components'
 import {
   countEasyRoute,
   countMediumRoute,
   countHardRoute,
-} from "../Common/CountRoutes"
+} from '../Common/CountRoutes'
 
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 export default function SpotList({
   spotData,
-  clickedSpot,
+
   toggleBookmark,
-  setLocation,
 }) {
-  const [input, setInput] = useState("")
+  const [input, setInput] = useState('')
   const [fuzzySearchResult, setFuzzySearchResult] = useState(spotData)
 
   useEffect(() => {
@@ -28,11 +27,7 @@ export default function SpotList({
     <SpotListStyled>
       <Searchbar onInput={event => setInput(event.target.value)} />
       {fuzzySearchResult.map((spot, index) => (
-        <Link
-          to={`/${spot.name}`}
-          onClick={() => clickedSpot(spot._id)}
-          key={index}
-        >
+        <Link to={`/spot/${spot._id}`} key={index}>
           <Spot
             {...spot}
             key={spot._id}
@@ -43,7 +38,7 @@ export default function SpotList({
             hardRoutes={countHardRoute(spot)}
             toggleBookmark={event => toggleBookmark(event, spot)}
             isBookmarked={spot.isBookmarked}
-            setLocation={() => setLocation(spot)}
+            id={spot._id}
           ></Spot>
         </Link>
       ))}
@@ -53,9 +48,9 @@ export default function SpotList({
   )
 
   function fuzzy_match(spotname, input) {
-    let search = input.replace(/\ /g, "").toLowerCase()
-    let name = spotname.replace(/\ /g, "").toLowerCase()
-    const tokens = name.split("")
+    let search = input.replace(/ /g, '').toLowerCase()
+    let name = spotname.replace(/ /g, '').toLowerCase()
+    const tokens = name.split('')
     let search_position = 0
 
     tokens.forEach(i => {
@@ -67,10 +62,10 @@ export default function SpotList({
       }
     })
 
-    if (search_position != search.length) {
-      return ""
+    if (search_position !== search.length) {
+      return ''
     }
-    return tokens.join("")
+    return tokens.join('')
   }
 }
 

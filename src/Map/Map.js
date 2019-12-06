@@ -5,27 +5,45 @@ import Spot from '../Spotlist/Spot'
 import {
   countEasyRoute,
   countMediumRoute,
-  countHardRoute
+  countHardRoute,
 } from '../Common/CountRoutes'
 
-export default function Maps({ spotData, selectedSpot }) {
-  const [clickedSpot, setClickedSpot] = useState(selectedSpot)
+export default function Maps({ spotData }) {
+  const pathname = window.location.pathname
+  const id = pathname.substring(5)
+
+  const index = spotData.findIndex(el => el._id === id)
+  const spot = spotData[index]
+  const [clickedSpot, setClickedSpot] = useState(spot)
+  console.log(window.location)
 
   return (
     <GoogleMap
       style={{ position: 'relative' }}
       defaultZoom={13}
-      defaultCenter={{ lat: 53.551086, lng: 9.993682 }}
+      defaultCenter={{
+        lat: clickedSpot ? clickedSpot.location[0] : 53.556268,
+        lng: clickedSpot ? clickedSpot.location[1] : 9.979049,
+      }}
     >
       <MapStyled>
         {spotData.map(spot => (
           <Marker
-            key={spot.id}
+            key={spot._id}
             position={{ lat: spot.location[0], lng: spot.location[1] }}
             onClick={() => {
               setClickedSpot(spot)
+              window.history.pushState(
+                { id: spot._id },
+                'id',
+                `${window.location.protocol}//${window.location.host}/map/${spot._id}`
+              )
             }}
-            icon={{ url: require('../../src/icons/mountain-with-circle.svg') }}
+            icon={{
+              url: spot.isBookmarked
+                ? require('../../src/icons/heart-red.svg')
+                : require('../../src/icons/mountain-with-circle.svg'),
+            }}
           />
         ))}
 
@@ -33,7 +51,7 @@ export default function Maps({ spotData, selectedSpot }) {
           <InfoWindow
             position={{
               lat: clickedSpot.location[0],
-              lng: clickedSpot.location[1]
+              lng: clickedSpot.location[1],
             }}
             onCloseClick={() => setClickedSpot(null)}
           >

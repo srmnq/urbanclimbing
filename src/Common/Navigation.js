@@ -48,9 +48,9 @@ export default function Navigation() {
 const NavigationStyled = styled.nav`
   display: flex;
   justify-content: space-around;
-  position: sticky;
+  position: fixed;
   width: 100%;
-  bottom: 0;
+  bottom: 0px;
   height: 40px;
   background: linear-gradient(
     204deg,
@@ -72,7 +72,8 @@ const NavigationStyled = styled.nav`
     background: ${props => props.active === '/' && 'var(--darkgreen)'};
   }
   .map {
-    background: ${props => props.active === '/map' && 'var(--darkgreen)'};
+    background: ${props =>
+      props.active.indexOf('map') > -1 && 'var(--darkgreen)'};
   }
   .profile {
     background: ${props => props.active === '/profile' && 'var(--darkgreen)'};

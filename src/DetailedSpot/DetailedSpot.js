@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
+import loading from '../loading.json'
 import styled from 'styled-components'
 import RouteDescription from './RouteDescription'
 import { Link } from 'react-router-dom'
 
-export default function DetailedSpot({ spot, toggleIsClimbed }) {
+export default function DetailedSpot({
+  toggleIsClimbed,
+  spots,
+  toggleBookmark,
+}) {
+  const pathname = window.location.pathname
+  const id = pathname.substring(6)
+
+  const index = spots.findIndex(el => el._id === id)
+  const spot = spots[index] || loading[0]
+
   return (
     <DetailedSpotStyled>
       <Link className="map-icon" to="/map">
@@ -21,7 +32,12 @@ export default function DetailedSpot({ spot, toggleIsClimbed }) {
       <div className="heart-icon">
         <img
           alt="heart-icon"
-          src={require('../../src/icons/heart-white.svg')}
+          src={
+            spot.isBookmarked
+              ? require('../../src/icons/heart-red.svg')
+              : require('../../src/icons/heart-white.svg')
+          }
+          onClick={event => toggleBookmark(event, spot)}
         />
       </div>
       <img alt="climbing spot" src={spot.mainImage} className="mainImage"></img>
@@ -33,7 +49,7 @@ export default function DetailedSpot({ spot, toggleIsClimbed }) {
             routeName={route.routeName}
             description={route.description}
             difficulty={route.difficulty}
-            toggleIsClimbed={() => toggleIsClimbed(index)}
+            toggleIsClimbed={() => toggleIsClimbed(index, spot)}
             isClimbed={route.isClimbed}
           />
         ))}
