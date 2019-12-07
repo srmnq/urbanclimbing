@@ -116,6 +116,8 @@ export default function AddASpot({ addASpot }) {
       ...newSpot,
       routes: { boulder: newRoute },
     })
+    setNewRoute('')
+    setNewSpot('')
   }
 }
 
