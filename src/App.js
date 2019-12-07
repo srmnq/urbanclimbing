@@ -7,6 +7,7 @@ import { getSpots, patchSpot, postSpot } from './services'
 import WrappedMap from './Map/WrappedMapContainer'
 import AddPhoto from './AddASpot/AddPhoto'
 import AddASpot from './AddASpot/AddASpot'
+import Profile from './Profile'
 
 function App() {
   const [spots, setSpots] = useState([])
@@ -26,6 +27,11 @@ function App() {
       <Switch>
         <Route exact path="/addASpot">
           <AddASpot addASpot={spot => addASpot(spot)} />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/Profile">
+          <Profile spots={spots} />
         </Route>
       </Switch>
       <Switch>

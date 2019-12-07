@@ -23,7 +23,7 @@ export default function Navigation() {
           />
         </li>
       </Link>
-      <Link to="/">
+      <Link to="/Profile">
         <li className="profile">
           <img
             className="mountain-icon"
