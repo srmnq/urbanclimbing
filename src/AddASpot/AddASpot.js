@@ -81,7 +81,8 @@ export default function AddASpot({ addASpot }) {
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     const difficulty = `${data.difficultyNumber}${data.difficultyLetter}`
-    const location = [data.locationLat, data.locationLong]
+    const location = [Number(data.locationLong), Number(data.locationLat)]
+    form.reset()
 
     addASpot({
       name: data.name,
@@ -89,7 +90,7 @@ export default function AddASpot({ addASpot }) {
       routes: {
         boulder: [
           {
-            routename: data.routeName,
+            routeName: data.routeName,
             difficulty: difficulty,
             description: data.description,
             isClimbed: false,

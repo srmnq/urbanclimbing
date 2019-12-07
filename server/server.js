@@ -25,11 +25,11 @@ app.get('/spots/:id', (req, res) => {
     .catch(err => res.json(err))
 })
 
-// app.post('/spots', (req, res) => {
-//   Spot.create(req.body)
-//     .then(spot => res.json(spot))
-//     .catch(err => res.json(err))
-// })
+app.post('/spots', (req, res) => {
+  Spot.create(req.body)
+    .then(spot => res.json(spot))
+    .catch(err => res.json(err))
+})
 
 app.patch('/spots/:id', (req, res) => {
   Spot.findByIdAndUpdate(req.params.id, req.body, { new: true })

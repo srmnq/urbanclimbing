@@ -3,7 +3,7 @@ import SpotList from './Spotlist/SpotList'
 import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot/DetailedSpot'
-import { getSpots, patchSpot } from './services'
+import { getSpots, patchSpot, postSpot } from './services'
 import WrappedMap from './Map/WrappedMapContainer'
 import AddPhoto from './AddASpot/AddPhoto'
 import AddASpot from './AddASpot/AddASpot'
@@ -97,7 +97,8 @@ function App() {
   }
 
   function addASpot(spot) {
-    setSpots([...spots, spot])
+    postSpot(spot)
+    // setSpots([...spots, spot])
   }
 }
 
