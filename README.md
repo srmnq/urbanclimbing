@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<iframe src="https://giphy.com/embed/QAOh0VgGajYnWuU6sY" width="272" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/QAOh0VgGajYnWuU6sY">via GIPHY</a></p>
 
 ## Available Scripts
 
@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
+◊
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
