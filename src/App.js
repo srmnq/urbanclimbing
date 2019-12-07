@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot/DetailedSpot'
 import { getSpots, patchSpot } from './services'
 import WrappedMap from './Map/WrappedMapContainer'
+import AddPhoto from './AddASpot/AddPhoto'
+import AddASpot from './AddASpot/AddASpot'
 
 function App() {
   const [spots, setSpots] = useState([])
@@ -19,6 +21,11 @@ function App() {
       <Switch>
         <Route exact path={`/map/:id`}>
           <WrappedMap spotData={spots} />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/addASpot">
+          <AddASpot addASpot={spot => addASpot(spot)} />
         </Route>
       </Switch>
       <Switch>
@@ -87,6 +94,10 @@ function App() {
         ...spots.slice(index + 1),
       ])
     })
+  }
+
+  function addASpot(spot) {
+    setSpots([...spots, spot])
   }
 }
 

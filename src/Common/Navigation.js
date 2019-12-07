@@ -32,7 +32,7 @@ export default function Navigation() {
           />
         </li>
       </Link>
-      <Link to="/">
+      <Link to="/addASpot">
         <li className="addaspot">
           <img
             className="search-icon"

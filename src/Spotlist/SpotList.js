@@ -25,23 +25,25 @@ export default function SpotList({
 
   return (
     <SpotListStyled>
-      <Searchbar onInput={event => setInput(event.target.value)} />
-      {fuzzySearchResult.map((spot, index) => (
-        <Link to={`/spot/${spot._id}`} key={index}>
-          <Spot
-            {...spot}
-            key={spot._id}
-            boulderCount={spot.routes.boulder.length}
-            sportCount={spot.routes.sport.length}
-            easyRoutes={countEasyRoute(spot)}
-            mediumRoutes={countMediumRoute(spot)}
-            hardRoutes={countHardRoute(spot)}
-            toggleBookmark={event => toggleBookmark(event, spot)}
-            isBookmarked={spot.isBookmarked}
-            id={spot._id}
-          ></Spot>
-        </Link>
-      ))}
+      <div>
+        <Searchbar onInput={event => setInput(event.target.value)} />
+        {fuzzySearchResult.map((spot, index) => (
+          <Link to={`/spot/${spot._id}`} key={index}>
+            <Spot
+              {...spot}
+              key={spot._id}
+              boulderCount={spot.routes.boulder.length}
+              sportCount={spot.routes.sport.length}
+              easyRoutes={countEasyRoute(spot)}
+              mediumRoutes={countMediumRoute(spot)}
+              hardRoutes={countHardRoute(spot)}
+              toggleBookmark={event => toggleBookmark(event, spot)}
+              isBookmarked={spot.isBookmarked}
+              id={spot._id}
+            ></Spot>
+          </Link>
+        ))}
+      </div>
 
       <Navigation></Navigation>
     </SpotListStyled>
@@ -70,6 +72,8 @@ export default function SpotList({
 }
 
 const SpotListStyled = styled.div`
+  display: grid;
+  grid-template-rows: auto 40px;
   a {
     text-decoration: none;
     cursor: default;

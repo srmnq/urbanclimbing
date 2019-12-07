@@ -15,7 +15,6 @@ export default function Maps({ spotData }) {
   const index = spotData.findIndex(el => el._id === id)
   const spot = spotData[index]
   const [clickedSpot, setClickedSpot] = useState(spot)
-  console.log(window.location)
 
   return (
     <GoogleMap
