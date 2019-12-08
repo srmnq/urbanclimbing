@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import loading from '../loading.json'
 import styled from 'styled-components'
 import RouteDescription from './RouteDescription'

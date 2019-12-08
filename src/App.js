@@ -27,6 +27,7 @@ function App() {
       <Switch>
         <Route exact path="/addASpot">
           <AddASpot addASpot={spot => addASpot(spot)} />
+          {/* <AddPhoto /> */}
         </Route>
       </Switch>
       <Switch>
@@ -104,6 +105,7 @@ function App() {
 
   function addASpot(spot) {
     postSpot(spot)
+    console.log(spot)
     // setSpots([...spots, spot])
   }
 }

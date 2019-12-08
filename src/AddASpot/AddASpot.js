@@ -1,15 +1,23 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Navigation from '../Common/Navigation'
+import AddPhoto from './AddPhoto'
 
 export default function AddASpot({ addASpot }) {
   const [newSpot, setNewSpot] = useState('')
   const [newRoute, setNewRoute] = useState('')
+  const [secondForm, setSecondForm] = useState(false)
+  const [climbAdded, setClimbAdded] = useState(false)
+  const [image, setImage] = useState('')
   return (
-    <AddFormStyled>
+    <AddFormStyled
+      firstToggle={secondForm ? 'none' : 'grid'}
+      secondToggle={secondForm ? 'grid' : 'none'}
+      climbAdded={climbAdded ? 'grid' : 'none'}
+    >
       <div className="container">
-        <form onSubmit={createSpot}>
-          <input type="file" name="file"></input>
+        <form className="create-spot_form" onSubmit={createSpot}>
+          <AddPhoto image={image} setImage={setImage} />
           <div className="create-spot">
             <div className="spot">
               <label htmlFor="name">name of spot</label>
@@ -26,8 +34,18 @@ export default function AddASpot({ addASpot }) {
           </div>
           <button type="submit">Create Climbingspot</button>
         </form>
-        <form onSubmit={createRoute}>
-          <p>Routes</p>
+        <form className="create-route_form" onSubmit={createRoute}>
+          {image && (
+            <img
+              src={image}
+              alt=""
+              style={{
+                width: '240px',
+                height: '214px',
+                objectFit: 'cover',
+              }}
+            />
+          )}
           <div className="create-route">
             <div className="route">
               <label htmlFor="routeName">name of route</label>
@@ -74,10 +92,17 @@ export default function AddASpot({ addASpot }) {
           </div>
 
           <button type="submit">Create Route</button>
+          <button type="button" onClick={handleSubmit}>
+            Done
+          </button>
+          <p>{newRoute.length} new routes created</p>
         </form>
-        <button type="button" onClick={handleSubmit}>
-          Done
-        </button>
+        <div className="done_message">
+          <p>added your climbingspot</p>
+          <button type="button" onClick={createAnother}>
+            Create another one
+          </button>
+        </div>
       </div>
 
       <Navigation></Navigation>
@@ -90,7 +115,13 @@ export default function AddASpot({ addASpot }) {
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     const location = [Number(data.locationLong), Number(data.locationLat)]
-    setNewSpot({ name: data.name, location: location, isBookmarked: false })
+    setNewSpot({
+      name: data.name,
+      location: location,
+      isBookmarked: false,
+      mainImage: image,
+    })
+    setSecondForm(true)
     form.reset()
   }
   function createRoute(event) {
@@ -118,6 +149,14 @@ export default function AddASpot({ addASpot }) {
     })
     setNewRoute('')
     setNewSpot('')
+
+    setClimbAdded(true)
+  }
+
+  function createAnother() {
+    setClimbAdded(false)
+    setSecondForm(false)
+    setImage('')
   }
 }
 
@@ -128,9 +167,7 @@ const AddFormStyled = styled.div`
   height: 100vh;
   .container {
     display: grid;
-    gap: 12px;
     justify-items: center;
-    align-content: center;
     border-radius: 8px;
     background: var(--lightgreen);
     margin: 30px;
@@ -139,7 +176,8 @@ const AddFormStyled = styled.div`
     display: grid;
     gap: 12px;
     justify-items: center;
-    align-content: center;
+    align-content: flex-start;
+    margin-top: 12px;
   }
 
   input,
@@ -148,6 +186,15 @@ const AddFormStyled = styled.div`
     height: 2rem;
     border-radius: 4px;
     padding: 4px;
+  }
+  button:active {
+    transform: scale(0.9);
+  }
+  .create-route_form {
+    display: ${props => props.secondToggle};
+  }
+  .create-spot_form {
+    display: ${props => props.firstToggle};
   }
 
   .create-spot,
@@ -189,5 +236,8 @@ const AddFormStyled = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     text-align: center;
+  }
+  .done_message {
+    display: ${props => props.climbAdded};
   }
 `

@@ -4,8 +4,7 @@ import axios from 'axios'
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
 
-export default function AddPhoto() {
-  const [image, setImage] = useState('')
+export default function AddPhoto({ image, setImage }) {
   function upload(event) {
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
 
@@ -30,7 +29,11 @@ export default function AddPhoto() {
   return (
     <div>
       {image ? (
-        <img src={image} alt="" style={{ width: '100%' }} />
+        <img
+          src={image}
+          alt=""
+          style={{ width: '240px', height: '214px', objectFit: 'cover' }}
+        />
       ) : (
         <input type="file" name="file" onChange={upload} />
       )}
