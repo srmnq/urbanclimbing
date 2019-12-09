@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 export default function DetailedRoute({
@@ -7,7 +7,7 @@ export default function DetailedRoute({
   routeName,
   difficulty,
   toggleIsClimbed,
-  isClimbed
+  isClimbed,
 }) {
   return (
     <DetailedRouteStyled>
@@ -68,5 +68,5 @@ const DetailedRouteStyled = styled.div`
 `
 DetailedRoute.propTypes = {
   description: PropTypes.string.isRequired,
-  routeName: PropTypes.string.isRequired
+  routeName: PropTypes.string.isRequired,
 }

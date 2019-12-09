@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
+import { Link } from 'react-router-dom'
 import Spot from '../Spotlist/Spot'
 import {
   countEasyRoute,
@@ -58,18 +59,20 @@ export default function Maps({ spotData }) {
           </InfoWindow>
         )}
         {clickedSpot && (
-          <MapSpot
-            name={clickedSpot.name}
-            mainImage={clickedSpot.mainImage}
-            boulderCount={clickedSpot.routes.boulder.length}
-            sportCount={clickedSpot.routes.sport.length}
-            easyRoutes={countEasyRoute(clickedSpot)}
-            mediumRoutes={countMediumRoute(clickedSpot)}
-            hardRoutes={countHardRoute(clickedSpot)}
-            isBookmarked={clickedSpot.isBookmarked}
-          >
-            <div>{clickedSpot.name}</div>
-          </MapSpot>
+          <Link to={`/spot/${clickedSpot._id}`}>
+            <MapSpot
+              name={clickedSpot.name}
+              mainImage={clickedSpot.mainImage}
+              boulderCount={clickedSpot.routes.boulder.length}
+              sportCount={clickedSpot.routes.sport.length}
+              easyRoutes={countEasyRoute(clickedSpot)}
+              mediumRoutes={countMediumRoute(clickedSpot)}
+              hardRoutes={countHardRoute(clickedSpot)}
+              isBookmarked={clickedSpot.isBookmarked}
+            >
+              <div>{clickedSpot.name}</div>
+            </MapSpot>
+          </Link>
         )}
       </MapStyled>
     </GoogleMap>

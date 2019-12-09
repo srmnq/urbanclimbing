@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import DifficultyBar from './DifficultyBar'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'

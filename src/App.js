@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot/DetailedSpot'
 import { getSpots, patchSpot, postSpot } from './services'
 import WrappedMap from './Map/WrappedMapContainer'
-import AddPhoto from './AddASpot/AddPhoto'
 import AddASpot from './AddASpot/AddASpot'
 import Profile from './Profile'
 
@@ -27,7 +26,6 @@ function App() {
       <Switch>
         <Route exact path="/addASpot">
           <AddASpot addASpot={spot => addASpot(spot)} />
-          {/* <AddPhoto /> */}
         </Route>
       </Switch>
       <Switch>
@@ -106,7 +104,6 @@ function App() {
   function addASpot(spot) {
     postSpot(spot)
     console.log(spot)
-    // setSpots([...spots, spot])
   }
 }
 

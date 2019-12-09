@@ -1,37 +1,41 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import Navigation from '../Common/Navigation'
 import AddPhoto from './AddPhoto'
+import Radio from './Radio'
 
 export default function AddASpot({ addASpot }) {
-  const [newSpot, setNewSpot] = useState('')
-  const [newRoute, setNewRoute] = useState('')
-  const [secondForm, setSecondForm] = useState(false)
-  const [climbAdded, setClimbAdded] = useState(false)
+  const [newSpot, setNewSpot] = useState({})
+  const [newBoulderRoute, setNewBoulderRoute] = useState([])
+  const [newSportRoute, setNewSportRoute] = useState([])
+  const [secondPageForm, setSecondPageForm] = useState(false)
+  const [newSpotAdded, setNewSpotAdded] = useState(false)
   const [image, setImage] = useState('')
+
   return (
     <AddFormStyled
-      firstToggle={secondForm ? 'none' : 'grid'}
-      secondToggle={secondForm ? 'grid' : 'none'}
-      climbAdded={climbAdded ? 'grid' : 'none'}
+      firstToggle={secondPageForm ? 'none' : 'grid'}
+      secondToggle={secondPageForm && !newSpotAdded ? 'grid' : 'none'}
+      newSpotAdded={newSpotAdded ? 'block' : 'none'}
     >
       <div className="container">
+        <div className="add-icon">
+          <img alt="map-icon" src={require('../../src/icons/add-white.svg')} />
+        </div>
         <form className="create-spot_form" onSubmit={createSpot}>
           <AddPhoto image={image} setImage={setImage} />
-          <div className="create-spot">
+          <section className="section">
             <div className="spot">
-              <label htmlFor="name">name of spot</label>
-
-              <label htmlFor="location long">longitude of spot</label>
-
-              <label htmlFor="location lat">latitude of spot</label>
+              <label htmlFor="name">name</label>
+              <label htmlFor="location long">longitude</label>
+              <label htmlFor="location lat">latitude</label>
             </div>
             <div className="spot">
-              <input name="name"></input>
-              <input name="locationLong" placeholder="longitude"></input>
-              <input name="locationLat" placeholder="latitude"></input>
+              <input required name="name"></input>
+              <input type="number" required name="locationLong"></input>
+              <input type="number" required name="locationLat"></input>
             </div>
-          </div>
+          </section>
           <button type="submit">Create Climbingspot</button>
         </form>
         <form className="create-route_form" onSubmit={createRoute}>
@@ -46,7 +50,7 @@ export default function AddASpot({ addASpot }) {
               }}
             />
           )}
-          <div className="create-route">
+          <section className="section">
             <div className="route">
               <label htmlFor="routeName">name of route</label>
               <label htmlFor="description">description of route</label>
@@ -54,55 +58,82 @@ export default function AddASpot({ addASpot }) {
               <label htmlFor="type">type</label>
             </div>
             <div className="route">
-              <input name="routeName"></input>
-              <input name="description"></input>
-              <div className="radio">
-                <label htmlFor="3">3</label>
-                <input type="radio" name="difficultyNumber" value="3"></input>
-                <label htmlFor="4">4</label>
-                <input type="radio" name="difficultyNumber" value="4"></input>
-                <label htmlFor="5">5</label>
-                <input type="radio" name="difficultyNumber" value="5"></input>
-                <label htmlFor="6">6</label>
-                <input type="radio" name="difficultyNumber" value="6"></input>
-                <label htmlFor="7">7</label>
-                <input type="radio" name="difficultyNumber" value="7"></input>
-                <label htmlFor="8">8</label>
-                <input type="radio" name="difficultyNumber" value="8"></input>
-
-                <label htmlFor="a">a</label>
-                <input type="radio" name="difficultyLetter" value="a"></input>
-                <label htmlFor="b">b</label>
-                <input type="radio" name="difficultyLetter" value="b"></input>
-                <label htmlFor="c">c</label>
-                <input type="radio" name="difficultyLetter" value="c"></input>
-              </div>
-              <div className="type">
-                <div className="type_label">
-                  <label htmlFor="sport">sportclimbing-route</label>
-                  <label htmlFor="boulder">boulder</label>
+              <input required name="routeName"></input>
+              <input required name="description"></input>
+              <div>
+                <div className="difficulty">
+                  <label htmlFor="3">
+                    <Radio name="difficultyNumber" value="3"></Radio>
+                    <p>3</p>
+                  </label>
+                  <label htmlFor="4">
+                    <Radio name="difficultyNumber" value="4"></Radio>
+                    <p>4</p>
+                  </label>
+                  <label htmlFor="5">
+                    <Radio name="difficultyNumber" value="5"></Radio>
+                    <p>5</p>
+                  </label>
+                  <label htmlFor="6">
+                    <Radio name="difficultyNumber" value="6"></Radio>
+                    <p>6</p>
+                  </label>
+                  <label htmlFor="7">
+                    <Radio name="difficultyNumber" value="7"></Radio>
+                    <p>7</p>
+                  </label>
+                  <label htmlFor="8">
+                    <Radio name="difficultyNumber" value="8"></Radio>
+                    <p>8</p>
+                  </label>
                 </div>
 
-                <div className="type_input">
-                  <input type="radio" name="type" value="sport"></input>
-                  <input type="radio" name="type" value="boulder"></input>
+                <div className="difficulty">
+                  <label htmlFor="a">
+                    <Radio name="difficultyLetter" value="a"></Radio>
+                    <p>a</p>
+                  </label>
+                  <label htmlFor="b">
+                    <Radio name="difficultyLetter" value="b"></Radio>
+                    <p>b</p>
+                  </label>
+                  <label htmlFor="c">
+                    <Radio name="difficultyLetter" value="c"></Radio>
+                    <p>c</p>
+                  </label>
+                </div>
+              </div>
+              <div className="type-container">
+                <div className="type">
+                  <Radio name="type" value="sport"></Radio>
+                  <Radio name="type" value="boulder"></Radio>
+                </div>
+                <div className="type">
+                  <label htmlFor="sport">
+                    <p>sportclimbing</p>
+                  </label>
+                  <label htmlFor="boulder">
+                    <p>boulder</p>
+                  </label>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
           <button type="submit">Create Route</button>
           <button type="button" onClick={handleSubmit}>
             Done
           </button>
-          <p>{newRoute.length} new routes created</p>
+          <p>
+            {newBoulderRoute.length + newSportRoute.length} new routes created
+          </p>
         </form>
-        <div className="done_message">
+        <section className="done-message">
           <p>added your climbingspot</p>
           <button type="button" onClick={createAnother}>
             Create another one
           </button>
-        </div>
+        </section>
       </div>
 
       <Navigation></Navigation>
@@ -121,7 +152,7 @@ export default function AddASpot({ addASpot }) {
       isBookmarked: false,
       mainImage: image,
     })
-    setSecondForm(true)
+    setSecondPageForm(true)
     form.reset()
   }
   function createRoute(event) {
@@ -130,32 +161,44 @@ export default function AddASpot({ addASpot }) {
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     const difficulty = `${data.difficultyNumber}${data.difficultyLetter}`
-    setNewRoute([
-      ...newRoute,
-      {
-        routeName: data.routeName,
-        difficulty: difficulty,
-        description: data.description,
-        isClimbed: false,
-      },
-    ])
+    if (data.type === 'boulder') {
+      setNewBoulderRoute([
+        ...newBoulderRoute,
+        {
+          routeName: data.routeName,
+          difficulty: difficulty,
+          description: data.description,
+          isClimbed: false,
+        },
+      ])
+    } else {
+      setNewSportRoute([
+        ...newSportRoute,
+        {
+          routeName: data.routeName,
+          difficulty: difficulty,
+          description: data.description,
+          isClimbed: false,
+        },
+      ])
+    }
 
     form.reset()
   }
   function handleSubmit() {
     addASpot({
       ...newSpot,
-      routes: { boulder: newRoute },
+      routes: { boulder: newBoulderRoute, sport: newSportRoute },
     })
-    setNewRoute('')
+    setNewBoulderRoute('')
+    setNewSportRoute('')
     setNewSpot('')
-
-    setClimbAdded(true)
+    setNewSpotAdded(true)
   }
 
   function createAnother() {
-    setClimbAdded(false)
-    setSecondForm(false)
+    setNewSpotAdded(false)
+    setSecondPageForm(false)
     setImage('')
   }
 }
@@ -163,33 +206,59 @@ export default function AddASpot({ addASpot }) {
 const AddFormStyled = styled.div`
   display: grid;
   grid-template-rows: auto 40px;
-
   height: 100vh;
+  letter-spacing: 1px;
+
   .container {
     display: grid;
+    position: relative;
     justify-items: center;
     border-radius: 8px;
-    background: var(--lightgreen);
-    margin: 30px;
+    background: var(--white);
+    box-shadow: var(--boxshadow);
+    border: 4px solid var(--gradientcolordark);
+    margin: 24px;
   }
-  form {
-    display: grid;
+  label {
+    letter-spacing: 3px;
+    margin-right: 4px;
+    p {
+      padding-top: 4px;
+    }
+  }
+
+  input,
+  button {
+    border: none;
+    height: 3rem;
+    border-radius: 4px;
+  }
+
+  input {
+    padding: 4px;
+    background: var(--mainbg);
+    width: 140px;
+  }
+
+  input[type='number'] {
+    appearance: textfield;
+  }
+  button {
+    background: var(--gradientcolordark);
+    color: var(--white);
+    width: 150px;
+  }
+  button:active {
+    transform: scale(0.9);
+  }
+  .create-route_form,
+  .create-spot_form {
     gap: 12px;
     justify-items: center;
     align-content: flex-start;
     margin-top: 12px;
   }
 
-  input,
-  button {
-    border: none;
-    height: 2rem;
-    border-radius: 4px;
-    padding: 4px;
-  }
-  button:active {
-    transform: scale(0.9);
-  }
   .create-route_form {
     display: ${props => props.secondToggle};
   }
@@ -197,8 +266,7 @@ const AddFormStyled = styled.div`
     display: ${props => props.firstToggle};
   }
 
-  .create-spot,
-  .create-route {
+  .section {
     display: grid;
     grid-auto-flow: column;
     gap: 8px;
@@ -210,34 +278,41 @@ const AddFormStyled = styled.div`
     grid-template-rows: repeat(3, 1fr);
     gap: 8px;
   }
+
   .route {
     display: grid;
     grid-template-rows: 1fr 1fr 2fr 2fr;
     gap: 8px;
   }
-  .radio {
+  .difficulty {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .radio > * {
-    margin: 2px;
-  }
-  .radio > input {
-    margin-right: 8px;
-    height: 3rem;
-  }
-  .type {
-    display: grid;
-  }
-  .type > div {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
     text-align: center;
   }
-  .done_message {
-    display: ${props => props.climbAdded};
+
+  .type-container {
+    display: grid;
+  }
+  .type {
+    display: flex;
+    justify-content: space-around;
+  }
+  .done-message {
+    display: ${props => props.newSpotAdded};
+    margin-top: 12px;
+    p {
+      margin: 4px;
+    }
+  }
+  .add-icon {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: var(--gradientcolordark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `

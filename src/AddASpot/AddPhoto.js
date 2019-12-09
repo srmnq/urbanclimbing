@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -35,8 +36,27 @@ export default function AddPhoto({ image, setImage }) {
           style={{ width: '240px', height: '214px', objectFit: 'cover' }}
         />
       ) : (
-        <input type="file" name="file" onChange={upload} />
+        <>
+          <label htmlFor="file">
+            <img
+              alt="addphoto"
+              src={require('../../src/icons/add-photo.svg')}
+              style={{ height: '50px', width: '50px' }}
+            ></img>
+          </label>
+          <input
+            style={{ background: '#eee', display: 'none' }}
+            type="file"
+            name="file"
+            id="file"
+            onChange={upload}
+          />
+        </>
       )}
     </div>
   )
+}
+AddPhoto.propTypes = {
+  image: PropTypes.string.isRequired,
+  setImage: PropTypes.func.isRequired,
 }

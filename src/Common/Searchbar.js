@@ -1,5 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
 export default function Searchbar({ onInput }) {
   return (
@@ -32,3 +33,6 @@ const SearchbarStyled = styled.div`
     margin-left: 4px;
   }
 `
+Searchbar.propTypes = {
+  onInput: PropTypes.func.isRequired,
+}

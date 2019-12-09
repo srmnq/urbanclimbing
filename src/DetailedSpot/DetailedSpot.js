@@ -1,8 +1,9 @@
 import React from 'react'
 import loading from '../loading.json'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import RouteDescription from './RouteDescription'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 export default function DetailedSpot({
   toggleIsClimbed,
@@ -11,13 +12,12 @@ export default function DetailedSpot({
 }) {
   const pathname = window.location.pathname
   const id = pathname.substring(6)
-
   const index = spots.findIndex(el => el._id === id)
   const spot = spots[index] || loading[0]
 
   return (
     <DetailedSpotStyled>
-      <Link className="map-icon" to="/map">
+      <Link className="map-icon" to={`/map/${spot._id}`}>
         <div>
           <img alt="map-icon" src={require('../../src/icons/map-white.svg')} />
         </div>
@@ -44,6 +44,16 @@ export default function DetailedSpot({
       <h2 className="spotName">{spot.name}</h2>
       <div className="routeContainer">
         {spot.routes.boulder.map((route, index) => (
+          <RouteDescription
+            key={index}
+            routeName={route.routeName}
+            description={route.description}
+            difficulty={route.difficulty}
+            toggleIsClimbed={() => toggleIsClimbed(index, spot)}
+            isClimbed={route.isClimbed}
+          />
+        ))}
+        {spot.routes.sport.map((route, index) => (
           <RouteDescription
             key={index}
             routeName={route.routeName}
@@ -111,3 +121,8 @@ const DetailedSpotStyled = styled.div`
     overflow: scroll;
   }
 `
+DetailedSpot.propTypes = {
+  toggleIsClimbed: PropTypes.func.isRequired,
+  toggleBookmark: PropTypes.func.isRequired,
+  spots: PropTypes.array.isRequired,
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Spot from './Spot'
 import Searchbar from '../Common/Searchbar'
 import Navigation from '../Common/Navigation'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import {
   countEasyRoute,
   countMediumRoute,

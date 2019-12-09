@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { withScriptjs, withGoogleMap } from 'react-google-maps'
 import Map from './Map'
 import Navigation from '../Common/Navigation'
