@@ -121,10 +121,10 @@ const SpotStyled = styled.div`
 `
 
 Spot.propTypes = {
-  boulderCount: PropTypes.number.isRequired,
-  sportCount: PropTypes.number.isRequired,
-  easyRoutes: PropTypes.number.isRequired,
-  mediumRoutes: PropTypes.number.isRequired,
-  hardRoutes: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  boulderCount: PropTypes.number,
+  sportCount: PropTypes.number,
+  easyRoutes: PropTypes.number,
+  mediumRoutes: PropTypes.number,
+  hardRoutes: PropTypes.number,
+  name: PropTypes.string,
 }

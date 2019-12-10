@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import Navigation from '../Common/Navigation'
 import AddPhoto from './AddPhoto'
 import Radio from './Radio'
+import PropTypes from 'prop-types'
 
 export default function AddASpot({ addASpot }) {
   const [newSpot, setNewSpot] = useState({})
@@ -27,8 +28,12 @@ export default function AddASpot({ addASpot }) {
           <section className="section">
             <div className="spot">
               <label htmlFor="name">name</label>
-              <label htmlFor="location long">longitude</label>
-              <label htmlFor="location lat">latitude</label>
+              <label placeholder="53.513586" htmlFor="location long">
+                longitude
+              </label>
+              <label placeholder="9.978837" htmlFor="location lat">
+                latitude
+              </label>
             </div>
             <div className="spot">
               <input required name="name"></input>
@@ -316,3 +321,6 @@ const AddFormStyled = styled.div`
     align-items: center;
   }
 `
+AddASpot.propTypes = {
+  addASpot: PropTypes.func.isRequired,
+}

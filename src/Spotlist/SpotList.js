@@ -3,6 +3,7 @@ import Spot from './Spot'
 import Searchbar from '../Common/Searchbar'
 import Navigation from '../Common/Navigation'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 import {
   countEasyRoute,
   countMediumRoute,
@@ -11,11 +12,7 @@ import {
 
 import { Link } from 'react-router-dom'
 
-export default function SpotList({
-  spotData,
-
-  toggleBookmark,
-}) {
+export default function SpotList({ spotData, toggleBookmark }) {
   const [input, setInput] = useState('')
   const [fuzzySearchResult, setFuzzySearchResult] = useState(spotData)
 
@@ -79,3 +76,7 @@ const SpotListStyled = styled.div`
     cursor: default;
   }
 `
+SpotList.propTypes = {
+  spotData: PropTypes.array.isRequired,
+  toggleBookmark: PropTypes.func.isRequired,
+}

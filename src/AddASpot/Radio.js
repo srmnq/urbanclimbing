@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
 export default function Radio({ name, value }) {
   return (
@@ -7,7 +8,7 @@ export default function Radio({ name, value }) {
       <input
         value={value}
         name={name}
-        className="customRadio"
+        className="custom-radio"
         type="radio"
         required
       ></input>
@@ -26,7 +27,7 @@ const Container = styled.label`
   text-align: left;
 
   user-select: none;
-  .customRadio {
+  .custom-radio {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -43,7 +44,7 @@ const Container = styled.label`
     background-color: #ccc;
     border-radius: 50%;
   }
-  .customRadio:checked ~ .checkmark {
+  .custom-radio:checked ~ .checkmark {
     background-color: var(--gradientcolordark);
   }
   .checkmark:after {
@@ -51,7 +52,7 @@ const Container = styled.label`
     position: absolute;
     display: none;
   }
-  .customRadio:checked ~ .checkmark:after {
+  .custom-radio:checked ~ .checkmark:after {
     display: block;
   }
   .checkmark:after {
@@ -63,3 +64,7 @@ const Container = styled.label`
     background: var(--gradientcolordark);
   }
 `
+Radio.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+}

@@ -43,6 +43,6 @@ function findColor(value) {
 }
 DifficultyBar.propTypes = {
   difficulty: PropTypes.string.isRequired,
-  routeCount: PropTypes.number.isRequired,
+  routeCount: PropTypes.number,
   barHeight: PropTypes.number.isRequired,
 }

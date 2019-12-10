@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import { Link } from 'react-router-dom'
 import Spot from '../Spotlist/Spot'
+import PropTypes from 'prop-types'
 import {
   countEasyRoute,
   countMediumRoute,
@@ -93,3 +94,6 @@ const MapSpot = styled(Spot)`
   bottom: 50px;
   left: 10px;
 `
+Maps.propTypes = {
+  spotData: PropTypes.array.isRequired,
+}

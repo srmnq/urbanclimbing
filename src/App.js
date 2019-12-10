@@ -103,7 +103,6 @@ function App() {
 
   function addASpot(spot) {
     postSpot(spot)
-    console.log(spot)
   }
 }
 

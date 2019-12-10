@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Navigation from './Common/Navigation'
 import Spot from './Spotlist/Spot'
+import PropTypes from 'prop-types'
 
 export default function Profile({ spots }) {
   return (
@@ -9,7 +10,7 @@ export default function Profile({ spots }) {
       {spots
         .filter(spot => spot.isBookmarked)
         .map(spot => (
-          <Spot {...spot}></Spot>
+          <Spot {...spot} key={spot._id}></Spot>
         ))}
       <Navigation></Navigation>
     </ProfileStyled>
@@ -17,3 +18,7 @@ export default function Profile({ spots }) {
 }
 
 const ProfileStyled = styled.div``
+
+Profile.propTypes = {
+  spots: PropTypes.array.isRequired,
+}
