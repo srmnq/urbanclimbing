@@ -10,12 +10,12 @@
           "routeImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574519988/plantenundbloomen.png",
           "description": "loading",
           "coordinates": {
-            "x1": 0,
-            "x2": 0,
-            "x3": 0,
-            "y1": 0,
-            "y2": 0,
-            "y3": 0
+            "x1": 10,
+            "x2": 3,
+            "x3": 79,
+            "y1": 100,
+            "y2": 120,
+            "y3": 140
           }
         }
       ],

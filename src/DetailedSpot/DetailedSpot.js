@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import loading from '../loading.json'
 import styled from 'styled-components/macro'
 import RouteDescription from './RouteDescription'
@@ -14,6 +14,7 @@ export default function DetailedSpot({
   const id = pathname.substring(6)
   const index = spots.findIndex(el => el._id === id)
   const spot = spots[index] || loading[0]
+  const [highlighted, setHighlighted] = useState('Kantholz')
 
   return (
     <DetailedSpotStyled>
@@ -54,7 +55,7 @@ export default function DetailedSpot({
                 className="path"
                 d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
                 fill="transparent"
-                // stroke="#769094"
+                stroke={route.routeName == highlighted ? 'red' : 'green'}
                 strokeWidth="4px"
               />
             </svg>
@@ -154,10 +155,11 @@ const DetailedSpotStyled = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    /* stroke: 'red'; */
   }
-  .path {
+  /* .path {
     stroke: 'red';
-  }
+  } */
 `
 DetailedSpot.propTypes = {
   toggleIsClimbed: PropTypes.func.isRequired,

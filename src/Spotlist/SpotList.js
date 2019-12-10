@@ -38,6 +38,7 @@ export default function SpotList({ spotData, toggleBookmark }) {
               isBookmarked={spot.isBookmarked}
               id={spot._id}
             ></Spot>
+            {console.log(spot)}
           </Link>
         ))}
       </div>
