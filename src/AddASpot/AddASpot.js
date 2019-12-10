@@ -36,12 +36,14 @@ export default function AddASpot({ addASpot }) {
               <input
                 placeholder="53.513586"
                 type="number"
+                step="0.000001"
                 required
                 name="locationLong"
               ></input>
               <input
                 placeholder="9.978837"
                 type="number"
+                step="0.000001"
                 required
                 name="locationLat"
               ></input>
