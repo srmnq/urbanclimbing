@@ -49,11 +49,12 @@ export default function DetailedSpot({
         ></img>
         {spot.routes.boulder.map((route, index) =>
           route.coordinates ? (
-            <svg className="path">
+            <svg className="svg-path">
               <path
+                className="path"
                 d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
                 fill="transparent"
-                stroke="red"
+                // stroke="#769094"
                 strokeWidth="4px"
               />
             </svg>
@@ -108,6 +109,7 @@ const DetailedSpotStyled = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    z-index: 2;
   }
   .map-icon {
     right: 10px;
@@ -146,12 +148,15 @@ const DetailedSpotStyled = styled.div`
     position: relative;
   }
 
-  .path {
+  .svg-path {
     width: 100%;
     height: 400px;
     position: absolute;
     top: 0;
     left: 0;
+  }
+  .path {
+    stroke: 'red';
   }
 `
 DetailedSpot.propTypes = {

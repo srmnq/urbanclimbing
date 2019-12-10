@@ -7,12 +7,15 @@ import { getSpots, patchSpot, postSpot } from './services'
 import WrappedMap from './Map/WrappedMapContainer'
 import AddASpot from './AddASpot/AddASpot'
 import Profile from './Profile'
+import spotData from './spots.json'
 
 function App() {
   const [spots, setSpots] = useState([])
 
   useEffect(() => {
-    getSpots().then(setSpots)
+    getSpots()
+      .then(setSpots)
+      .catch(setSpots(spotData))
   }, [])
 
   return (
