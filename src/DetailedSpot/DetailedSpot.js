@@ -40,7 +40,29 @@ export default function DetailedSpot({
           onClick={event => toggleBookmark(event, spot)}
         />
       </div>
-      <img alt="climbing spot" src={spot.mainImage} className="mainImage"></img>
+
+      <div className="image-container">
+        <img
+          alt="climbing spot"
+          src={spot.mainImage}
+          className="mainImage"
+        ></img>
+        {spot.routes.boulder.map((route, index) =>
+          route.coordinates ? (
+            <svg className="path">
+              <path
+                d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
+                fill="transparent"
+                stroke="red"
+                strokeWidth="4px"
+              />
+            </svg>
+          ) : (
+            ''
+          )
+        )}
+      </div>
+
       <h2 className="spotName">{spot.name}</h2>
       <div className="routeContainer">
         {spot.routes.boulder.map((route, index) => (
@@ -119,6 +141,17 @@ const DetailedSpotStyled = styled.div`
   }
   .routeContainer {
     overflow: scroll;
+  }
+  .image-container {
+    position: relative;
+  }
+
+  .path {
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `
 DetailedSpot.propTypes = {
