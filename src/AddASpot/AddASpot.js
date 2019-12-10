@@ -28,17 +28,23 @@ export default function AddASpot({ addASpot }) {
           <section className="section">
             <div className="spot">
               <label htmlFor="name">name</label>
-              <label placeholder="53.513586" htmlFor="location long">
-                longitude
-              </label>
-              <label placeholder="9.978837" htmlFor="location lat">
-                latitude
-              </label>
+              <label htmlFor="location long">longitude</label>
+              <label htmlFor="location lat">latitude</label>
             </div>
             <div className="spot">
               <input required name="name"></input>
-              <input type="number" required name="locationLong"></input>
-              <input type="number" required name="locationLat"></input>
+              <input
+                placeholder="53.513586"
+                type="number"
+                required
+                name="locationLong"
+              ></input>
+              <input
+                placeholder="9.978837"
+                type="number"
+                required
+                name="locationLat"
+              ></input>
             </div>
           </section>
           <button type="submit">Create Climbingspot</button>
