@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
 
 export default function Navigation() {
@@ -23,7 +23,7 @@ export default function Navigation() {
           />
         </li>
       </Link>
-      <Link to="/">
+      <Link to="/Profile">
         <li className="profile">
           <img
             className="mountain-icon"
@@ -32,7 +32,7 @@ export default function Navigation() {
           />
         </li>
       </Link>
-      <Link to="/">
+      <Link to="/addASpot">
         <li className="addaspot">
           <img
             className="search-icon"

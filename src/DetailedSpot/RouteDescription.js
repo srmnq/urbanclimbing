@@ -1,16 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
-export default function DetailedRoute({
+export default function RouteDescription({
   description,
   routeName,
   difficulty,
   toggleIsClimbed,
-  isClimbed
+  isClimbed,
 }) {
   return (
-    <DetailedRouteStyled>
+    <RouteDescriptionStyled>
       <div className="difficulty-circle">
         <h3>{difficulty}</h3>
       </div>
@@ -28,11 +28,11 @@ export default function DetailedRoute({
             : require('../../src/icons/mountain-black.svg')
         }
       />
-    </DetailedRouteStyled>
+    </RouteDescriptionStyled>
   )
 }
 
-const DetailedRouteStyled = styled.div`
+const RouteDescriptionStyled = styled.div`
   position: relative;
   display: flex;
   width: 340px;
@@ -66,7 +66,10 @@ const DetailedRouteStyled = styled.div`
     top: 35px;
   }
 `
-DetailedRoute.propTypes = {
+RouteDescription.propTypes = {
   description: PropTypes.string.isRequired,
-  routeName: PropTypes.string.isRequired
+  routeName: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired,
+  toggleIsClimbed: PropTypes.func.isRequired,
+  isClimbed: PropTypes.bool.isRequired,
 }

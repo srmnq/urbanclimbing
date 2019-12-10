@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
+import { Link } from 'react-router-dom'
 import Spot from '../Spotlist/Spot'
+import PropTypes from 'prop-types'
 import {
   countEasyRoute,
   countMediumRoute,
@@ -15,7 +17,6 @@ export default function Maps({ spotData }) {
   const index = spotData.findIndex(el => el._id === id)
   const spot = spotData[index]
   const [clickedSpot, setClickedSpot] = useState(spot)
-  console.log(window.location)
 
   return (
     <GoogleMap
@@ -59,18 +60,20 @@ export default function Maps({ spotData }) {
           </InfoWindow>
         )}
         {clickedSpot && (
-          <MapSpot
-            name={clickedSpot.name}
-            mainImage={clickedSpot.mainImage}
-            boulderCount={clickedSpot.routes.boulder.length}
-            sportCount={clickedSpot.routes.sport.length}
-            easyRoutes={countEasyRoute(clickedSpot)}
-            mediumRoutes={countMediumRoute(clickedSpot)}
-            hardRoutes={countHardRoute(clickedSpot)}
-            isBookmarked={clickedSpot.isBookmarked}
-          >
-            <div>{clickedSpot.name}</div>
-          </MapSpot>
+          <Link to={`/spot/${clickedSpot._id}`}>
+            <MapSpot
+              name={clickedSpot.name}
+              mainImage={clickedSpot.mainImage}
+              boulderCount={clickedSpot.routes.boulder.length}
+              sportCount={clickedSpot.routes.sport.length}
+              easyRoutes={countEasyRoute(clickedSpot)}
+              mediumRoutes={countMediumRoute(clickedSpot)}
+              hardRoutes={countHardRoute(clickedSpot)}
+              isBookmarked={clickedSpot.isBookmarked}
+            >
+              <div>{clickedSpot.name}</div>
+            </MapSpot>
+          </Link>
         )}
       </MapStyled>
     </GoogleMap>
@@ -91,3 +94,6 @@ const MapSpot = styled(Spot)`
   bottom: 50px;
   left: 10px;
 `
+Maps.propTypes = {
+  spotData: PropTypes.array.isRequired,
+}
