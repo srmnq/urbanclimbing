@@ -9,6 +9,7 @@ export default function AddASpot({ addASpot }) {
   const [newSpot, setNewSpot] = useState({})
   const [newBoulderRoute, setNewBoulderRoute] = useState([])
   const [newSportRoute, setNewSportRoute] = useState([])
+  const [coordinate, setCoordinate] = useState([])
   const [secondPageForm, setSecondPageForm] = useState(false)
   const [newSpotAdded, setNewSpotAdded] = useState(false)
   const [image, setImage] = useState('')
@@ -164,8 +165,10 @@ export default function AddASpot({ addASpot }) {
 
   function getCursorPosition(event) {
     const rect = event.target.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
+    const x = ((event.clientX - rect.left) / 240) * 371
+    const y = ((event.clientY - rect.top) / 214) * 400
+
+    setCoordinate([...coordinate, x, y])
     console.log('x: ' + x + ' y: ' + y)
   }
 
@@ -198,6 +201,14 @@ export default function AddASpot({ addASpot }) {
           difficulty: difficulty,
           description: data.description,
           isClimbed: false,
+          coordinates: {
+            x1: coordinate[0],
+            x2: coordinate[2],
+            x3: coordinate[4],
+            y1: coordinate[1],
+            y2: coordinate[3],
+            y3: coordinate[5],
+          },
         },
       ])
     } else {
@@ -208,11 +219,20 @@ export default function AddASpot({ addASpot }) {
           difficulty: difficulty,
           description: data.description,
           isClimbed: false,
+          coordinates: {
+            x1: coordinate[0],
+            x2: coordinate[2],
+            x3: coordinate[4],
+            y1: coordinate[1],
+            y2: coordinate[3],
+            y3: coordinate[5],
+          },
         },
       ])
     }
 
     form.reset()
+    setCoordinate([])
   }
   function handleSubmit() {
     addASpot({

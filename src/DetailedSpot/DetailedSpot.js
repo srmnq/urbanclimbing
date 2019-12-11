@@ -63,6 +63,21 @@ export default function DetailedSpot({
             ''
           )
         )}
+        {spot.routes.sport.map(route =>
+          route.coordinates ? (
+            <svg className="svg-path">
+              <path
+                className="path"
+                d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
+                fill="transparent"
+                stroke={route.routeName === highlighted ? '#135058' : '#79898C'}
+                strokeWidth="4px"
+              />
+            </svg>
+          ) : (
+            ''
+          )
+        )}
       </div>
 
       <h2 className="spotName">{spot.name}</h2>
