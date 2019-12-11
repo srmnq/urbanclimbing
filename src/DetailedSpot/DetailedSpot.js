@@ -48,7 +48,7 @@ export default function DetailedSpot({
           src={spot.mainImage}
           className="mainImage"
         ></img>
-        {spot.routes.boulder.map((route, index) =>
+        {spot.routes.boulder.map(route =>
           route.coordinates ? (
             <svg className="svg-path">
               <path
@@ -157,11 +157,7 @@ const DetailedSpotStyled = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    /* stroke: 'red'; */
   }
-  /* .path {
-    stroke: 'red';
-  } */
 `
 DetailedSpot.propTypes = {
   toggleIsClimbed: PropTypes.func.isRequired,
