@@ -144,6 +144,7 @@ const DetailedSpotStyled = styled.div`
   }
   .mainImage {
     width: 100%;
+    width: 371px;
     height: 400px;
     object-fit: cover;
     border-bottom-left-radius: 24px;

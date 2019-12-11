@@ -66,7 +66,7 @@ export default function AddASpot({ addASpot }) {
                 alt=""
                 style={{
                   width: '240px',
-                  height: '214px',
+                  height: '258px',
                   objectFit: 'cover',
                   position: 'posa',
                 }}
@@ -143,10 +143,12 @@ export default function AddASpot({ addASpot }) {
             </div>
           </section>
 
-          <button type="submit">Create Route</button>
-          <button type="button" onClick={handleSubmit}>
-            Done
-          </button>
+          <div className="button-container">
+            <button type="submit">Create Route</button>
+            <button type="button" onClick={handleSubmit}>
+              Done
+            </button>
+          </div>
           <p>
             {newBoulderRoute.length + newSportRoute.length} new routes created
           </p>
@@ -165,8 +167,12 @@ export default function AddASpot({ addASpot }) {
 
   function getCursorPosition(event) {
     const rect = event.target.getBoundingClientRect()
+    console.log(event.clientX)
+    console.log(rect.left)
+
     const x = ((event.clientX - rect.left) / 240) * 371
-    const y = ((event.clientY - rect.top) / 214) * 400
+    const y = ((event.clientY - rect.top) / 258) * 400
+    console.log((x * 240) / 371)
 
     setCoordinate([...coordinate, x, y])
     console.log('x: ' + x + ' y: ' + y)
@@ -368,13 +374,16 @@ const AddFormStyled = styled.div`
   .canvas-container {
     position: relative;
     width: 240px;
-    height: 214px;
+    height: 258px;
   }
   .canvas {
     width: 240px;
-    height: 214px;
+    height: 258px;
     background: transparent;
     position: absolute;
+  }
+  .button-container {
+    display: flex;
   }
 `
 AddASpot.propTypes = {
