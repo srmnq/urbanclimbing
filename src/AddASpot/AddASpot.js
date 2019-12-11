@@ -44,25 +44,33 @@ export default function AddASpot({ addASpot }) {
                 placeholder="9.978837"
                 step="0.000001"
                 type="number"
-                step="0.000001"
                 required
                 name="locationLat"
               ></input>
             </div>
           </section>
+
           <button type="submit">Create Climbingspot</button>
         </form>
         <form className="create-route_form" onSubmit={createRoute}>
           {image && (
-            <img
-              src={image}
-              alt=""
-              style={{
-                width: '240px',
-                height: '214px',
-                objectFit: 'cover',
-              }}
-            />
+            <div className="canvas-container">
+              <canvas
+                onClick={event => getCursorPosition(event)}
+                className="canvas"
+              ></canvas>
+              <img
+                className="canvas-image"
+                src={image}
+                alt=""
+                style={{
+                  width: '240px',
+                  height: '214px',
+                  objectFit: 'cover',
+                  position: 'posa',
+                }}
+              />
+            </div>
           )}
           <section className="section">
             <div className="route">
@@ -153,6 +161,13 @@ export default function AddASpot({ addASpot }) {
       <Navigation></Navigation>
     </AddFormStyled>
   )
+
+  function getCursorPosition(event) {
+    const rect = event.target.getBoundingClientRect()
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+    console.log('x: ' + x + ' y: ' + y)
+  }
 
   function createSpot(event) {
     event.preventDefault()
@@ -328,6 +343,18 @@ const AddFormStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .canvas-container {
+    position: relative;
+    width: 240px;
+    height: 214px;
+  }
+  .canvas {
+    width: 240px;
+    height: 214px;
+    background: transparent;
+    position: absolute;
   }
 `
 AddASpot.propTypes = {
