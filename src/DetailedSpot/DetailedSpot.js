@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import loading from '../loading.json'
 import styled from 'styled-components/macro'
 import RouteDescription from './RouteDescription'
@@ -14,6 +14,7 @@ export default function DetailedSpot({
   const id = pathname.substring(6)
   const index = spots.findIndex(el => el._id === id)
   const spot = spots[index] || loading[0]
+  const [highlighted, setHighlighted] = useState('Kantholz')
 
   return (
     <DetailedSpotStyled>
@@ -40,7 +41,30 @@ export default function DetailedSpot({
           onClick={event => toggleBookmark(event, spot)}
         />
       </div>
-      <img alt="climbing spot" src={spot.mainImage} className="mainImage"></img>
+
+      <div className="image-container">
+        <img
+          alt="climbing spot"
+          src={spot.mainImage}
+          className="mainImage"
+        ></img>
+        {spot.routes.boulder.map(route =>
+          route.coordinates ? (
+            <svg className="svg-path">
+              <path
+                className="path"
+                d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
+                fill="transparent"
+                stroke={route.routeName === highlighted ? '#135058' : '#79898C'}
+                strokeWidth="4px"
+              />
+            </svg>
+          ) : (
+            ''
+          )
+        )}
+      </div>
+
       <h2 className="spotName">{spot.name}</h2>
       <div className="routeContainer">
         {spot.routes.boulder.map((route, index) => (
@@ -51,6 +75,7 @@ export default function DetailedSpot({
             difficulty={route.difficulty}
             toggleIsClimbed={() => toggleIsClimbed(index, spot)}
             isClimbed={route.isClimbed}
+            changeColor={() => setHighlighted(route.routeName)}
           />
         ))}
         {spot.routes.sport.map((route, index) => (
@@ -61,6 +86,7 @@ export default function DetailedSpot({
             difficulty={route.difficulty}
             toggleIsClimbed={() => toggleIsClimbed(index, spot)}
             isClimbed={route.isClimbed}
+            changeColor={() => setHighlighted(route.routeName)}
           />
         ))}
       </div>
@@ -86,6 +112,7 @@ const DetailedSpotStyled = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    z-index: 2;
   }
   .map-icon {
     right: 10px;
@@ -119,6 +146,17 @@ const DetailedSpotStyled = styled.div`
   }
   .routeContainer {
     overflow: scroll;
+  }
+  .image-container {
+    position: relative;
+  }
+
+  .svg-path {
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `
 DetailedSpot.propTypes = {

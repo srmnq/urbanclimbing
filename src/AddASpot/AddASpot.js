@@ -42,6 +42,7 @@ export default function AddASpot({ addASpot }) {
               ></input>
               <input
                 placeholder="9.978837"
+                step="0.000001"
                 type="number"
                 step="0.000001"
                 required

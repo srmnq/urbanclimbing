@@ -20,6 +20,7 @@ export default function Spot({
   return (
     <SpotStyled {...props}>
       <img alt="climbing spot" className="mainImage" src={mainImage}></img>
+
       <Link className="map-icon" to={`/map/${id}`}>
         <div>
           {window.location.href.indexOf('map') > -1 || (

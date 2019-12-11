@@ -9,7 +9,8 @@ const spotSchema = {
         difficulty: String,
         isClimbed: Boolean,
         description: String,
-        routeImage: String
+        routeImage: String,
+        coordinates: Object
       }
     ],
     sport: [
@@ -18,7 +19,8 @@ const spotSchema = {
         difficulty: String,
         isClimbed: Boolean,
         description: String,
-        routeImage: String
+        routeImage: String,
+        coordinates: Object
       }
     ]
   },
