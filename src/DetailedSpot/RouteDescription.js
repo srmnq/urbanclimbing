@@ -8,9 +8,10 @@ export default function RouteDescription({
   difficulty,
   toggleIsClimbed,
   isClimbed,
+  changeColor,
 }) {
   return (
-    <RouteDescriptionStyled>
+    <RouteDescriptionStyled onClick={changeColor}>
       <div className="difficulty-circle">
         <h3>{difficulty}</h3>
       </div>

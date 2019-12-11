@@ -55,7 +55,7 @@ export default function DetailedSpot({
                 className="path"
                 d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
                 fill="transparent"
-                stroke={route.routeName == highlighted ? 'red' : 'green'}
+                stroke={route.routeName === highlighted ? '#135058' : '#79898C'}
                 strokeWidth="4px"
               />
             </svg>
@@ -75,6 +75,7 @@ export default function DetailedSpot({
             difficulty={route.difficulty}
             toggleIsClimbed={() => toggleIsClimbed(index, spot)}
             isClimbed={route.isClimbed}
+            changeColor={() => setHighlighted(route.routeName)}
           />
         ))}
         {spot.routes.sport.map((route, index) => (
@@ -85,6 +86,7 @@ export default function DetailedSpot({
             difficulty={route.difficulty}
             toggleIsClimbed={() => toggleIsClimbed(index, spot)}
             isClimbed={route.isClimbed}
+            changeColor={() => setHighlighted(route.routeName)}
           />
         ))}
       </div>
