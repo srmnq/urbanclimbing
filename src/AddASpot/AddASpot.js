@@ -11,6 +11,7 @@ export default function AddASpot({ addASpot }) {
   const [newBoulderRoute, setNewBoulderRoute] = useState([])
   const [newSportRoute, setNewSportRoute] = useState([])
   const [coordinate, setCoordinate] = useState([])
+  const [drawingCoordinate, setDrawingCoordinate] = useState([])
   const [secondPageForm, setSecondPageForm] = useState(false)
   const [newSpotAdded, setNewSpotAdded] = useState(false)
   const [image, setImage] = useState('')
@@ -57,10 +58,25 @@ export default function AddASpot({ addASpot }) {
         <form className="create-route_form" onSubmit={createRoute}>
           {image && (
             <div className="canvas-container">
-              <canvas
-                onClick={event => getCursorPosition(event)}
+              {/* <canvas className="canvas"></canvas> */}
+              <div
                 className="canvas"
-              ></canvas>
+                onClick={event => getCursorPosition(event)}
+              ></div>
+
+              <svg className="drawing">
+                <path
+                  className="path"
+                  d={`M ${drawingCoordinate[0] || ''} ${drawingCoordinate[1] ||
+                    ''} L ${drawingCoordinate[2] ||
+                    ''} ${drawingCoordinate[3] ||
+                    ''} L ${drawingCoordinate[4] ||
+                    ''} ${drawingCoordinate[5] || ''}`}
+                  fill="transparent"
+                  stroke={'#135058'}
+                  strokeWidth="4px"
+                />
+              </svg>
 
               <img
                 className="canvas-image"
@@ -75,6 +91,7 @@ export default function AddASpot({ addASpot }) {
               />
             </div>
           )}
+
           <section className="section">
             <div className="route">
               <label htmlFor="routeName">name of route</label>
@@ -169,25 +186,21 @@ export default function AddASpot({ addASpot }) {
 
   function getCursorPosition(event) {
     const rect = event.target.getBoundingClientRect()
-    console.log(rect)
-    console.log(rect.left)
-    console.log(event.clientY)
-    console.log(rect.top)
-    console.log(event.pageX)
-    const dotx = event.pageX - rect.left
-    const doty = event.pageY - rect.top
+
+    const dotx = event.clientX - rect.left
+    const doty = event.clientY - rect.top
     const x = ((event.clientX - rect.left) / 240) * 371
     const y = ((event.clientY - rect.top) / 258) * 400
     coordinate.length < 6 && setCoordinate([...coordinate, x, y])
+    setDrawingCoordinate([...drawingCoordinate, dotx, doty])
+    // const ctx = event.target.getContext('2d')
+
+    // ctx.fillStyle = 'green'
+    // ctx.scale(1, 1)
+    // ctx.fillRect(dotx, doty, 10, 10)
+    // ctx.drawImage(img, 10, 10)
     console.log(dotx)
-    console.log(doty)
-    const ctx = event.target.getContext('2d')
-
-    ctx.fillStyle = 'green'
-    ctx.scale(1, 1)
-    ctx.fillRect(dotx, doty, 10, 10)
-    ctx.drawImage(img, 10, 10)
-
+    console.log(x)
     console.log('x: ' + x + ' y: ' + y)
   }
 
@@ -406,6 +419,12 @@ const AddFormStyled = styled.div`
   .button-container {
     display: flex;
     justify-content: space-between;
+  }
+  .drawing {
+    position: absolute;
+    width: 240px;
+    height: 258px;
+    z-index: 1;
   }
 `
 AddASpot.propTypes = {
