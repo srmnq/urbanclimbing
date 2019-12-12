@@ -5,6 +5,7 @@ import AddPhoto from './AddPhoto'
 import Radio from './Radio'
 import img from '../logo192.png'
 import PropTypes from 'prop-types'
+import Modal from './Modal'
 
 export default function AddASpot({ addASpot }) {
   const [newSpot, setNewSpot] = useState({})
@@ -15,6 +16,7 @@ export default function AddASpot({ addASpot }) {
   const [secondPageForm, setSecondPageForm] = useState(false)
   const [newSpotAdded, setNewSpotAdded] = useState(false)
   const [image, setImage] = useState('')
+  const [modalShown, setModalShown] = useState(false)
 
   return (
     <AddFormStyled
@@ -55,6 +57,7 @@ export default function AddASpot({ addASpot }) {
 
           <button type="submit">Create Climbingspot</button>
         </form>
+        {modalShown && <Modal closeModal={() => setModalShown(false)}></Modal>}
         <form className="create-route_form" onSubmit={createRoute}>
           {image && (
             <div className="canvas-container">
@@ -66,17 +69,28 @@ export default function AddASpot({ addASpot }) {
 
               <svg className="drawing">
                 <path
-                  className="path"
                   d={`M ${drawingCoordinate[0] || ''} ${drawingCoordinate[1] ||
                     ''} L ${drawingCoordinate[2] ||
                     ''} ${drawingCoordinate[3] ||
                     ''} L ${drawingCoordinate[4] ||
                     ''} ${drawingCoordinate[5] || ''}`}
                   fill="transparent"
-                  stroke={'#135058'}
+                  stroke="#135058"
                   strokeWidth="4px"
                 />
               </svg>
+              {drawingCoordinate.length === 2 && (
+                <svg className="first-circle">
+                  <circle
+                    cx={drawingCoordinate[0]}
+                    cy={drawingCoordinate[1]}
+                    r="2"
+                    stroke="#135058"
+                    stroke-width="3"
+                    fill="#135058"
+                  />
+                </svg>
+              )}
 
               <img
                 className="canvas-image"
@@ -91,7 +105,6 @@ export default function AddASpot({ addASpot }) {
               />
             </div>
           )}
-
           <section className="section">
             <div className="route">
               <label htmlFor="routeName">name of route</label>
@@ -161,7 +174,6 @@ export default function AddASpot({ addASpot }) {
               </div>
             </div>
           </section>
-
           <div className="button-container">
             <button type="submit">Create Route</button>
             <button type="button" onClick={handleSubmit}>
@@ -193,15 +205,6 @@ export default function AddASpot({ addASpot }) {
     const y = ((event.clientY - rect.top) / 258) * 400
     coordinate.length < 6 && setCoordinate([...coordinate, x, y])
     setDrawingCoordinate([...drawingCoordinate, dotx, doty])
-    // const ctx = event.target.getContext('2d')
-
-    // ctx.fillStyle = 'green'
-    // ctx.scale(1, 1)
-    // ctx.fillRect(dotx, doty, 10, 10)
-    // ctx.drawImage(img, 10, 10)
-    console.log(dotx)
-    console.log(x)
-    console.log('x: ' + x + ' y: ' + y)
   }
 
   function createSpot(event) {
@@ -217,6 +220,7 @@ export default function AddASpot({ addASpot }) {
       mainImage: image,
     })
     setSecondPageForm(true)
+    setModalShown(true)
     form.reset()
   }
   function createRoute(event) {
@@ -265,6 +269,7 @@ export default function AddASpot({ addASpot }) {
 
     form.reset()
     setCoordinate([])
+    setDrawingCoordinate([])
   }
   function handleSubmit() {
     addASpot({
@@ -407,7 +412,7 @@ const AddFormStyled = styled.div`
     height: 258px;
     background: transparent;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
   }
 
   .div {
@@ -420,11 +425,15 @@ const AddFormStyled = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  .drawing {
+  .drawing,
+  .first-circle {
     position: absolute;
     width: 240px;
     height: 258px;
     z-index: 1;
+  }
+  .first-circle {
+    z-index: 2;
   }
 `
 AddASpot.propTypes = {
