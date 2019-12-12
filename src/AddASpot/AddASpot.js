@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import Navigation from '../Common/Navigation'
 import AddPhoto from './AddPhoto'
 import Radio from './Radio'
+import img from '../logo192.png'
 import PropTypes from 'prop-types'
 
 export default function AddASpot({ addASpot }) {
@@ -60,6 +61,7 @@ export default function AddASpot({ addASpot }) {
                 onClick={event => getCursorPosition(event)}
                 className="canvas"
               ></canvas>
+
               <img
                 className="canvas-image"
                 src={image}
@@ -68,7 +70,7 @@ export default function AddASpot({ addASpot }) {
                   width: '240px',
                   height: '258px',
                   objectFit: 'cover',
-                  position: 'posa',
+                  position: 'absolute',
                 }}
               />
             </div>
@@ -167,14 +169,25 @@ export default function AddASpot({ addASpot }) {
 
   function getCursorPosition(event) {
     const rect = event.target.getBoundingClientRect()
-    console.log(event.clientX)
+    console.log(rect)
     console.log(rect.left)
-
+    console.log(event.clientY)
+    console.log(rect.top)
+    console.log(event.pageX)
+    const dotx = event.pageX - rect.left
+    const doty = event.pageY - rect.top
     const x = ((event.clientX - rect.left) / 240) * 371
     const y = ((event.clientY - rect.top) / 258) * 400
-    console.log((x * 240) / 371)
+    coordinate.length < 6 && setCoordinate([...coordinate, x, y])
+    console.log(dotx)
+    console.log(doty)
+    const ctx = event.target.getContext('2d')
 
-    setCoordinate([...coordinate, x, y])
+    ctx.fillStyle = 'green'
+    ctx.scale(1, 1)
+    ctx.fillRect(dotx, doty, 10, 10)
+    ctx.drawImage(img, 10, 10)
+
     console.log('x: ' + x + ' y: ' + y)
   }
 
@@ -381,9 +394,18 @@ const AddFormStyled = styled.div`
     height: 258px;
     background: transparent;
     position: absolute;
+    z-index: 2;
+  }
+
+  .div {
+    position: absolute;
+    width: 240px;
+    height: 258px;
+    background: #000;
   }
   .button-container {
     display: flex;
+    justify-content: space-between;
   }
 `
 AddASpot.propTypes = {
