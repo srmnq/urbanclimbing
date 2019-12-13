@@ -4,14 +4,19 @@ import Navigation from '../Common/Navigation'
 import AddPhoto from './AddPhoto'
 import Radio from './Radio'
 import PropTypes from 'prop-types'
+import Modal from './Modal'
 
 export default function AddASpot({ addASpot }) {
   const [newSpot, setNewSpot] = useState({})
   const [newBoulderRoute, setNewBoulderRoute] = useState([])
   const [newSportRoute, setNewSportRoute] = useState([])
+  const [coordinate, setCoordinate] = useState([])
+  const [drawingCoordinate, setDrawingCoordinate] = useState([])
   const [secondPageForm, setSecondPageForm] = useState(false)
   const [newSpotAdded, setNewSpotAdded] = useState(false)
   const [image, setImage] = useState('')
+  const [modalShown, setModalShown] = useState(false)
+  const [disableDone, setDisableDone] = useState(false)
 
   return (
     <AddFormStyled
@@ -44,25 +49,60 @@ export default function AddASpot({ addASpot }) {
                 placeholder="9.978837"
                 step="0.000001"
                 type="number"
-                step="0.000001"
                 required
                 name="locationLat"
               ></input>
             </div>
           </section>
+
           <button type="submit">Create Climbingspot</button>
         </form>
+        {modalShown && <Modal closeModal={() => setModalShown(false)}></Modal>}
         <form className="create-route_form" onSubmit={createRoute}>
           {image && (
-            <img
-              src={image}
-              alt=""
-              style={{
-                width: '240px',
-                height: '214px',
-                objectFit: 'cover',
-              }}
-            />
+            <div className="canvas-container">
+              <div
+                className="canvas"
+                onClick={event => getCursorPosition(event)}
+              ></div>
+
+              <svg className="drawing">
+                <path
+                  d={`M ${drawingCoordinate[0] || ''} ${drawingCoordinate[1] ||
+                    ''} L ${drawingCoordinate[2] ||
+                    ''} ${drawingCoordinate[3] ||
+                    ''} L ${drawingCoordinate[4] ||
+                    ''} ${drawingCoordinate[5] || ''}`}
+                  fill="transparent"
+                  stroke="#135058"
+                  strokeWidth="4px"
+                />
+              </svg>
+              {drawingCoordinate.length === 2 && (
+                <svg className="first-circle">
+                  <circle
+                    cx={drawingCoordinate[0]}
+                    cy={drawingCoordinate[1]}
+                    r="2"
+                    stroke="#135058"
+                    stroke-width="3"
+                    fill="#135058"
+                  />
+                </svg>
+              )}
+
+              <img
+                className="canvas-image"
+                src={image}
+                alt=""
+                style={{
+                  width: '240px',
+                  height: '258px',
+                  objectFit: 'cover',
+                  position: 'absolute',
+                }}
+              />
+            </div>
           )}
           <section className="section">
             <div className="route">
@@ -72,7 +112,11 @@ export default function AddASpot({ addASpot }) {
               <label htmlFor="type">type</label>
             </div>
             <div className="route">
-              <input required name="routeName"></input>
+              <input
+                onInput={() => setDisableDone(true)}
+                required
+                name="routeName"
+              ></input>
               <input required name="description"></input>
               <div>
                 <div className="difficulty">
@@ -133,11 +177,17 @@ export default function AddASpot({ addASpot }) {
               </div>
             </div>
           </section>
-
-          <button type="submit">Create Route</button>
-          <button type="button" onClick={handleSubmit}>
-            Done
-          </button>
+          <div className="button-container">
+            <button type="submit">Create Route</button>
+            <button
+              disabled={disableDone ? 'disable' : ''}
+              type="button"
+              className="done-button"
+              onClick={handleSubmit}
+            >
+              Done
+            </button>
+          </div>
           <p>
             {newBoulderRoute.length + newSportRoute.length} new routes created
           </p>
@@ -154,6 +204,17 @@ export default function AddASpot({ addASpot }) {
     </AddFormStyled>
   )
 
+  function getCursorPosition(event) {
+    const rect = event.target.getBoundingClientRect()
+
+    const dotx = event.clientX - rect.left
+    const doty = event.clientY - rect.top
+    const x = ((event.clientX - rect.left) / 240) * 371
+    const y = ((event.clientY - rect.top) / 258) * 400
+    coordinate.length < 6 && setCoordinate([...coordinate, x, y])
+    setDrawingCoordinate([...drawingCoordinate, dotx, doty])
+  }
+
   function createSpot(event) {
     event.preventDefault()
     const form = event.target
@@ -167,6 +228,7 @@ export default function AddASpot({ addASpot }) {
       mainImage: image,
     })
     setSecondPageForm(true)
+    setModalShown(true)
     form.reset()
   }
   function createRoute(event) {
@@ -183,6 +245,14 @@ export default function AddASpot({ addASpot }) {
           difficulty: difficulty,
           description: data.description,
           isClimbed: false,
+          coordinates: {
+            x1: coordinate[0],
+            x2: coordinate[2],
+            x3: coordinate[4],
+            y1: coordinate[1],
+            y2: coordinate[3],
+            y3: coordinate[5],
+          },
         },
       ])
     } else {
@@ -193,11 +263,22 @@ export default function AddASpot({ addASpot }) {
           difficulty: difficulty,
           description: data.description,
           isClimbed: false,
+          coordinates: {
+            x1: coordinate[0],
+            x2: coordinate[2],
+            x3: coordinate[4],
+            y1: coordinate[1],
+            y2: coordinate[3],
+            y3: coordinate[5],
+          },
         },
       ])
     }
 
     form.reset()
+    setCoordinate([])
+    setDrawingCoordinate([])
+    setDisableDone(false)
   }
   function handleSubmit() {
     addASpot({
@@ -328,6 +409,43 @@ const AddFormStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .canvas-container {
+    position: relative;
+    width: 240px;
+    height: 258px;
+  }
+  .canvas {
+    width: 240px;
+    height: 258px;
+    background: transparent;
+    position: absolute;
+    z-index: 3;
+  }
+
+  .div {
+    position: absolute;
+    width: 240px;
+    height: 258px;
+    background: #000;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .drawing,
+  .first-circle {
+    position: absolute;
+    width: 240px;
+    height: 258px;
+    z-index: 1;
+  }
+  .first-circle {
+    z-index: 2;
+  }
+  .done-button:disabled {
+    background: #333;
   }
 `
 AddASpot.propTypes = {
