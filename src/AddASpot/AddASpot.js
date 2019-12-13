@@ -3,7 +3,6 @@ import styled from 'styled-components/macro'
 import Navigation from '../Common/Navigation'
 import AddPhoto from './AddPhoto'
 import Radio from './Radio'
-import img from '../logo192.png'
 import PropTypes from 'prop-types'
 import Modal from './Modal'
 
@@ -17,6 +16,7 @@ export default function AddASpot({ addASpot }) {
   const [newSpotAdded, setNewSpotAdded] = useState(false)
   const [image, setImage] = useState('')
   const [modalShown, setModalShown] = useState(false)
+  const [disableDone, setDisableDone] = useState(false)
 
   return (
     <AddFormStyled
@@ -61,7 +61,6 @@ export default function AddASpot({ addASpot }) {
         <form className="create-route_form" onSubmit={createRoute}>
           {image && (
             <div className="canvas-container">
-              {/* <canvas className="canvas"></canvas> */}
               <div
                 className="canvas"
                 onClick={event => getCursorPosition(event)}
@@ -113,7 +112,11 @@ export default function AddASpot({ addASpot }) {
               <label htmlFor="type">type</label>
             </div>
             <div className="route">
-              <input required name="routeName"></input>
+              <input
+                onInput={() => setDisableDone(true)}
+                required
+                name="routeName"
+              ></input>
               <input required name="description"></input>
               <div>
                 <div className="difficulty">
@@ -176,7 +179,12 @@ export default function AddASpot({ addASpot }) {
           </section>
           <div className="button-container">
             <button type="submit">Create Route</button>
-            <button type="button" onClick={handleSubmit}>
+            <button
+              disabled={disableDone ? 'disable' : ''}
+              type="button"
+              className="done-button"
+              onClick={handleSubmit}
+            >
               Done
             </button>
           </div>
@@ -270,6 +278,7 @@ export default function AddASpot({ addASpot }) {
     form.reset()
     setCoordinate([])
     setDrawingCoordinate([])
+    setDisableDone(false)
   }
   function handleSubmit() {
     addASpot({
@@ -434,6 +443,9 @@ const AddFormStyled = styled.div`
   }
   .first-circle {
     z-index: 2;
+  }
+  .done-button:disabled {
+    background: #333;
   }
 `
 AddASpot.propTypes = {

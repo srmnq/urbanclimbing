@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
 
 export default function Modal({ closeModal }) {
   return (
     <Container>
       <p>
-        you can paint a new route by clicking points on the path where the route
-        should be
+        you can paint a new route by clicking three points on the path where the
+        route should be!
       </p>
       <button onClick={closeModal}>close</button>
     </Container>
