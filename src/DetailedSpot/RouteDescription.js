@@ -71,6 +71,6 @@ RouteDescription.propTypes = {
   description: PropTypes.string.isRequired,
   routeName: PropTypes.string.isRequired,
   difficulty: PropTypes.string.isRequired,
-  toggleIsClimbed: PropTypes.func.isRequired,
-  isClimbed: PropTypes.bool.isRequired,
+  toggleIsClimbed: PropTypes.func,
+  isClimbed: PropTypes.bool,
 }
