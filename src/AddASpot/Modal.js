@@ -5,8 +5,8 @@ export default function Modal({ closeModal }) {
   return (
     <Container>
       <p>
-        you can paint a new route by clicking three points on the path where the
-        route should be!
+        you can paint a new route by clicking three dots on the image where the
+        new route should be!
       </p>
       <button onClick={closeModal}>close</button>
     </Container>
