@@ -74,7 +74,7 @@ export default function AddASpot({ addASpot }) {
                     ''} L ${drawingCoordinate[4] ||
                     ''} ${drawingCoordinate[5] || ''}`}
                   fill="transparent"
-                  stroke="#135058"
+                  stroke="#048058"
                   strokeWidth="4px"
                 />
               </svg>
@@ -84,9 +84,9 @@ export default function AddASpot({ addASpot }) {
                     cx={drawingCoordinate[0]}
                     cy={drawingCoordinate[1]}
                     r="2"
-                    stroke="#135058"
+                    stroke="#048058"
                     stroke-width="3"
-                    fill="#135058"
+                    fill="#048058"
                   />
                 </svg>
               )}

@@ -14,7 +14,7 @@ export default function DetailedSpot({
   const id = pathname.substring(6)
   const index = spots.findIndex(el => el._id === id)
   const spot = spots[index] || loading[0]
-  const [highlighted, setHighlighted] = useState('Kantholz')
+  const [highlighted, setHighlighted] = useState('')
 
   return (
     <DetailedSpotStyled>
@@ -55,8 +55,8 @@ export default function DetailedSpot({
                 className="path"
                 d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
                 fill="transparent"
-                stroke={route.routeName === highlighted ? '#135058' : '#79898C'}
-                strokeWidth="4px"
+                stroke={route.routeName === highlighted ? '#048058' : '#A0B4B7'}
+                strokeWidth="6px"
               />
             </svg>
           ) : (
@@ -70,8 +70,8 @@ export default function DetailedSpot({
                 className="path"
                 d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
                 fill="transparent"
-                stroke={route.routeName === highlighted ? '#135058' : '#79898C'}
-                strokeWidth="4px"
+                stroke={route.routeName === highlighted ? '#048058' : '#A0B4B7'}
+                strokeWidth="6px"
               />
             </svg>
           ) : (
