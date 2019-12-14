@@ -236,42 +236,24 @@ export default function AddASpot({ addASpot }) {
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     const difficulty = `${data.difficultyNumber}${data.difficultyLetter}`
+    const newRoute = {
+      routeName: data.routeName,
+      difficulty: difficulty,
+      description: data.description,
+      isClimbed: false,
+      coordinates: {
+        x1: coordinate[0],
+        x2: coordinate[2],
+        x3: coordinate[4],
+        y1: coordinate[1],
+        y2: coordinate[3],
+        y3: coordinate[5],
+      },
+    }
     if (data.type === 'boulder') {
-      setNewBoulderRoute([
-        ...newBoulderRoute,
-        {
-          routeName: data.routeName,
-          difficulty: difficulty,
-          description: data.description,
-          isClimbed: false,
-          coordinates: {
-            x1: coordinate[0],
-            x2: coordinate[2],
-            x3: coordinate[4],
-            y1: coordinate[1],
-            y2: coordinate[3],
-            y3: coordinate[5],
-          },
-        },
-      ])
+      setNewBoulderRoute([...newBoulderRoute, newRoute])
     } else {
-      setNewSportRoute([
-        ...newSportRoute,
-        {
-          routeName: data.routeName,
-          difficulty: difficulty,
-          description: data.description,
-          isClimbed: false,
-          coordinates: {
-            x1: coordinate[0],
-            x2: coordinate[2],
-            x3: coordinate[4],
-            y1: coordinate[1],
-            y2: coordinate[3],
-            y3: coordinate[5],
-          },
-        },
-      ])
+      setNewSportRoute([...newSportRoute, newRoute])
     }
 
     form.reset()
