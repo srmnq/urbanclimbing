@@ -1,17 +1,14 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
+import listwhite from '../icons/list-white.svg'
 
 export default function Navigation() {
   return (
     <NavigationStyled active={window.location.pathname}>
       <Link to="/">
         <li className="home">
-          <img
-            className="search-icon"
-            alt="list"
-            src={require('../../src/icons/list-white.svg')}
-          />
+          <img className="search-icon" alt="list" src={listwhite} />
         </li>
       </Link>
       <Link to="/map">
