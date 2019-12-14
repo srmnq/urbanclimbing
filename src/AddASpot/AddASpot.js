@@ -25,35 +25,35 @@ export default function AddASpot({ addASpot }) {
       newSpotAdded={newSpotAdded ? 'block' : 'none'}
     >
       <div className="container">
-        <div className="add-icon">
-          <img alt="map-icon" src={require('../../src/icons/add-white.svg')} />
-        </div>
         <form className="create-spot_form" onSubmit={createSpot}>
           <AddPhoto image={image} setImage={setImage} />
-          <section className="section">
-            <div className="spot">
-              <label htmlFor="name">name</label>
-              <label htmlFor="location long">longitude</label>
-              <label htmlFor="location lat">latitude</label>
-            </div>
-            <div className="spot">
-              <input required name="name"></input>
-              <input
-                placeholder="53.513586"
-                type="number"
-                step="0.000001"
-                required
-                name="locationLong"
-              ></input>
-              <input
-                placeholder="9.978837"
-                step="0.000001"
-                type="number"
-                required
-                name="locationLat"
-              ></input>
-            </div>
-          </section>
+
+          <fieldset class="form-box">
+            <label htmlFor="name">name</label>
+            <input required id="name" name="name"></input>
+          </fieldset>
+          <fieldset class="form-box">
+            <label htmlFor="location long">longitude</label>
+            <input
+              placeholder="53.513586"
+              type="number"
+              step="0.000001"
+              required
+              name="locationLong"
+              id="location long"
+            ></input>
+          </fieldset>
+          <fieldset class="form-box">
+            <label htmlFor="location lat">latitude</label>
+            <input
+              placeholder="9.978837"
+              step="0.000001"
+              type="number"
+              required
+              name="locationLat"
+              id="location lat"
+            ></input>
+          </fieldset>
 
           <button type="submit">Create Climbingspot</button>
         </form>
@@ -92,7 +92,6 @@ export default function AddASpot({ addASpot }) {
               )}
 
               <img
-                className="canvas-image"
                 src={image}
                 alt=""
                 style={{
@@ -104,79 +103,79 @@ export default function AddASpot({ addASpot }) {
               />
             </div>
           )}
-          <section className="section">
-            <div className="route">
-              <label htmlFor="routeName">name of route</label>
-              <label htmlFor="description">description of route</label>
-              <label htmlFor="difficulty">difficulty</label>
-              <label htmlFor="type">type</label>
-            </div>
-            <div className="route">
-              <input
-                onInput={() => setDisableDone(true)}
-                required
-                name="routeName"
-              ></input>
-              <input required name="description"></input>
-              <div>
-                <div className="difficulty">
-                  <label htmlFor="3">
-                    <Radio name="difficultyNumber" value="3"></Radio>
-                    <p>3</p>
-                  </label>
-                  <label htmlFor="4">
-                    <Radio name="difficultyNumber" value="4"></Radio>
-                    <p>4</p>
-                  </label>
-                  <label htmlFor="5">
-                    <Radio name="difficultyNumber" value="5"></Radio>
-                    <p>5</p>
-                  </label>
-                  <label htmlFor="6">
-                    <Radio name="difficultyNumber" value="6"></Radio>
-                    <p>6</p>
-                  </label>
-                  <label htmlFor="7">
-                    <Radio name="difficultyNumber" value="7"></Radio>
-                    <p>7</p>
-                  </label>
-                  <label htmlFor="8">
-                    <Radio name="difficultyNumber" value="8"></Radio>
-                    <p>8</p>
-                  </label>
-                </div>
+          <fieldset class="form-box">
+            <label htmlFor="routeName">name of route</label>
+            <input
+              onInput={() => setDisableDone(true)}
+              required
+              name="routeName"
+              id="routeName"
+            ></input>
+          </fieldset>
+          <fieldset class="form-box">
+            <label htmlFor="description">description of route</label>
+            <input required name="description" id="description"></input>
+          </fieldset>
+          <fieldset class="form-box">
+            <label>difficulty</label>
+            <div>
+              <div className="radio-container">
+                <fieldset class="radio-box">
+                  <Radio id="3" name="difficultyNumber" value="3"></Radio>
+                  <label htmlFor="3">3</label>
+                </fieldset>
+                <fieldset class="radio-box">
+                  <Radio id="4" name="difficultyNumber" value="4"></Radio>
+                  <label htmlFor="4"> 4</label>
+                </fieldset>
+                <fieldset class="radio-box">
+                  <Radio id="5" name="difficultyNumber" value="5"></Radio>
+                  <label htmlFor="5"> 5</label>
+                </fieldset>
+                <fieldset class="radio-box">
+                  <Radio id="6" name="difficultyNumber" value="6"></Radio>
+                  <label htmlFor="6"> 6</label>
+                </fieldset>
+                <fieldset class="radio-box">
+                  <Radio id="7" name="difficultyNumber" value="7"></Radio>
+                  <label htmlFor="7"> 7</label>
+                </fieldset>
+                <fieldset class="radio-box">
+                  <Radio id="8" name="difficultyNumber" value="8"></Radio>
+                  <label htmlFor="8"> 8</label>
+                </fieldset>
+              </div>
 
-                <div className="difficulty">
-                  <label htmlFor="a">
-                    <Radio name="difficultyLetter" value="a"></Radio>
-                    <p>a</p>
-                  </label>
-                  <label htmlFor="b">
-                    <Radio name="difficultyLetter" value="b"></Radio>
-                    <p>b</p>
-                  </label>
-                  <label htmlFor="c">
-                    <Radio name="difficultyLetter" value="c"></Radio>
-                    <p>c</p>
-                  </label>
-                </div>
-              </div>
-              <div className="type-container">
-                <div className="type">
-                  <Radio name="type" value="sport"></Radio>
-                  <Radio name="type" value="boulder"></Radio>
-                </div>
-                <div className="type">
-                  <label htmlFor="sport">
-                    <p>sportclimbing</p>
-                  </label>
-                  <label htmlFor="boulder">
-                    <p>boulder</p>
-                  </label>
-                </div>
+              <div className="radio-container">
+                <fieldset class="radio-box">
+                  <Radio id="a" name="difficultyLetter" value="a"></Radio>
+                  <label htmlFor="a"> a</label>
+                </fieldset>
+                <fieldset class="radio-box">
+                  <Radio id="b" name="difficultyLetter" value="b"></Radio>
+                  <label htmlFor="b"> b</label>
+                </fieldset>
+                <fieldset class="radio-box">
+                  <Radio id="c" name="difficultyLetter" value="c"></Radio>
+                  <label htmlFor="c"> c</label>
+                </fieldset>
               </div>
             </div>
-          </section>
+          </fieldset>
+          <div className="form-box">
+            <label htmlFor="type">type</label>
+
+            <div className="radio-container">
+              <fieldset class="radio-box">
+                <Radio id="sport" name="type" value="sport"></Radio>
+                <label htmlFor="sport">sport</label>
+              </fieldset>
+              <fieldset class="radio-box">
+                <Radio id="boulder" name="type" value="boulder"></Radio>
+                <label htmlFor="boulder">boulder</label>
+              </fieldset>
+            </div>
+          </div>
           <div className="button-container">
             <button type="submit">Create Route</button>
             <button
@@ -317,35 +316,32 @@ const AddFormStyled = styled.div`
   label {
     letter-spacing: 3px;
     margin-right: 4px;
-    p {
-      padding-top: 4px;
-    }
-  }
-
-  input,
-  button {
-    border: none;
-    height: 3rem;
-    border-radius: 4px;
   }
 
   input {
+    border: none;
+    height: 3rem;
+    border-radius: 4px;
     padding: 4px;
     background: var(--mainbg);
     width: 140px;
   }
-
   input[type='number'] {
     appearance: textfield;
   }
+
   button {
+    border: none;
+    height: 3rem;
+    border-radius: 4px;
     background: var(--gradientcolordark);
     color: var(--white);
     width: 150px;
+    &:active {
+      transform: scale(0.9);
+    }
   }
-  button:active {
-    transform: scale(0.9);
-  }
+
   .create-route_form,
   .create-spot_form {
     gap: 12px;
@@ -361,54 +357,28 @@ const AddFormStyled = styled.div`
     display: ${props => props.firstToggle};
   }
 
-  .section {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 8px;
-    margin: 0px 12px;
+  .form-box {
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    border: none;
   }
 
-  .spot {
+  .radio-box {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    gap: 8px;
+    gap: 4px;
+    margin: 0;
+    padding-top: 0;
+    border: none;
   }
 
-  .route {
-    display: grid;
-    grid-template-rows: 1fr 1fr 2fr 2fr;
-    gap: 8px;
-  }
-  .difficulty {
+  .radio-container {
     display: flex;
     text-align: center;
-  }
-
-  .type-container {
-    display: grid;
-  }
-  .type {
-    display: flex;
+    width: 140px;
     justify-content: space-around;
-  }
-  .done-message {
-    display: ${props => props.newSpotAdded};
-    margin-top: 12px;
-    p {
-      margin: 4px;
-    }
-  }
-  .add-icon {
-    position: absolute;
-    left: 5px;
-    top: 5px;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: var(--gradientcolordark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .canvas-container {
@@ -423,17 +393,6 @@ const AddFormStyled = styled.div`
     position: absolute;
     z-index: 3;
   }
-
-  .div {
-    position: absolute;
-    width: 240px;
-    height: 258px;
-    background: #000;
-  }
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-  }
   .drawing,
   .first-circle {
     position: absolute;
@@ -443,6 +402,17 @@ const AddFormStyled = styled.div`
   }
   .first-circle {
     z-index: 2;
+  }
+  .done-message {
+    display: ${props => props.newSpotAdded};
+    margin-top: 12px;
+    p {
+      margin: 4px;
+    }
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
   }
   .done-button:disabled {
     background: #333;
