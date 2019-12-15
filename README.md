@@ -1,4 +1,4 @@
-<img src="./src/Common/gif.gif"  width="272" height="480"/>
+<img src="./src/Common/readme.gif"  width="272" height="480"/>
 
 Urbanclimbing is an interactive guide to your favorite climbing-spots.
 Keep track of your climbed routes, orientate yourself on the map and
