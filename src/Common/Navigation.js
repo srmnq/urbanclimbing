@@ -73,9 +73,9 @@ const NavigationStyled = styled.nav`
       props.active.indexOf('map') > -1 && 'var(--darkgreen)'};
   }
   .profile {
-    background: ${props => props.active === '/profile' && 'var(--darkgreen)'};
+    background: ${props => props.active === '/Profile' && 'var(--darkgreen)'};
   }
   .addaspot {
-    background: ${props => props.active === '/addaspot' && 'var(--darkgreen)'};
+    background: ${props => props.active === '/addASpot' && 'var(--darkgreen)'};
   }
 `
