@@ -88,7 +88,7 @@ export default function DetailedSpot({
             routeName={route.routeName}
             description={route.description}
             difficulty={route.difficulty}
-            toggleIsClimbed={() => toggleIsClimbed(index, spot)}
+            toggleIsClimbed={() => toggleIsClimbed(index, 'boulder', spot)}
             isClimbed={route.isClimbed}
             changeColor={() => setHighlighted(route.routeName)}
           />
@@ -99,7 +99,7 @@ export default function DetailedSpot({
             routeName={route.routeName}
             description={route.description}
             difficulty={route.difficulty}
-            toggleIsClimbed={() => toggleIsClimbed(index, spot)}
+            toggleIsClimbed={() => toggleIsClimbed(index, 'sport', spot)}
             isClimbed={route.isClimbed}
             changeColor={() => setHighlighted(route.routeName)}
           />

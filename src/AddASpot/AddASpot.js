@@ -28,11 +28,11 @@ export default function AddASpot({ addASpot }) {
         <form className="create-spot_form" onSubmit={createSpot}>
           <AddPhoto image={image} setImage={setImage} />
 
-          <fieldset class="form-box">
+          <fieldset className="form-box">
             <label htmlFor="name">name</label>
             <input required id="name" name="name"></input>
           </fieldset>
-          <fieldset class="form-box">
+          <fieldset className="form-box">
             <label htmlFor="location long">longitude</label>
             <input
               placeholder="53.513586"
@@ -43,7 +43,7 @@ export default function AddASpot({ addASpot }) {
               id="location long"
             ></input>
           </fieldset>
-          <fieldset class="form-box">
+          <fieldset className="form-box">
             <label htmlFor="location lat">latitude</label>
             <input
               placeholder="9.978837"
@@ -85,7 +85,7 @@ export default function AddASpot({ addASpot }) {
                     cy={drawingCoordinate[1]}
                     r="2"
                     stroke="#048058"
-                    stroke-width="3"
+                    strokeWidth="3"
                     fill="#048058"
                   />
                 </svg>
@@ -101,9 +101,17 @@ export default function AddASpot({ addASpot }) {
                   position: 'absolute',
                 }}
               />
+              <button
+                type="button"
+                onClick={removePaint}
+                className="remove-paint"
+              >
+                remove Paint
+              </button>
             </div>
           )}
-          <fieldset class="form-box">
+
+          <fieldset className="form-box">
             <label htmlFor="routeName">name of route</label>
             <input
               onInput={() => setDisableDone(true)}
@@ -112,50 +120,50 @@ export default function AddASpot({ addASpot }) {
               id="routeName"
             ></input>
           </fieldset>
-          <fieldset class="form-box">
+          <fieldset className="form-box">
             <label htmlFor="description">description of route</label>
             <input required name="description" id="description"></input>
           </fieldset>
-          <fieldset class="form-box">
+          <fieldset className="form-box">
             <label>difficulty</label>
             <div>
               <div className="radio-container">
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="3" name="difficultyNumber" value="3"></Radio>
                   <label htmlFor="3">3</label>
                 </fieldset>
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="4" name="difficultyNumber" value="4"></Radio>
                   <label htmlFor="4"> 4</label>
                 </fieldset>
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="5" name="difficultyNumber" value="5"></Radio>
                   <label htmlFor="5"> 5</label>
                 </fieldset>
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="6" name="difficultyNumber" value="6"></Radio>
                   <label htmlFor="6"> 6</label>
                 </fieldset>
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="7" name="difficultyNumber" value="7"></Radio>
                   <label htmlFor="7"> 7</label>
                 </fieldset>
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="8" name="difficultyNumber" value="8"></Radio>
                   <label htmlFor="8"> 8</label>
                 </fieldset>
               </div>
 
               <div className="radio-container">
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="a" name="difficultyLetter" value="a"></Radio>
                   <label htmlFor="a"> a</label>
                 </fieldset>
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="b" name="difficultyLetter" value="b"></Radio>
                   <label htmlFor="b"> b</label>
                 </fieldset>
-                <fieldset class="radio-box">
+                <fieldset className="radio-box">
                   <Radio id="c" name="difficultyLetter" value="c"></Radio>
                   <label htmlFor="c"> c</label>
                 </fieldset>
@@ -166,11 +174,11 @@ export default function AddASpot({ addASpot }) {
             <label htmlFor="type">type</label>
 
             <div className="radio-container">
-              <fieldset class="radio-box">
+              <fieldset className="radio-box">
                 <Radio id="sport" name="type" value="sport"></Radio>
                 <label htmlFor="sport">sport</label>
               </fieldset>
-              <fieldset class="radio-box">
+              <fieldset className="radio-box">
                 <Radio id="boulder" name="type" value="boulder"></Radio>
                 <label htmlFor="boulder">boulder</label>
               </fieldset>
@@ -277,6 +285,11 @@ export default function AddASpot({ addASpot }) {
     setSecondPageForm(false)
     setImage('')
   }
+
+  function removePaint() {
+    setDrawingCoordinate([])
+    setCoordinate([])
+  }
 }
 
 const AddFormStyled = styled.div`
@@ -318,7 +331,7 @@ const AddFormStyled = styled.div`
     border-radius: 4px;
     background: var(--gradientcolordark);
     color: var(--white);
-    width: 150px;
+    width: 120px;
     &:active {
       transform: scale(0.9);
     }
@@ -395,9 +408,16 @@ const AddFormStyled = styled.div`
   .button-container {
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
   .done-button:disabled {
     background: #333;
+  }
+  .remove-paint {
+    position: absolute;
+    bottom: 0;
+    right: 10;
+    z-index: 4;
   }
 `
 AddASpot.propTypes = {
