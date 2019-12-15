@@ -4,6 +4,10 @@ import styled from 'styled-components/macro'
 import RouteDescription from './RouteDescription'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import mapWhite from '../icons/map-white.svg'
+import arrowWhite from '../icons/arrow-white.svg'
+import heartRed from '../icons/heart-red.svg'
+import heartWhite from '../icons/heart-white.svg'
 
 export default function DetailedSpot({
   toggleIsClimbed,
@@ -20,24 +24,17 @@ export default function DetailedSpot({
     <DetailedSpotStyled>
       <Link className="map-icon" to={`/map/${spot._id}`}>
         <div>
-          <img alt="map-icon" src={require('../../src/icons/map-white.svg')} />
+          <img alt="map-icon" src={mapWhite} />
         </div>
       </Link>
       <Link className="arrow-icon" to="/">
-        <img
-          alt="arrow-icon"
-          src={require('../../src/icons/arrow-white.svg')}
-        />
+        <img alt="arrow-icon" src={arrowWhite} />
       </Link>
 
       <div className="heart-icon">
         <img
           alt="heart-icon"
-          src={
-            spot.isBookmarked
-              ? require('../../src/icons/heart-red.svg')
-              : require('../../src/icons/heart-white.svg')
-          }
+          src={spot.isBookmarked ? heartRed : heartWhite}
           onClick={event => toggleBookmark(event, spot)}
         />
       </div>

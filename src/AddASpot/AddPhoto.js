@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
+import addPhoto from '../icons//add-photo.svg'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -40,7 +41,7 @@ export default function AddPhoto({ image, setImage }) {
           <label htmlFor="file">
             <img
               alt="addphoto"
-              src={require('../../src/icons/add-photo.svg')}
+              src={addPhoto}
               style={{ height: '50px', width: '50px' }}
             ></img>
           </label>

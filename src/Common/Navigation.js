@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
 import listwhite from '../icons/list-white.svg'
+import mapWhite from '../icons/map-white.svg'
+import mountainWhite from '../icons/mountain-white.svg'
+import addWhite from '../icons/add-white.svg'
 
 export default function Navigation() {
   return (
@@ -13,29 +16,17 @@ export default function Navigation() {
       </Link>
       <Link to="/map">
         <li className="map">
-          <img
-            className="search-icon"
-            alt="map"
-            src={require('../../src/icons/map-white.svg')}
-          />
+          <img className="search-icon" alt="map" src={mapWhite} />
         </li>
       </Link>
       <Link to="/Profile">
         <li className="profile">
-          <img
-            className="mountain-icon"
-            alt="mountain"
-            src={require('../../src/icons/mountain-white.svg')}
-          />
+          <img className="mountain-icon" alt="mountain" src={mountainWhite} />
         </li>
       </Link>
       <Link to="/addASpot">
         <li className="addaspot">
-          <img
-            className="search-icon"
-            alt="add a spot"
-            src={require('../../src/icons/add-white.svg')}
-          />
+          <img className="search-icon" alt="add a spot" src={addWhite} />
         </li>
       </Link>
     </NavigationStyled>

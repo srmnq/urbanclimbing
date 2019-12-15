@@ -10,6 +10,8 @@ import {
   countHardRoute,
 } from './Common/CountRoutes'
 import PropTypes from 'prop-types'
+import heartWhite from './icons/heart-white.svg'
+import mountainWhite from './icons/mountain-white.svg'
 
 export default function Profile({ spots }) {
   const [bookmarkedShown, setBookmarkedShown] = useState(true)
@@ -23,7 +25,7 @@ export default function Profile({ spots }) {
           className="bookmarked"
         >
           <div className="icon">
-            <img alt="map-icon" src={require('./icons/heart-white.svg')} />
+            <img alt="bookmarked spots" src={heartWhite} />
           </div>
           {bookmarkedShown &&
             spots
@@ -47,7 +49,7 @@ export default function Profile({ spots }) {
           className="climbed"
         >
           <div className="icon">
-            <img alt="map-icon" src={require('./icons/mountain-white.svg')} />
+            <img alt="climbed routes" src={mountainWhite} />
           </div>
           {climbedRoutesShown &&
             spots.map(spot =>

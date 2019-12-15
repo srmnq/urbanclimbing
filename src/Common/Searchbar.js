@@ -1,15 +1,12 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import searchbarIcon from '../icons/search.svg'
 
 export default function Searchbar({ onInput }) {
   return (
     <SearchbarStyled>
-      <img
-        alt="search"
-        className="search-icon"
-        src={require('../../src/icons/search.svg')}
-      />
+      <img alt="search" className="search-icon" src={searchbarIcon} />
       <input onInput={onInput} />
     </SearchbarStyled>
   )
