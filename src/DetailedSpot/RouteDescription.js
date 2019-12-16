@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import mountainCircle from '../icons/mountain-with-circle.svg'
+import mountainBlack from '../icons/mountain-black.svg'
 
 export default function RouteDescription({
   description,
@@ -23,11 +25,7 @@ export default function RouteDescription({
         onClick={toggleIsClimbed}
         alt="mountain-icon"
         className="mountain-icon"
-        src={
-          isClimbed
-            ? require('../../src/icons/mountain-with-circle.svg')
-            : require('../../src/icons/mountain-black.svg')
-        }
+        src={isClimbed ? mountainCircle : mountainBlack}
       />
     </RouteDescriptionStyled>
   )
@@ -71,6 +69,6 @@ RouteDescription.propTypes = {
   description: PropTypes.string.isRequired,
   routeName: PropTypes.string.isRequired,
   difficulty: PropTypes.string.isRequired,
-  toggleIsClimbed: PropTypes.func.isRequired,
-  isClimbed: PropTypes.bool.isRequired,
+  toggleIsClimbed: PropTypes.func,
+  isClimbed: PropTypes.bool,
 }

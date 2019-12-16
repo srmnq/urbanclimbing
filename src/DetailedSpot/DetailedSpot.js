@@ -4,6 +4,10 @@ import styled from 'styled-components/macro'
 import RouteDescription from './RouteDescription'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import mapWhite from '../icons/map-white.svg'
+import arrowWhite from '../icons/arrow-white.svg'
+import heartRed from '../icons/heart-red.svg'
+import heartWhite from '../icons/heart-white.svg'
 
 export default function DetailedSpot({
   toggleIsClimbed,
@@ -14,30 +18,23 @@ export default function DetailedSpot({
   const id = pathname.substring(6)
   const index = spots.findIndex(el => el._id === id)
   const spot = spots[index] || loading[0]
-  const [highlighted, setHighlighted] = useState('Kantholz')
+  const [highlighted, setHighlighted] = useState('')
 
   return (
     <DetailedSpotStyled>
       <Link className="map-icon" to={`/map/${spot._id}`}>
         <div>
-          <img alt="map-icon" src={require('../../src/icons/map-white.svg')} />
+          <img alt="map-icon" src={mapWhite} />
         </div>
       </Link>
       <Link className="arrow-icon" to="/">
-        <img
-          alt="arrow-icon"
-          src={require('../../src/icons/arrow-white.svg')}
-        />
+        <img alt="arrow-icon" src={arrowWhite} />
       </Link>
 
       <div className="heart-icon">
         <img
           alt="heart-icon"
-          src={
-            spot.isBookmarked
-              ? require('../../src/icons/heart-red.svg')
-              : require('../../src/icons/heart-white.svg')
-          }
+          src={spot.isBookmarked ? heartRed : heartWhite}
           onClick={event => toggleBookmark(event, spot)}
         />
       </div>
@@ -55,8 +52,8 @@ export default function DetailedSpot({
                 className="path"
                 d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
                 fill="transparent"
-                stroke={route.routeName === highlighted ? '#135058' : '#79898C'}
-                strokeWidth="4px"
+                stroke={route.routeName === highlighted ? '#048058' : '#A0B4B7'}
+                strokeWidth="6px"
               />
             </svg>
           ) : (
@@ -70,8 +67,8 @@ export default function DetailedSpot({
                 className="path"
                 d={`M ${route.coordinates.x1} ${route.coordinates.y1} L ${route.coordinates.x2} ${route.coordinates.y2} L${route.coordinates.x3} ${route.coordinates.y3}`}
                 fill="transparent"
-                stroke={route.routeName === highlighted ? '#135058' : '#79898C'}
-                strokeWidth="4px"
+                stroke={route.routeName === highlighted ? '#048058' : '#A0B4B7'}
+                strokeWidth="6px"
               />
             </svg>
           ) : (
@@ -88,7 +85,7 @@ export default function DetailedSpot({
             routeName={route.routeName}
             description={route.description}
             difficulty={route.difficulty}
-            toggleIsClimbed={() => toggleIsClimbed(index, spot)}
+            toggleIsClimbed={() => toggleIsClimbed(index, 'boulder', spot)}
             isClimbed={route.isClimbed}
             changeColor={() => setHighlighted(route.routeName)}
           />
@@ -99,7 +96,7 @@ export default function DetailedSpot({
             routeName={route.routeName}
             description={route.description}
             difficulty={route.difficulty}
-            toggleIsClimbed={() => toggleIsClimbed(index, spot)}
+            toggleIsClimbed={() => toggleIsClimbed(index, 'sport', spot)}
             isClimbed={route.isClimbed}
             changeColor={() => setHighlighted(route.routeName)}
           />

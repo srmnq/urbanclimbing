@@ -1,6 +1,10 @@
 {
   "name": "urbanclimbing",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "author": {
+    "name": "Sara Gfroerer"
+  },
+  "description": "Urbanclimbing, your interactive guide to your next climbing adventure in the city. Urbanclimbing is a capstone project",
   "private": true,
   "dependencies": {
     "@storybook/addon-info": "^5.2.6",

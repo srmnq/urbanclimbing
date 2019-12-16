@@ -3,6 +3,8 @@ import styled from 'styled-components/macro'
 import DifficultyBar from './DifficultyBar'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import heartRed from '../icons/heart-red.svg'
+import heartBlack from '../icons/heart-black.svg'
 
 export default function Spot({
   name,
@@ -35,11 +37,7 @@ export default function Spot({
       <img
         alt="heart-icon"
         className="heart-icon"
-        src={
-          isBookmarked
-            ? require('../../src/icons/heart-red.svg')
-            : require('../../src/icons/heart-black.svg')
-        }
+        src={isBookmarked ? heartRed : heartBlack}
         onClick={toggleBookmark}
       />
 

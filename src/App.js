@@ -44,7 +44,9 @@ function App() {
       <Switch>
         <Route exact path={`/spot/:id`}>
           <DetailedSpot
-            toggleIsClimbed={(index, spot) => toggleIsClimbed(index, spot)}
+            toggleIsClimbed={(index, type, spot) =>
+              toggleIsClimbed(index, type, spot)
+            }
             spots={spots}
             toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
           />
@@ -78,20 +80,20 @@ function App() {
     })
   }
 
-  function toggleIsClimbed(index, spot) {
-    let route = spot.routes.boulder[index]
+  function toggleIsClimbed(index, type, spot) {
+    let route = spot.routes[type][index]
 
     patchSpot({
       _id: spot._id,
       routes: {
         ...spot.routes,
-        boulder: [
-          ...spot.routes.boulder.slice(0, index),
+        [type]: [
+          ...spot.routes[type].slice(0, index),
           {
             ...route,
             isClimbed: !route.isClimbed,
           },
-          ...spot.routes.boulder.slice(index + 1),
+          ...spot.routes[type].slice(index + 1),
         ],
       },
     }).then(updatedSpot => {

@@ -9,6 +9,8 @@ import {
   countMediumRoute,
   countHardRoute,
 } from '../Common/CountRoutes'
+import heartRed from '../icons/heart-red.svg'
+import mountainCircle from '../icons/mountain-with-circle.svg'
 
 export default function Maps({ spotData }) {
   const pathname = window.location.pathname
@@ -41,9 +43,7 @@ export default function Maps({ spotData }) {
               )
             }}
             icon={{
-              url: spot.isBookmarked
-                ? require('../../src/icons/heart-red.svg')
-                : require('../../src/icons/mountain-with-circle.svg'),
+              url: spot.isBookmarked ? heartRed : mountainCircle,
             }}
           />
         ))}
