@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
-import addPhoto from '../icons//add-photo.svg'
+import addPhoto from '../icons/add-photo.svg'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
