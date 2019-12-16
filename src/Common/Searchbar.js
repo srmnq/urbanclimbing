@@ -6,8 +6,10 @@ import searchbarIcon from '../icons/search.svg'
 export default function Searchbar({ onInput }) {
   return (
     <SearchbarStyled>
-      <img alt="search" className="search-icon" src={searchbarIcon} />
-      <input onInput={onInput} />
+      <label htmlFor="searchbar">
+        <img alt="search" className="search-icon" src={searchbarIcon} />
+      </label>
+      <input id="searchbar" onInput={onInput} />
     </SearchbarStyled>
   )
 }
@@ -28,6 +30,11 @@ const SearchbarStyled = styled.div`
     border-radius: 12px;
     width: 100%;
     margin-left: 4px;
+  }
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 Searchbar.propTypes = {
