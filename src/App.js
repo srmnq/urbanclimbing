@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import SpotList from './Spotlist/SpotList'
+import React, { useState, useEffect, useContext } from 'react'
+
 import GlobalStyle from './GlobalStyles'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import DetailedSpot from './DetailedSpot/DetailedSpot'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  __RouterContext,
+} from 'react-router-dom'
+
 import { getSpots, patchSpot, postSpot } from './services'
-import WrappedMap from './Map/WrappedMapContainer'
-import AddASpot from './AddASpot/AddASpot'
-import Profile from './Profile'
+
 import spotData from './spots.json'
+import { animated, useTransition } from 'react-spring'
+import Routes from './Routes'
 
 function App() {
   const [spots, setSpots] = useState([])
@@ -18,97 +23,26 @@ function App() {
       .catch(setSpots(spotData))
   }, [])
 
+  // const transitions = useTransition(location, location => location.key, {
+  //   from: { transform: 'translate3d(100%,0,0)' },
+  //   enter: { transform: 'translate3d(0,0,0)' },
+  //   leave: { transform: 'translate3d(100%,0,0)' },
+  // })
+
+  const CurrentRoute = React.createContext({ path: '/' })
+
   return (
     <Router>
       <GlobalStyle />
-      <Switch>
-        <Route exact path={`/map/:id`}>
-          <WrappedMap spotData={spots} />
-        </Route>
-      </Switch>
-      <Switch>
-        <Route exact path="/addASpot">
-          <AddASpot addASpot={spot => addASpot(spot)} />
-        </Route>
-      </Switch>
-      <Switch>
-        <Route exact path="/Profile">
-          <Profile spots={spots} />
-        </Route>
-      </Switch>
-      <Switch>
-        <Route exact path="/map">
-          <WrappedMap spotData={spots} />
-        </Route>
-      </Switch>
-      <Switch>
-        <Route exact path={`/spot/:id`}>
-          <DetailedSpot
-            toggleIsClimbed={(index, type, spot) =>
-              toggleIsClimbed(index, type, spot)
-            }
-            spots={spots}
-            toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
-          />
-        </Route>
-      </Switch>
-
-      <Switch>
-        <Route exact path="/">
-          <SpotList
-            spotData={spots}
-            toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
-          />
-        </Route>
-      </Switch>
+      <Routes spots={spots} setSpots={setSpots} />
     </Router>
   )
 
-  function toggleBookmark(event, spot) {
-    event.preventDefault()
-    event.stopPropagation()
-    patchSpot({
-      _id: spot._id,
-      isBookmarked: !spot.isBookmarked,
-    }).then(updatedSpot => {
-      const index = spots.findIndex(el => el._id === updatedSpot._id)
-      setSpots([
-        ...spots.slice(0, index),
-        updatedSpot,
-        ...spots.slice(index + 1),
-      ])
-    })
-  }
-
-  function toggleIsClimbed(index, type, spot) {
-    let route = spot.routes[type][index]
-
-    patchSpot({
-      _id: spot._id,
-      routes: {
-        ...spot.routes,
-        [type]: [
-          ...spot.routes[type].slice(0, index),
-          {
-            ...route,
-            isClimbed: !route.isClimbed,
-          },
-          ...spot.routes[type].slice(index + 1),
-        ],
-      },
-    }).then(updatedSpot => {
-      const index = spots.findIndex(el => el._id === updatedSpot._id)
-      setSpots([
-        ...spots.slice(0, index),
-        updatedSpot,
-        ...spots.slice(index + 1),
-      ])
-    })
-  }
-
-  function addASpot(spot) {
-    postSpot(spot)
-  }
+  // function useRouter() {
+  //   const path = useContext(CurrentRoute)
+  //   console.log(path)
+  //   console.log(__RouterContext)
+  // }
 }
 
 export default App
