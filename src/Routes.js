@@ -1,27 +1,26 @@
-import React, { useState, useEffect, useContext } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  __RouterContext,
-} from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Switch, Route, __RouterContext } from 'react-router-dom'
 import WrappedMap from './Map/WrappedMapContainer'
 import AddASpot from './AddASpot/AddASpot'
 import Profile from './Profile'
 import DetailedSpot from './DetailedSpot/DetailedSpot'
 import Spotlist from './Spotlist/SpotList'
-import { getSpots, patchSpot, postSpot } from './services'
+import { patchSpot, postSpot } from './services'
+import { animated, useTransition } from 'react-spring'
 
 export default function Routes({ spots, setSpots }) {
-  const componentOne = () => {
-    return <div>hallo</div>
-  }
   const { location } = useRouter()
   console.log(location)
 
-  return (
-    <div>
-      <Switch>
+  const transitions = useTransition(location, location => location.key, {
+    from: { transform: 'translate3d(100%,0,0)' },
+    enter: { transform: 'translate3d(0,0,0)' },
+    leave: { transform: 'translate3d(100%,0,0)' },
+  })
+
+  return transitions.map(({ item, key, props }) => (
+    <animated.div key={key} style={props}>
+      <Switch location={location}>
         <Route exact path={`/map/:id`}>
           <WrappedMap spotData={spots} />
         </Route>
@@ -48,8 +47,8 @@ export default function Routes({ spots, setSpots }) {
           <Spotlist spotData={spots} toggleBookmark={toggleBookmark} />
         </Route>
       </Switch>
-    </div>
-  )
+    </animated.div>
+  ))
 
   function useRouter() {
     return useContext(__RouterContext)
