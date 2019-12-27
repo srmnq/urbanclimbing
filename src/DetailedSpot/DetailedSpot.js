@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import loading from '../loading.json'
 import styled from 'styled-components/macro'
 import RouteDescription from './RouteDescription'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import mapWhite from '../icons/map-white.svg'
 import arrowWhite from '../icons/arrow-white.svg'
@@ -14,7 +14,8 @@ export default function DetailedSpot({
   spots,
   toggleBookmark,
 }) {
-  const pathname = window.location.pathname
+  const location = useLocation()
+  const pathname = location.pathname
   const id = pathname.substring(6)
   const index = spots.findIndex(el => el._id === id)
   const spot = spots[index] || loading[0]

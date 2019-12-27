@@ -12,7 +12,7 @@ import {
 
 import { Link } from 'react-router-dom'
 
-export default function SpotList({ spotData, toggleBookmark }) {
+export default function SpotList({ spotData, toggleBookmark, ...props }) {
   const [input, setInput] = useState('')
   const [fuzzySearchResult, setFuzzySearchResult] = useState(spotData)
 
@@ -21,7 +21,7 @@ export default function SpotList({ spotData, toggleBookmark }) {
   }, [input, spotData])
 
   return (
-    <SpotListStyled>
+    <SpotListStyled {...props}>
       <div>
         <Searchbar onInput={event => setInput(event.target.value)} />
         {fuzzySearchResult.map((spot, index) => (
@@ -71,6 +71,8 @@ export default function SpotList({ spotData, toggleBookmark }) {
 const SpotListStyled = styled.div`
   display: grid;
   grid-template-rows: auto 40px;
+  height: 100vh;
+  overflow: scroll;
   a {
     text-decoration: none;
     cursor: default;

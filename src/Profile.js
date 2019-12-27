@@ -76,6 +76,8 @@ export default function Profile({ spots }) {
 const ProfileStyled = styled.div`
   display: grid;
   grid-template-rows: auto 40px;
+  height: 100vh;
+  overflow: scroll;
   .container {
     display: grid;
     position: relative;

@@ -1,58 +1,77 @@
-import React, { useContext } from 'react'
-import { Switch, Route, __RouterContext } from 'react-router-dom'
-import WrappedMap from './Map/WrappedMapContainer'
-import AddASpot from './AddASpot/AddASpot'
-import Profile from './Profile'
+import React, { useState, useEffect } from 'react'
+import { Switch, Route, useLocation, useHistory } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import DetailedSpot from './DetailedSpot/DetailedSpot'
+import { createBrowserHistory } from 'history'
 import Spotlist from './Spotlist/SpotList'
-import { patchSpot, postSpot } from './services'
+import { useLastLocation } from 'react-router-last-location'
+
+import { patchSpot } from './services'
 import { animated, useTransition } from 'react-spring'
 
 export default function Routes({ spots, setSpots }) {
-  const { location } = useRouter()
-  console.log(location)
+  const location = useLocation()
 
-  const transitions = useTransition(location, location => location.key, {
-    from: { transform: 'translate3d(100%,0,0)' },
-    enter: { transform: 'translate3d(0,0,0)' },
-    leave: { transform: 'translate3d(100%,0,0)' },
+  const lastLocation = useLastLocation() || { pathname: '/' }
+
+  console.log(lastLocation)
+  const x = location.pathname === '/' ? -100 : 100
+  const y = location.pathname === '/' ? 100 : -100
+
+  const transitionsleft = useTransition(location, location => location.key, {
+    from: { transform: `translatex(${x}%)` },
+    enter: { transform: 'translatex(0)' },
+    leave: { transform: `translatex(${y}%)` },
   })
+  const conditions = ['Profile', 'map', 'add']
 
-  return transitions.map(({ item, key, props }) => (
-    <animated.div key={key} style={props}>
-      <Switch location={location}>
-        <Route exact path={`/map/:id`}>
-          <WrappedMap spotData={spots} />
-        </Route>
-        <Route exact path="/addASpot">
-          <AddASpot addASpot={spot => addASpot(spot)} />
-        </Route>
-        <Route exact path="/Profile">
-          <Profile spots={spots} />
-        </Route>
-        <Route exact path="/map">
-          <WrappedMap spotData={spots} />
-        </Route>
+  return (
+    <>
+      {conditions.some(el => lastLocation.pathname.includes(el)) ? (
+        <Switch>
+          <Route exact path={`/spot/:id`}>
+            <DetailedSpot
+              toggleIsClimbed={(index, type, spot) =>
+                toggleIsClimbed(index, type, spot)
+              }
+              spots={spots}
+              toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
+            />
+          </Route>
+          <Route exact path="/">
+            <Spotlist spotData={spots} toggleBookmark={toggleBookmark} />
+          </Route>
+        </Switch>
+      ) : (
+        transitionsleft.map(({ item, key, props }) => (
+          <animated.div
+            key={key}
+            style={{
+              ...props,
+              position: 'absolute',
+              width: '100vw',
+            }}
+          >
+            <Switch location={item}>
+              <Route exact path={`/spot/:id`}>
+                <DetailedSpot
+                  toggleIsClimbed={(index, type, spot) =>
+                    toggleIsClimbed(index, type, spot)
+                  }
+                  spots={spots}
+                  toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
+                />
+              </Route>
+              <Route exact path="/">
+                <Spotlist spotData={spots} toggleBookmark={toggleBookmark} />
+              </Route>
+            </Switch>
+          </animated.div>
+        ))
+      )}
+    </>
+  )
 
-        <Route exact path={`/spot/:id`}>
-          <DetailedSpot
-            toggleIsClimbed={(index, type, spot) =>
-              toggleIsClimbed(index, type, spot)
-            }
-            spots={spots}
-            toggleBookmark={(event, spot) => toggleBookmark(event, spot)}
-          />
-        </Route>
-        <Route exact path="/">
-          <Spotlist spotData={spots} toggleBookmark={toggleBookmark} />
-        </Route>
-      </Switch>
-    </animated.div>
-  ))
-
-  function useRouter() {
-    return useContext(__RouterContext)
-  }
   function toggleBookmark(event, spot) {
     event.preventDefault()
     event.stopPropagation()
@@ -93,9 +112,5 @@ export default function Routes({ spots, setSpots }) {
         ...spots.slice(index + 1),
       ])
     })
-  }
-
-  function addASpot(spot) {
-    postSpot(spot)
   }
 }

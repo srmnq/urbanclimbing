@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Spot from '../Spotlist/Spot'
 import PropTypes from 'prop-types'
 import {
@@ -13,7 +13,8 @@ import heartRed from '../icons/heart-red.svg'
 import mountainCircle from '../icons/mountain-with-circle.svg'
 
 export default function Maps({ spotData }) {
-  const pathname = window.location.pathname
+  const location = useLocation()
+  const pathname = location.pathname
   const id = pathname.substring(5)
 
   const index = spotData.findIndex(el => el._id === id)
