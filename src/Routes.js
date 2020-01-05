@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Switch, Route, useLocation, useHistory } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import React from 'react'
+import { Switch, Route, useLocation } from 'react-router-dom'
 import DetailedSpot from './DetailedSpot/DetailedSpot'
-import { createBrowserHistory } from 'history'
 import Spotlist from './Spotlist/SpotList'
 import { useLastLocation } from 'react-router-last-location'
 
@@ -14,7 +12,6 @@ export default function Routes({ spots, setSpots }) {
 
   const lastLocation = useLastLocation() || { pathname: '/' }
 
-  console.log(lastLocation)
   const x = location.pathname === '/' ? -100 : 100
   const y = location.pathname === '/' ? 100 : -100
 

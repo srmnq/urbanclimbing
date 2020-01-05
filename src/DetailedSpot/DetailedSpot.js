@@ -109,6 +109,7 @@ export default function DetailedSpot({
 
 const DetailedSpotStyled = styled.div`
   display: grid;
+  justify-items: center;
   position: relative;
   height: 100vh;
   grid-template-rows: 400px auto;

@@ -1,6 +1,8 @@
+/*global google*/
+
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
+import { GoogleMap, Marker } from 'react-google-maps'
 import { Link, useLocation } from 'react-router-dom'
 import Spot from '../Spotlist/Spot'
 import PropTypes from 'prop-types'
@@ -33,6 +35,9 @@ export default function Maps({ spotData }) {
       <MapStyled>
         {spotData.map(spot => (
           <Marker
+            animation={
+              spot === clickedSpot ? google.maps.Animation.BOUNCE : null
+            }
             key={spot._id}
             position={{ lat: spot.location[0], lng: spot.location[1] }}
             onClick={() => {
@@ -45,21 +50,11 @@ export default function Maps({ spotData }) {
             }}
             icon={{
               url: spot.isBookmarked ? heartRed : mountainCircle,
+              className: 'clicked',
             }}
           />
         ))}
 
-        {clickedSpot && (
-          <InfoWindow
-            position={{
-              lat: clickedSpot.location[0],
-              lng: clickedSpot.location[1],
-            }}
-            onCloseClick={() => setClickedSpot(null)}
-          >
-            <div>{clickedSpot.name}</div>
-          </InfoWindow>
-        )}
         {clickedSpot && (
           <Link to={`/spot/${clickedSpot._id}`}>
             <MapSpot
@@ -94,6 +89,11 @@ const MapSpot = styled(Spot)`
   border: 4px solid var(--gradientcolordark);
   bottom: 50px;
   left: 10px;
+
+  .clicked {
+    transform: scale(1.4);
+    position: absolute;
+  }
 `
 Maps.propTypes = {
   spotData: PropTypes.array.isRequired,

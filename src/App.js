@@ -6,7 +6,6 @@ import GlobalStyle from './GlobalStyles'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { getSpots, postSpot, patchSpot } from './services'
 import spotData from './spots.json'
-import Spotlist from './Spotlist/SpotList'
 import { LastLocationProvider } from 'react-router-last-location'
 import Routes from './Routes'
 
@@ -43,22 +42,6 @@ function App() {
   )
   function addASpot(spot) {
     postSpot(spot)
-  }
-
-  function toggleBookmark(event, spot) {
-    event.preventDefault()
-    event.stopPropagation()
-    patchSpot({
-      _id: spot._id,
-      isBookmarked: !spot.isBookmarked,
-    }).then(updatedSpot => {
-      const index = spots.findIndex(el => el._id === updatedSpot._id)
-      setSpots([
-        ...spots.slice(0, index),
-        updatedSpot,
-        ...spots.slice(index + 1),
-      ])
-    })
   }
 }
 

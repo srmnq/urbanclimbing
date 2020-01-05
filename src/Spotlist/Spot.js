@@ -104,6 +104,7 @@ const SpotStyled = styled.div`
     top: 14px;
     width: 14px;
     cursor: pointer;
+    transform: scale(1.2);
   }
 
   .mainImage {
