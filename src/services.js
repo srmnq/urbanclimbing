@@ -2,11 +2,11 @@ export function getSpots() {
   return fetch('/spots').then(res => res.json())
 }
 export function getSpot(id) {
-  return fetch('/spots/' + id).then(res => res.json())
+  return fetch('.spots/' + id).then(res => res.json())
 }
 
 export function postSpot(spot) {
-  return fetch('/spots', {
+  return fetch('.spots', {
     method: 'POST',
     body: JSON.stringify(spot),
     headers: {
@@ -16,7 +16,7 @@ export function postSpot(spot) {
 }
 
 export function patchSpot(spot) {
-  return fetch('/spots/' + spot._id, {
+  return fetch('.spots/' + spot._id, {
     method: 'PATCH',
     body: JSON.stringify(spot),
     headers: {
