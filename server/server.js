@@ -8,32 +8,34 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
 
 const app = express()
+app.use(express.static('../public'))
 app.use(express.json())
-app.use(express.static.json())
 
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on ${PORT}`))
 
-app.get('.spots', (req, res) => {
+app.get('/spots', (req, res) => {
   Spot.find()
     .then(spots => res.json(spots))
     .catch(err => res.json(err))
 })
 
-app.get('.spots/:id', (req, res) => {
+app.get('/spots/:id', (req, res) => {
   Spot.findById(req.params.id)
     .then(spot => res.json(spot))
     .catch(err => res.json(err))
 })
 
-app.post('.spots', (req, res) => {
+app.post('/spots', (req, res) => {
   Spot.create(req.body)
     .then(spot => res.json(spot))
     .catch(err => res.json(err))
 })
 
-app.patch('.spots/:id', (req, res) => {
+app.patch('/spots/:id', (req, res) => {
   Spot.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(spot => res.json(spot))
     .catch(err => res.json(err))
 })
+
+module.exports = app
