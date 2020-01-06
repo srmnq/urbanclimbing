@@ -9,6 +9,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 const app = express()
 app.use(express.json())
+app.use(express.static.json())
 
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on ${PORT}`))
