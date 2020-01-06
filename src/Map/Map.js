@@ -50,7 +50,6 @@ export default function Maps({ spotData }) {
             }}
             icon={{
               url: spot.isBookmarked ? heartRed : mountainCircle,
-              className: 'clicked',
             }}
           />
         ))}
@@ -89,11 +88,6 @@ const MapSpot = styled(Spot)`
   border: 4px solid var(--gradientcolordark);
   bottom: 50px;
   left: 10px;
-
-  .clicked {
-    transform: scale(1.4);
-    position: absolute;
-  }
 `
 Maps.propTypes = {
   spotData: PropTypes.array.isRequired,

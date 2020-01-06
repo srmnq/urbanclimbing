@@ -7,6 +7,7 @@
   "description": "Urbanclimbing, your interactive guide to your next climbing adventure in the city. Urbanclimbing is a capstone project",
   "private": true,
   "dependencies": {
+    "@n8tb1t/use-scroll-position": "^1.0.43",
     "@storybook/addon-info": "^5.2.6",
     "@storybook/addon-knobs": "^5.2.6",
     "axios": "^0.19.0",

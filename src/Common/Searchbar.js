@@ -3,9 +3,9 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import searchbarIcon from '../icons/search.svg'
 
-export default function Searchbar({ onInput }) {
+export default function Searchbar({ onInput, ...props }) {
   return (
-    <SearchbarStyled>
+    <SearchbarStyled {...props}>
       <label htmlFor="searchbar">
         <img alt="search" className="search-icon" src={searchbarIcon} />
       </label>
