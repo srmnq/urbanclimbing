@@ -2,7 +2,7 @@ export function getSpots() {
   return fetch('/spots').then(res => res.json())
 }
 export function getSpot(id) {
-  return fetch('/spots/' + id).then(res => res.json())
+  return fetch('.spots/' + id).then(res => res.json())
 }
 
 export function postSpot(spot) {

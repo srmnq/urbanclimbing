@@ -1,16 +1,22 @@
 const express = require('express')
 const Spot = require('./models/Spot')
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/urbanclimbing', {
+const path = require('path')
+
+const {
+  MONGODB_URI = 'mongodb://localhost:27017/urbanclimbing',
+  PORT = 3333
+} = process.env
+
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
+  useUnifiedTopology: true
 })
 
 const app = express()
 app.use(express.json())
+app.use(express.static(path.join(__dirname, '../build')))
 
-const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on ${PORT}`))
 
 app.get('/spots', (req, res) => {
@@ -35,4 +41,8 @@ app.patch('/spots/:id', (req, res) => {
   Spot.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(spot => res.json(spot))
     .catch(err => res.json(err))
+})
+
+app.get('*', (req, res) => {
+  res.render(path.join(__dirname, '/build/index.html'))
 })

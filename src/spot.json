@@ -1,0 +1,356 @@
+[
+  {
+    "_id": "5de509f1ceab0c4dc9919458",
+    "name": "Speicherstadt",
+    "routes": {
+      "boulder": [
+        {
+          "_id": "5de776ea2e297f048f7334a1",
+          "routeName": "Himmelsleiter",
+          "difficulty": "6b",
+          "isClimbed": true,
+          "description": "short, but good",
+          "coordinates": {
+            "x1": "10",
+            "x2": "60",
+            "x3": "40",
+            "y1": "10",
+            "y2": "40",
+            "y3": "380"
+          }
+        },
+        {
+          "_id": "5de9603886b6e3040e9ee0e4",
+          "routeName": "Wasserweg",
+          "difficulty": "4c",
+          "isClimbed": true,
+          "description": "good for warm up",
+          "coordinates": {
+            "x1": "10",
+            "x2": "180",
+            "x3": "280",
+            "y1": "10",
+            "y2": "130",
+            "y3": "200"
+          }
+        },
+        {
+          "_id": "5de776ea2e297f048f7334a0",
+          "routeName": "Jenga",
+          "difficulty": "6a",
+          "isClimbed": true,
+          "description": "divers techniques needed",
+          "coordinates": {
+            "x1": "380",
+            "x2": "180",
+            "x3": "180",
+            "y1": "90",
+            "y2": "100",
+            "y3": "310"
+          }
+        }
+      ],
+      "sport": []
+    },
+    "location": [53.542583, 9.992203],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520528/Speicherstadt.png",
+    "isBookmarked": true
+  },
+  {
+    "_id": "5de509f1ceab0c4dc9919459",
+    "name": "Magellanterassen",
+    "routes": {
+      "boulder": [
+        {
+          "_id": "5de779f52e297f048f7334ad",
+          "routeName": "Hochhinaus",
+          "difficulty": "6b",
+          "isClimbed": false,
+          "description": "the last move is the hardest part",
+          "coordinates": {
+            "x1": "70",
+            "x2": "70",
+            "x3": "70",
+            "y1": "10",
+            "y2": "120",
+            "y3": "300"
+          }
+        },
+        {
+          "_id": "5de779f52e297f048f7334ac",
+          "routeName": "Traverse",
+          "difficulty": "5a",
+          "isClimbed": true,
+          "description": "good food technique exercise",
+          "coordinates": {
+            "x1": "10",
+            "x2": "170",
+            "x3": "300",
+            "y1": "220",
+            "y2": "170",
+            "y3": "170"
+          }
+        }
+      ],
+      "sport": []
+    },
+    "location": [53.54197, 9.992248],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/q_38/v1575572454/Screenshot_2019-12-04_at_22.05.50_s31t2t.png",
+    "isBookmarked": false
+  },
+  {
+    "_id": "5de509f1ceab0c4dc991945a",
+    "name": "Kilimanschanzo",
+    "routes": {
+      "boulder": [],
+      "sport": [
+        {
+          "_id": "5de780517cd8c90b6aca3a16",
+          "routeName": "Schattenwand",
+          "difficulty": "8a",
+          "isClimbed": false,
+          "description": "small holds",
+          "coordinates": {
+            "x1": "20",
+            "x2": "20",
+            "x3": "20",
+            "y1": "70",
+            "y2": "170",
+            "y3": "400"
+          }
+        },
+        {
+          "_id": "5de780517cd8c90b6aca3a15",
+          "routeName": "Steinschleuder",
+          "difficulty": "8b",
+          "isClimbed": false,
+          "description": "endurance power needed",
+          "coordinates": {
+            "x1": "50",
+            "x2": "50",
+            "x3": "50",
+            "y1": "60",
+            "y2": "170",
+            "y3": "400"
+          }
+        },
+        {
+          "_id": "5de780517cd8c90b6aca3a14",
+          "routeName": "Kindergeburtstag",
+          "difficulty": "3a",
+          "isClimbed": false,
+          "description": "also for grown-ups a nice route",
+          "coordinates": {
+            "x1": "180",
+            "x2": "180",
+            "x3": "180",
+            "y1": "0",
+            "y2": "170",
+            "y3": "400"
+          }
+        }
+      ]
+    },
+    "location": [53.562074, 9.960204],
+    "mainImage": "https://res.cloudinary.com/dpsv2mxiz/image/upload/v1574520527/Kilimanschanzo.png",
+    "isBookmarked": false
+  },
+  {
+    "_id": "5df510dd4f276a06a6bf9409",
+    "location": [53.544562, 9.895742],
+    "name": "Alter Schwede",
+    "isBookmarked": false,
+    "mainImage": "http://res.cloudinary.com/dpsv2mxiz/image/upload/v1576341560/syugt9fskx1xcvgxgzhc.png",
+    "routes": {
+      "boulder": [
+        {
+          "_id": "5df510dd4f276a06a6bf940b",
+          "routeName": "Normalweg",
+          "difficulty": "6b",
+          "description": "only startmove is difficult",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 11.052698898315429,
+            "x2": 20.32769889831543,
+            "x3": 17.236032231648764,
+            "y1": 344.8061920875727,
+            "y2": 186.66665720385174,
+            "y3": 47.13177348292151
+          }
+        },
+        {
+          "_id": "5df510dd4f276a06a6bf940a",
+          "routeName": "Hauruck",
+          "difficulty": "7b",
+          "description": "trust your shoes",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 83.7068655649821,
+            "x2": 145.54019889831542,
+            "x3": 43.515198898315425,
+            "y1": 309.1472773588905,
+            "y2": 157.2092928627665,
+            "y3": 33.17828511082849
+          }
+        }
+      ],
+      "sport": []
+    }
+  },
+  {
+    "_id": "5df512384f276a06a6bf940e",
+    "location": [53.560165, 9.982154],
+    "name": "Planten und Bloomen",
+    "isBookmarked": false,
+    "mainImage": "http://res.cloudinary.com/dpsv2mxiz/image/upload/v1576341953/kzejktnr1gvtlgdal0ct.png",
+    "routes": {
+      "boulder": [
+        {
+          "_id": "5df512384f276a06a6bf9411",
+          "routeName": "Kantenkraxler",
+          "difficulty": "6b",
+          "description": "small footholds",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 159.45269889831545,
+            "x2": 159.45269889831545,
+            "x3": 165.63603223164876,
+            "y1": 346.3565796844719,
+            "y2": 183.56588201005331,
+            "y3": 50.23254867671996
+          }
+        },
+        {
+          "_id": "5df512384f276a06a6bf9410",
+          "routeName": "Pflanzenkunde",
+          "difficulty": "5b",
+          "description": "follow the chalk",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 205.82769889831542,
+            "x2": 193.46103223164874,
+            "x3": 204.2818655649821,
+            "y1": 301.3953393743944,
+            "y2": 102.94572697129361,
+            "y3": 20.775184335634687
+          }
+        },
+        {
+          "_id": "5df512384f276a06a6bf940f",
+          "routeName": "the unusual way",
+          "difficulty": "7a",
+          "description": "balancy and hard",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 309.39853223164874,
+            "x2": 320.21936556498207,
+            "x3": 335.67769889831544,
+            "y1": 335.5038665061773,
+            "y2": 158.7596804596657,
+            "y3": 48.68216107982074
+          }
+        }
+      ],
+      "sport": []
+    }
+  },
+  {
+    "_id": "5df515934f276a06a6bf9412",
+    "location": [53.585749, 10.044895],
+    "name": "T.R.U.D.E",
+    "isBookmarked": false,
+    "mainImage": "http://res.cloudinary.com/dpsv2mxiz/image/upload/v1576342790/k2fya6599rx6n0rmihdk.png",
+    "routes": {
+      "boulder": [],
+      "sport": [
+        {
+          "_id": "5df515934f276a06a6bf9415",
+          "routeName": "straight up",
+          "difficulty": "7b",
+          "description": "good view",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 184.18603223164877,
+            "x2": 174.91103223164876,
+            "x3": 157.9068655649821,
+            "y1": 326.201540924782,
+            "y2": 147.90696728137112,
+            "y3": 33.17828511082849
+          }
+        },
+        {
+          "_id": "5df515934f276a06a6bf9414",
+          "routeName": "turn right",
+          "difficulty": "7c",
+          "description": "really fun",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 212.01103223164876,
+            "x2": 315.5818655649821,
+            "x3": 219.74019889831544,
+            "y1": 315.3488277464874,
+            "y2": 209.9224711573401,
+            "y3": 48.68216107982074
+          }
+        },
+        {
+          "_id": "5df515934f276a06a6bf9413",
+          "routeName": "turn left",
+          "difficulty": "7b",
+          "description": "also good",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 160.99853223164877,
+            "x2": 12.598532231648763,
+            "x3": 128.53603223164876,
+            "y1": 319.9999905371851,
+            "y2": 180.46510681625486,
+            "y3": 36.27906030462694
+          }
+        }
+      ]
+    }
+  },
+  {
+    "_id": "5df516344f276a06a6bf9416",
+    "location": [53.543235, 9.97628],
+    "name": "Cap San Diego",
+    "isBookmarked": false,
+    "mainImage": "http://res.cloudinary.com/dpsv2mxiz/image/upload/v1576342957/jx8x6sbkd3e01dzh5tjf.png",
+    "routes": {
+      "boulder": [
+        {
+          "_id": "5df516344f276a06a6bf9418",
+          "routeName": "Nordseeküste",
+          "difficulty": "6b",
+          "description": "start in sitting position",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 170.27353223164877,
+            "x2": 264.5693655649821,
+            "x3": 317.12769889831543,
+            "y1": 385.1162696069525,
+            "y2": 199.06975797904553,
+            "y3": 8.372083560440892
+          }
+        },
+        {
+          "_id": "5df516344f276a06a6bf9417",
+          "routeName": "strechy",
+          "difficulty": "7b",
+          "description": "very technical",
+          "isClimbed": false,
+          "coordinates": {
+            "x1": 358.86519889831544,
+            "x2": 349.59019889831546,
+            "x3": 340.31519889831543,
+            "y1": 385.1162696069525,
+            "y2": 244.03099828912306,
+            "y3": 22.325571932533915
+          }
+        }
+      ],
+      "sport": []
+    }
+  }
+]
