@@ -19,16 +19,10 @@ const GlobalStyle = createGlobalStyle`
     --white: #EEEEEE;
     --boxshadow:  0px 2px 4px #000;
 
-
     background: var(--mainbg) ;
     text-align: left;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 62.5%;
-
-   
-
-
-
 }
 `
 

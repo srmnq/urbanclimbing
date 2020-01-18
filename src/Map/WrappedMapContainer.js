@@ -23,6 +23,8 @@ export default function WrappedMapContainer({ spotData }) {
 
 const WrappedMapStyled = styled.div`
   position: relative;
+  display: grid;
+  grid-template-rows: auto 40px;
 `
 
 WrappedMapContainer.propTypes = {

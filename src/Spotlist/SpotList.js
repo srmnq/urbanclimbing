@@ -22,7 +22,7 @@ export default function SpotList({ spotData, toggleBookmark }) {
 
   return (
     <SpotListStyled>
-      <div>
+      <div className="wrapper">
         <SearchbarStyled onInput={event => setInput(event.target.value)} />
         {fuzzySearchResult.map((spot, index) => (
           <Link to={`/spot/${spot._id}`} key={index}>
@@ -72,14 +72,20 @@ const SpotListStyled = styled.div`
   display: grid;
   grid-template-rows: auto 40px;
   height: 100vh;
-  overflow: scroll;
+
   a {
     text-decoration: none;
     cursor: default;
   }
+
+  .wrapper {
+    overflow: scroll;
+  }
 `
 
 const SearchbarStyled = styled(Searchbar)`
+
+
   /* position: fixed;
   top: 200;
   right: 0;

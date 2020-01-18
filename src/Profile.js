@@ -82,7 +82,10 @@ const ProfileStyled = styled.div`
     display: grid;
     position: relative;
     justify-items: center;
+    align-content: start;
     margin-top: 20px;
+
+    overflow: scroll;
   }
   a {
     text-decoration: none;

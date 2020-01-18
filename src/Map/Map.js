@@ -76,6 +76,7 @@ export default function Maps({ spotData }) {
 }
 
 const MapStyled = styled.div`
+  height: calc(100vh -40px);
   h1 {
     color: red;
     position: absolute;
