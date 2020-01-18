@@ -101,10 +101,11 @@ const SpotStyled = styled.div`
   .heart-icon {
     position: absolute;
     right: 10px;
+
     top: 14px;
     width: 14px;
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(1.6);
   }
 
   .mainImage {

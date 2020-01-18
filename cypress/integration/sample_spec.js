@@ -5,39 +5,42 @@ describe('My First Test', function() {
   })
 })
 
-// describe('Home', () => {
-//   beforeEach(() => {
-//     cy.visit('http://localhost:3000')
-//   })
-//   it('has the correct title', () => {
-//     cy.title().should('equal', 'React App')
-//   })
-//   it('has a navigation', () => {
-//     cy.contains('Create').click()
-//     cy.contains('Create!')
-//   })
-//   describe('Card', () => {
-//     it('has a bookmark', () => {
-//       cy.get('[class^=Card__]')
-//         .first()
-//         .find('[class^=Bookmark]')
-//         .click()
-//     })
-//   })
-// })
-
-describe('My second Test', function() {
-  it('Does not do much!', function() {
+describe('Link Test', function() {
+  it('Link to Detailed Site', function() {
     cy.visit('http://localhost:3000/')
-    cy.get('img[class=heart-icon]')
+    cy.get('.mainImage')
       .first()
       .click()
-    cy.url().should('contain', 'foo')
+    cy.url().should('contain', 'spot')
   })
-  //   describe('bookmarked', () => {
-  //     it('changes color', () => {
-  //       cy.get('[class = heart-icon')
-  //         .first()
-  //         .find('/static/media/heart-red.29c62a9f.svg')
-  //     })
+})
+
+describe('Map Test', function() {
+  it('Link to Map', function() {
+    cy.visit('http://localhost:3000/spot/5de509f1ceab0c4dc9919458')
+    cy.get('.map-icon')
+      .first()
+      .click()
+    cy.url().should('contain', 'map')
+  })
+})
+
+describe('Link from Map back Test', function() {
+  it('Link from Map to Detailed Site', function() {
+    cy.visit('http://localhost:3000/map/5de509f1ceab0c4dc9919458')
+    cy.get('.Spot__SpotStyled-sc-5mmwu-0 ')
+      .first()
+      .click()
+    cy.url().should('contain', 'spot')
+  })
+})
+
+describe('Bookmark spotlist', function() {
+  it('Bookmark spotlist', function() {
+    cy.visit('http://localhost:3000/')
+    cy.get('[src ="/static/media/heart-black.95287aa4.svg"]')
+      .first()
+      .click()
+    cy.get('[src ="/static/media/heart-red.29c62a9f.svg"]')
+  })
 })
