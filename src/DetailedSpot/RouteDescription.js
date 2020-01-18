@@ -1,16 +1,19 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import mountainCircle from '../icons/mountain-with-circle.svg'
+import mountainBlack from '../icons/mountain-black.svg'
 
-export default function DetailedRoute({
+export default function RouteDescription({
   description,
   routeName,
   difficulty,
   toggleIsClimbed,
-  isClimbed
+  isClimbed,
+  changeColor,
 }) {
   return (
-    <DetailedRouteStyled>
+    <RouteDescriptionStyled onClick={changeColor}>
       <div className="difficulty-circle">
         <h3>{difficulty}</h3>
       </div>
@@ -22,17 +25,13 @@ export default function DetailedRoute({
         onClick={toggleIsClimbed}
         alt="mountain-icon"
         className="mountain-icon"
-        src={
-          isClimbed
-            ? require('../src/icons/mountain-green.svg')
-            : require('../src/icons/mountain-black.svg')
-        }
+        src={isClimbed ? mountainCircle : mountainBlack}
       />
-    </DetailedRouteStyled>
+    </RouteDescriptionStyled>
   )
 }
 
-const DetailedRouteStyled = styled.div`
+const RouteDescriptionStyled = styled.div`
   position: relative;
   display: flex;
   width: 340px;
@@ -66,7 +65,10 @@ const DetailedRouteStyled = styled.div`
     top: 35px;
   }
 `
-DetailedRoute.propTypes = {
+RouteDescription.propTypes = {
   description: PropTypes.string.isRequired,
-  routeName: PropTypes.string.isRequired
+  routeName: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired,
+  toggleIsClimbed: PropTypes.func,
+  isClimbed: PropTypes.bool,
 }

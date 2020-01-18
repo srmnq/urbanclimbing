@@ -1,82 +1,47 @@
 import React, { useState, useEffect } from 'react'
-import SpotList from './SpotList'
+import WrappedMap from './Map/WrappedMapContainer'
+import AddASpot from './AddASpot/AddASpot'
+import Profile from './Profile'
 import GlobalStyle from './GlobalStyles'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import DetailedSpot from './DetailedSpot'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { getSpots, postSpot, patchSpot } from './services'
 import spotData from './spots.json'
-import { func } from 'prop-types'
+import { LastLocationProvider } from 'react-router-last-location'
+import Routes from './Routes'
 
 function App() {
-  const [spots, setSpots] = useState(spotData)
-  const [selectedSpot, setSelectedSpot] = useState(spots[0])
+  const [spots, setSpots] = useState([])
 
   useEffect(() => {
-    const indexSpot = spots.findIndex(el => el.id === selectedSpot.id)
+    getSpots()
+      .then(setSpots)
+      .catch(setSpots(spotData))
+  }, [])
 
-    setSpots([
-      ...spots.slice(0, indexSpot),
-      { ...selectedSpot },
-      ...spots.slice(indexSpot + 1)
-    ])
-  }, [selectedSpot])
   return (
     <Router>
-      <GlobalStyle />
-      <Switch>
-        <Route path="/:handle">
-          <DetailedSpot
-            toggleIsClimbed={index => toggleIsClimbed(index)}
-            spot={selectedSpot}
-          />
-        </Route>
-      </Switch>
-      <Switch>
-        <Route exact path="/">
-          <SpotList
-            clickedSpot={id => clickedSpot(id)}
-            spotData={spots}
-            toggleBookmark={(event, id) => toggleBookmark(event, id)}
-          />
-        </Route>
-      </Switch>
+      <LastLocationProvider>
+        <GlobalStyle />
+        <Switch>
+          <Route exact path={`/map/:id`}>
+            <WrappedMap spotData={spots} />
+          </Route>
+          <Route exact path="/addASpot">
+            <AddASpot addASpot={spot => addASpot(spot)} />
+          </Route>
+          <Route exact path="/Profile">
+            <Profile spots={spots} />
+          </Route>
+          <Route exact path="/map">
+            <WrappedMap spotData={spots} />
+          </Route>
+        </Switch>
+        <Routes spots={spots} setSpots={setSpots} />
+      </LastLocationProvider>
     </Router>
   )
-
-  function toggleBookmark(event, id) {
-    event.preventDefault()
-    event.stopPropagation()
-    let index = spots.findIndex(el => el.id == id)
-
-    let spot = spots[index]
-    setSpots([
-      ...spots.slice(0, index),
-      { ...spot, isBookmarked: !spot.isBookmarked },
-      ...spots.slice(index + 1)
-    ])
-  }
-
-  function toggleIsClimbed(index) {
-    let route = selectedSpot.routes.boulder[index]
-
-    setSelectedSpot({
-      ...selectedSpot,
-      routes: {
-        ...selectedSpot.routes,
-        boulder: [
-          ...selectedSpot.routes.boulder.slice(0, index),
-          {
-            ...route,
-            isClimbed: !route.isClimbed
-          },
-          ...selectedSpot.routes.boulder.slice(index + 1)
-        ]
-      }
-    })
-  }
-
-  function clickedSpot(id) {
-    const index = spots.findIndex(spot => spot.id == id)
-    setSelectedSpot(spots[index])
+  function addASpot(spot) {
+    postSpot(spot)
   }
 }
 

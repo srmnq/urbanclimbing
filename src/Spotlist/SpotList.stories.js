@@ -1,11 +1,11 @@
 import React from 'react'
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs'
+import { withKnobs } from '@storybook/addon-knobs'
 import SpotList from './SpotList'
-import spotData from './spots.json'
+import spotData from '../spots.json'
 
 export default {
   title: 'SpotList',
-  decorators: [withKnobs]
+  decorators: [withKnobs],
 }
 
 export const standard = () => (

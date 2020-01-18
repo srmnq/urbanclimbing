@@ -56,6 +56,7 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.local
 
 # next.js build output
 .next
@@ -65,6 +66,7 @@ typings/
 /node_modules
 /.pnp
 .pnp.js
+/server/node_modules
 
 # testing
 /coverage

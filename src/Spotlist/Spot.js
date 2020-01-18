@@ -1,7 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import DifficultyBar from './DifficultyBar'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import heartRed from '../icons/heart-red.svg'
+import heartBlack from '../icons/heart-black.svg'
 
 export default function Spot({
   name,
@@ -12,24 +15,29 @@ export default function Spot({
   mediumRoutes,
   hardRoutes,
   toggleBookmark,
-  isBookmarked
+  isBookmarked,
+  id,
+  ...props
 }) {
   return (
-    <SpotStyled>
+    <SpotStyled {...props}>
       <img alt="climbing spot" className="mainImage" src={mainImage}></img>
-      <img
-        alt="map-icon"
-        className="map-icon"
-        src={require('../src/icons/map-black.svg')}
-      />
+
+      <Link className="map-icon" to={`/map/${id}`}>
+        <div>
+          {window.location.href.indexOf('map') > -1 || (
+            <img
+              alt="map-icon"
+              src={require('../../src/icons/map-black.svg')}
+            />
+          )}
+        </div>
+      </Link>
+
       <img
         alt="heart-icon"
         className="heart-icon"
-        src={
-          isBookmarked
-            ? require('../src/icons/heart-red.svg')
-            : require('../src/icons/heart-black.svg')
-        }
+        src={isBookmarked ? heartRed : heartBlack}
         onClick={toggleBookmark}
       />
 
@@ -96,6 +104,7 @@ const SpotStyled = styled.div`
     top: 14px;
     width: 14px;
     cursor: pointer;
+    transform: scale(1.2);
   }
 
   .mainImage {
@@ -112,10 +121,10 @@ const SpotStyled = styled.div`
 `
 
 Spot.propTypes = {
-  boulderCount: PropTypes.number.isRequired,
-  sportCount: PropTypes.number.isRequired,
-  easyRoutes: PropTypes.number.isRequired,
-  mediumRoutes: PropTypes.number.isRequired,
-  hardRoutes: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired
+  boulderCount: PropTypes.number,
+  sportCount: PropTypes.number,
+  easyRoutes: PropTypes.number,
+  mediumRoutes: PropTypes.number,
+  hardRoutes: PropTypes.number,
+  name: PropTypes.string,
 }
